@@ -8,7 +8,7 @@ import { useState, useEffect } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import { db } from "../lib/init-firebase";
 import "react-toastify/dist/ReactToastify.css";
-import 'react-phone-number-input/style.css'
+import 'react-phone-number-input/style.css';
 import { Link } from "react-router-dom";
 import PhoneInput, {
   formatPhoneNumber,
