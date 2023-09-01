@@ -8,15 +8,15 @@ import { useState, useEffect } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import { db } from "../lib/init-firebase";
 import "react-toastify/dist/ReactToastify.css";
-import 'react-phone-number-input/style.css';
-import './custom-styles.css'; // Import your custom CSS
+// import 'react-phone-number-input/style.css';
+// import './custom-styles.css'; // Import your custom CSS
 import { Link } from "react-router-dom";
-import PhoneInput, {
-  formatPhoneNumber,
-  formatPhoneNumberIntl,
-  isPossiblePhoneNumber,
-  isValidPhoneNumber,
-} from "react-phone-number-input";
+// import PhoneInput, {
+//   formatPhoneNumber,
+//   formatPhoneNumberIntl,
+//   isPossiblePhoneNumber,
+//   isValidPhoneNumber,
+// } from "react-phone-number-input";
 
 const Checkout = () => {
   useEffect(() => {
@@ -34,7 +34,7 @@ const Checkout = () => {
   const [novalue, setnovalue] = useState(true);
   const [errors, seterrors] = useState({});
   const [isSubmit, setisSubmit] = useState(false);
-  const [Value, setValue] = useState("");
+  // const [Value, setValue] = useState("");
   // console.log(Value);
 
   useEffect(() => {
@@ -66,8 +66,9 @@ const Checkout = () => {
     if (
       !formValues.address ||
       !formValues.fullname ||
-      !Value ||
-      !errors.invalid ||
+      !formValues.email||
+      // !Value ||
+      // !errors.invalid ||
       !formValues.town
     ) {
       setisSubmit(false);
@@ -96,13 +97,13 @@ const Checkout = () => {
     if (!values.town) {
       errors.town = "Town/City required!";
     }
-    if (!Value) {
-      errors.Value = "Phone number required!";
-    } else if (Value && isValidPhoneNumber(Value)) {
-      errors.invalid = "Invalid Phone number";
-    } else if (Value && isValidPhoneNumber(!Value)) {
-      errors.invalid = "";
-    }
+    // if (!Value) {
+    //   errors.Value = "Phone number required!";
+    // } else if (Value && isValidPhoneNumber(Value)) {
+    //   errors.invalid = "Invalid Phone number";
+    // } else if (Value && isValidPhoneNumber(!Value)) {
+    //   errors.invalid = "";
+    // }
 
     if (!values.email) {
       errors.email = "Email required";
@@ -136,7 +137,7 @@ const Checkout = () => {
 
     metadata: {
       formValues,
-      Value,
+      // Value,
     },
     publicKey,
     text: `Pay Now(₦${totalAmount})`,
@@ -241,7 +242,7 @@ const Checkout = () => {
               <p className="text-red text-[12px]">{errors.town}</p>
             </div>
 
-            <div className="flex flex-col">
+            {/* <div className="flex flex-col">
               <label htmlFor="Phone" className="text-darktext  text-[12px]">
                 Phone<sup className="text-star">*</sup>
               </label>
@@ -260,7 +261,7 @@ const Checkout = () => {
 
               <p className="text-red text-[12px]">{errors.Value}</p>
               <p className="text-red text-[12px]"> {errors.invalid}</p>
-            </div>
+            </div> */}
 
             <div className="flex flex-col">
               <label htmlFor="Email" className="text-darktext  text-[12px]">
