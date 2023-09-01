@@ -1,7 +1,8 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-*{
+
+* {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
@@ -15,17 +16,18 @@ code {
 }
 
 
-.list{
+.list {
   display: flex;
   list-style: none;
 }
-.link{
-  color:#3d3d3d;
+
+.link {
+  color: #3d3d3d;
   position: relative;
 }
 
 
-.link::after{
+.link::after {
   content: "";
   position: absolute;
   bottom: 0;
@@ -36,17 +38,17 @@ code {
   transition: all 250ms ease-in-out;
 }
 
-.link:hover::after{
+.link:hover::after {
   width: 100%;
   left: 0;
 }
 
-.link1{
+.link1 {
 
   position: relative;
 }
 
-.link1::after{
+.link1::after {
   content: "";
   position: absolute;
   bottom: -10;
@@ -57,61 +59,62 @@ code {
   background: #0F1231;
   transition: all 250ms ease-in-out;
 }
-.link1:hover::after{
+
+.link1:hover::after {
   width: 100%;
   left: 0;
 }
 
 
-#box{
+#box {
   position: relative;
   overflow: hidden;
-  z-index: 2 ;
+  z-index: 2;
   background: white;
 }
 
 #box::before,
-#box::after{
-  content: ""; 
+#box::after {
+  content: "";
   position: absolute;
   height: 100%;
   width: 100%;
   top: 50%;
-  left:50%;
+  left: 50%;
   transform: translate(-50%, -50%);
   z-index: -1;
 
-  
+
 }
 
-#box:hover::before{
+#box:hover::before {
   background: conic-gradient(#2C9ED7 20deg, transparent 120deg);
   animation: rotate 1s infinite linear;
 }
 
-#box:hover::after{
+#box:hover::after {
   background: white;
   height: 99%;
   width: 99%;
   box-shadow: 5px 5px 15px #0000 inset;
   border-radius: 10px;
-  
+
 
 }
 
-@keyframes rotate{
-  100%{
+@keyframes rotate {
+  100% {
     transform: translate(-50%, -50%) rotate(-360deg);
   }
 }
 
-.content{
- 
+.content {
+
   line-height: 1;
   text-align: center;
   background-clip: text;
   color: transparent;
-  background-image: linear-gradient( -225deg, #231557 0%, #44107a 29%, #3d3d3d 67%, rgb(127, 226, 188) 100% );
+  background-image: linear-gradient(-225deg, #231557 0%, #44107a 29%, #3d3d3d 67%, rgb(127, 226, 188) 100%);
   background-size: 200% auto;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -119,74 +122,79 @@ code {
 }
 
 
-.content span{
+.content span {
   font-size: 80px;
 }
 
-@keyframes animate{
-0%{
-  background-position: 0 0;
-}
-25%{
-  background-position: 100% 0;
-}
-50%{
-  background-position: 100% 100%;
-}
-75%{
-  background-position: 0 100%;
-}
-100%{
-  background-position: 0 0;
-}
-}
-  .col {
-   
-     
- 
- 
-     background-image: linear-gradient( -225deg, #231557 0%, #44107a 29%, #3d3d3d 67%, rgb(117,218,180) 100% );
-     background-size: auto auto;
-     background-clip: border-box;
-   
-     color: #fff;
-     background-clip: text;
-     -webkit-background-clip: text;
-     -webkit-text-fill-color: transparent;
-     animation: textclip 2s linear infinite;
-     display: inline-block;
- 
- 
+@keyframes animate {
+  0% {
+    background-position: 0 0;
   }
 
-
-
-  .col span{
-    font-weight: 300;
-    font-size: 43px;
-    display: block;
+  25% {
+    background-position: 100% 0;
   }
 
-  .image{
-    position: relative;
-    overflow: hidden;
-    border: 5px solid #ffff;
-    width: 270px;
-    height: 250px;
-    
-    
-   }
-  
-   .image img{
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transform: scale(var(--zoom,1));
-    transform-origin: var(--x) var(--y);
-    transition: transform 0.3s ease;
-   }
-   .image:hover{
-    --zoom:3;
-   }
- 
+  50% {
+    background-position: 100% 100%;
+  }
+
+  75% {
+    background-position: 0 100%;
+  }
+
+  100% {
+    background-position: 0 0;
+  }
+}
+
+.col {
+
+
+
+
+  background-image: linear-gradient(-225deg, #231557 0%, #44107a 29%, #3d3d3d 67%, rgb(117, 218, 180) 100%);
+  background-size: auto auto;
+  background-clip: border-box;
+
+  color: #fff;
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: textclip 2s linear infinite;
+  display: inline-block;
+
+
+}
+
+
+
+.col span {
+  font-weight: 300;
+  font-size: 43px;
+  display: block;
+}
+
+.image {
+  position: relative;
+  overflow: hidden;
+  border: 5px solid #ffff;
+  width: 270px;
+  height: 250px;
+
+
+}
+
+.image img {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: scale(var(--zoom, 1));
+  transform-origin: var(--x) var(--y);
+  transition: transform 0.3s ease;
+}
+
+.image:hover {
+  --zoom: 3;
+}
