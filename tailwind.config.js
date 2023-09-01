@@ -26,6 +26,7 @@ module.exports = {
       divider: "#E8E8E8",
       darktext: "#3A3939",
       back: "#EBEBEB",
+      anime:"#74DAB5"
  
     },
     fontFamily: {
@@ -42,10 +43,10 @@ module.exports = {
       lg: { max: "1023px" },
       // => @media (max-width: 1023px) { ... }
 
-      md: { max: "1024px" },
+      md: { max: "1224px" },
       // => @media (max-width: 767px) { ... }
 
-      sm: { max: "676px" },
+      sm: { max: "780px" },
       // => @media (max-width: 639px) { ... }
 
       // 'sm-landscape': {'raw': '(max-width: 639px) and (orientation: landscape)'},

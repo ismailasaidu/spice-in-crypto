@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import { useEffect } from "react";
+import AnimatedHeader from "./AnimatedHeader";
 
 const res = [
   {
@@ -46,12 +47,13 @@ const Results = () => {
   // };
 
   return (
-    <div>
-      <div className="grid sm:hidden  grid-cols-3 sm:flex sm:flex-col sm:w-[100vh] gap-[30px] mx-[210px]  sm:mx-[140px] mt-[100px]">
+    <div className="px-[210px] sm:px-[30px] md:px-[150px]">
+      <AnimatedHeader text1="JUST RESULTS.NO CONFUSION" />
+      <div className="grid sm:hidden  grid-cols-3  md:grid-cols-2 sm:flex sm:flex-col place-items-center  gap-[30px]   mt-[100px]">
         {res.map((item, index) => (
           <div
             data-aos="fade-left"
-            className="image w-[400px] sm:w-[70%] sm:h-[350px]  cursor-pointer "
+            className="image w-[400px] sm:w-[70%] sm:h-[350px] md:w-[100%]  cursor-pointer "
             onClick={() => window.open(`${item.img}`)}>
             <img src={item.img} className="rounded-2xl relative " />
             <p

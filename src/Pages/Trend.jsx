@@ -2,6 +2,7 @@ import React from 'react'
 import slack from "../Assets/slack.png"
 
 import { Container } from "react-bootstrap";
+import { useEffect } from 'react';
 
 
 const typeDetails = [
@@ -20,8 +21,17 @@ const typeDetails = [
   ];
   
   const Trend = () => {
+    useEffect(() => {
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth",
+      });
+    }, []);
+  
+   
+
     return (
-      <div className="text-textcolor mx-[200px] flex flex-col gap-[30px] sm:mt-[200px] sm:mx-[50px]">
+      <div className="text-textcolor px-[200px] md:px-[100px] flex flex-col gap-[30px] sm:mt-[200px] sm:px-[50px]">
         <div>
           <h1 className="font-bold text-[28px] text- mt-[100px]  text-center ">
             Types Of Forex Trading
@@ -59,7 +69,7 @@ const typeDetails = [
         <Container>
         <div className="ratio ratio-21x9 mt-[100px]">
           <iframe
-            className="w-[1000px] sm:w-[100%] h-[500px]"
+            className="w-[1000px] sm:w-[100%] md:w-[100%] md:h-[300px] h-[500px]"
             src="https://www.youtube.com/embed/_F8MgJ3FVm8"
             title="YouTube video"
             allowFullScreen></iframe>

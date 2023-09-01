@@ -1,5 +1,5 @@
 import Header from "./Component/Header";
-import {Routes, Route } from "react-router-dom"
+import {Routes, Route, useNavigate } from "react-router-dom"
 import Home from "./Pages/Home";
 import OurStory from "./Pages/OurStory";
 import PhysicalClasses from "./Pages/PhysicalClasses";
@@ -18,13 +18,23 @@ import Login from "./Pages/login/Login";
 import NewProduct from "./Pages/login/NewProduct";
 import Checkout from "./Pages/Checkout";
 import NewSignals from "./Pages/login/NewSignals";
+import UpdateProducts from "./Pages/login/UpdateProducts";
+import Auth from "./Pages/Log";
+import Signup from "./Pages/Signup";
+import Log from "./Pages/Log";
+import { useSelector } from "react-redux";
+import { useDispatch} from "react-redux";
+import { authSlice } from "./redux/AuthSlice";
 
 
 // import "bootstrap/dist/css/bootstrap.min.css";
 
 
-
 function App() {
+  const isLoggedIn = useSelector(state => state.auth.loggedIn)
+
+  const {logIn, logOut} = authSlice.actions;
+  const navigate = useNavigate()
   useEffect(() => {
     window.scrollTo({
       top: 0,
@@ -32,11 +42,19 @@ function App() {
     });
   }, []);
 
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+    const loggedInUser = localStorage.getItem("Account");
+    if (loggedInUser) {
+    dispatch(logIn())
+    }
+  }, []);
  
   return (
-    <div className=" sm:w-[100vw]  overflow-hidde ">
+    <div className=" md:overflow-hidden ">
       <Header/>
-      <div className="" >
+    
       <Routes>
         <Route path="/" element={<Home/>}/>
         <Route path="/ourstory" element={<OurStory/>}/>
@@ -53,12 +71,15 @@ function App() {
         <Route path="/newproduct" element={<NewProduct/>}/>
         <Route path="/checkout" element={<Checkout/>}/>
         <Route path="/newsignals" element={<NewSignals/>}/>
-  
-      
+        {!isLoggedIn &&
+        <Route path="/log" element={<Log/>}  />
+        }
+        <Route path="/signup" element={<Signup/>}/>
+       
 
       </Routes>
-      </div>
-      {/* <Footer/> */}
+     
+      <Footer/>
     </div>
   );
 }

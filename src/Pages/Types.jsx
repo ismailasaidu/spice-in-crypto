@@ -1,6 +1,7 @@
 import React from "react";
 import slack from "../Assets/slack.png";
 import peakpx from "../Assets/peakpx.jpg";
+import { useEffect } from "react";
 
 const typeDetails = [
   {
@@ -21,8 +22,16 @@ const typeDetails = [
 ];
 
 const Types = () => {
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  }, []);
+
+ 
   return (
-    <div className="text-textcolor mx-[200px] flex flex-col sm:mt-[200px] sm:mx-[80px] gap-[30px]">
+    <div className="text-textcolor px-[200px] flex flex-col sm:mt-[200px] md:px-[100px] sm:px-[80px] gap-[30px]">
       <div>
         <h1 className="font-bold text-[28px]  text- mt-[100px] text-center">
           Types Of Forex Trading

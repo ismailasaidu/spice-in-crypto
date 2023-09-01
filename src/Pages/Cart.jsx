@@ -14,10 +14,18 @@ import close from "../Assets/close.png";
 import { AiOutlineMinus, AiOutlinePlus } from "react-icons/ai";
 
 const Cart = () => {
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  }, []);
+
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const cart = useSelector((state) => state.cart.cart);
+  const isLoggedIn = useSelector(state => state.auth.loggedIn)
 
   const Cart = useSelector((state) => state.cart);
 
@@ -41,9 +49,10 @@ const Cart = () => {
     dispatch(Subtotal());
   }, [Cart, dispatch]);
 
+  const User = localStorage.getItem("user")
   return (
-    <div className="">
-      <div className="mt-[150px]">
+    <div className=" py-[150px]  md:py-[80px]  sm:pt-[200px] ">
+      <div className="">
         <div className="px-14 sm:px-0 md:px-[30px] ">
           <div>
             <h1 className="text-grey mt-[50px] sm:mt-[-40px]">
@@ -58,8 +67,8 @@ const Cart = () => {
             </h1>
           </div>
           <div>
-            <div>
-              <div className="grid grid-cols-4   border-b-[1px] gap-[150px] border-divider pl-[180px] h-[50px] mt-[100px] sm:mt-[40px] sm:pl-[30px] sm:gap-[50px] sm:text-[14px]  md:gap-[90px] md:pl-[35px]">
+            <div className="md:mt-[-50px]">
+              <div className="grid grid-cols-4  sm:place-items-center sm:justify-center border-b-[1px] gap-[100px] border-divider pl-[100px] h-[50px] mt-[100px]   sm:mt-[140px] sm:gap-0 sm:text-[14px]  md:gap-[90px] md:pl-[35px]">
                 <h1 className="font-bold text-[18px] pt-[15px] sm:text-[14px]">
                   Product
                 </h1>
@@ -76,7 +85,7 @@ const Cart = () => {
               {cart.length > 0
                 ? cart.map((item) => {
                     return (
-                      <div className="grid grid-cols-4 items-center border-b-[1px] gap-[150px]  border-divider pl-[180px] sm:h-[80px] md:h-[80px] h-[60px] mt-[40px] font-display relative sm:px-[30px]  sm:gap-[45px] sm:text-[14px] md:gap-[70px] md:items-center md:pl-[35px] md:pb-[20px]">
+                      <div className="grid grid-cols-4 items-center sm:place-items-center border-b-[1px] gap-[100px]  border-divider pl-[100px] sm:h-[80px] md:h-[80px] h-[60px] mt-[40px] font-display relative  sm:gap-0 sm:text-[14px] md:gap-[70px] md:items-center md:pl-[35px] md:pb-[20px]">
                         <img
                           src={close}
                           className="absolute left-0 mt-[20px] md:mt-[-5px] sm:left-[5px] "
@@ -84,11 +93,11 @@ const Cart = () => {
                             handleRemove(item);
                           }}
                         />
-                        <h1 className="font-bold text-[16px] md:text-[14px] mr-[40px] md:mt-[0px] text-grey pt-[15px] sm:text-[14px] sm:text-center  md:text-center">
+                        <h1 className="font-bold text-[16px] uppercase md:text-[14px] mr-[40px] md:mt-[0px] text-grey pt-[15px] sm:text-[12px] sm:text-center  md:text-center">
                           {item.data.Description}
                         </h1>
                         <h1 className="font-medium text-[18px] text-grey pt-[15px]  md:pl-[10px] ">
-                          ${item.data.Price}
+                          ₦{item.data.Price}
                           {/* ${item.data.Price - (item.data.Discount / 100) * item.data.Price} */}
                         </h1>
                         <div className="flex items-center gap-[5px]   md:pl-[10px]">
@@ -110,7 +119,7 @@ const Cart = () => {
                           </button>
                         </div>
                         <h1 className="font-medium text-[18px] text-grey object-contain pt-[15px] md:pl-[20px]">
-                        ₦{Math.round(item.data.Price * item.data.quantity)}
+                          ₦{Math.round(item.data.Price * item.data.quantity)}
                         </h1>
                       </div>
                     );
@@ -118,7 +127,7 @@ const Cart = () => {
                 : ""}
             </div>
 
-            <div className="mt-[100px] sm:px-[10px]">
+            <div className="mt-[100px] sm:px-[30px]">
               <div>
                 <h1 className="font-display text-[34px] font-black  ">
                   Cart Totals
@@ -129,23 +138,24 @@ const Cart = () => {
                   Subtotal
                 </h1>
                 <p className="font-medium text-[18px]">
-                ₦{Cart.cartTotalAmount}
+                  ₦{Cart.cartTotalAmount}
                 </p>
               </div>
 
               <div className="flex justify-between font-display w-[440px] mt-[20px]  h-[40px]  border-b-[2px] border-grey sm:w-[340px]">
                 <h1 className="text-grey text-[18px] font-semibold ">Total</h1>
                 <p className="font-medium  text-[18px]">
-                  ${Cart.cartTotalAmount}
+                  ₦{Cart.cartTotalAmount}
                 </p>
               </div>
               <div>
                 <button
                   className="  w-[280px] bg-blue sm:lightblue text-white h-[50px] mt-[40px]"
                   onClick={() => {
-                    cart.length > 0
-                      ? navigate("/checkout")
-                      : toast.info("You Have No Items In Cart");
+                    !cart.length
+                      ? toast.info("You Have No Items In Cart")
+                      // localStorage.setItem('previousPage', window.location.href)
+                      : !isLoggedIn ? navigate('/log'): navigate('/checkout') 
                   }}>
                   PROCEED TO CHECKOUT
                 </button>

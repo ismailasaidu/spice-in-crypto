@@ -7,31 +7,37 @@ import Faq from "../Component/Faq";
 import Started from "../Component/Started";
 import Results from "../Component/Results";
 import FancyText from "@carefully-coded/react-text-gradient";
+import AnimatedHeader from "../Component/AnimatedHeader";
 
 const Home = () => {
   useEffect(() => {
     AOS.init({ duration: 2000 });
   }, []);
 
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  }, []);
+
+ 
+
   return (
     <>
       <div className="md:w-[100%]">
         <Hero />
-        <div className="text-center sm:text-[28px]  mt-[100px] sm:px-[100px] md:px-[100px]  flex gap-[30px] flex-col">
-          {/* <FancyText
-          gradient={{ from: "#F858E0", to: "#77156C", type: "linear" }}
-          animateTo={{ from: "#6DEDD0", to: "#7AE23A" }}
-          animateDuration={2000}>
-          HOW THE PROGRAM WORKS
-  </FancyText> */}
-          <p className="hide font-medium sm:font-bold md:font-bold text-textcolor font-MT ">
+        <div className="text-center sm:text-[28px]  pt-[50px] sm:px-[30px] md:px-[100px]  flex gap-[30px] flex-col">
+     <AnimatedHeader text1="HOW THE PROGRAM WORKS
+"/>
+          <p className="hide font-medium sm:font-bold sm:text-[15px] md:font-bold text-textcolor font-MT ">
             Lorem, ipsum dolor sit amet consectetur adipisicing elit. Libero
             dolor accusamus ducimus iste rem,<br></br> dolorem voluptas ad
             temporibus vel beatae nam repudiandae harum atque maiores
             dignissimos odio ex quibusdam?<br></br> Omnis sequi ab optio numquam
             nisi voluptate ad repudiandae laboriosam ipsam!
           </p>
-          <p className="hide font-medium sm:font-bold  md:font-bold text-textcolor">
+          <p className="hide font-medium sm:font-bold sm:text-[15px]  md:font-bold text-textcolor">
             Lorem, ipsum dolor sit amet consectetur adipisicing elit. Libero
             dolor accusamus ducimus iste rem,<br></br> dolorem voluptas ad
             temporibus vel beatae nam repudiandae harum atque maiores
@@ -40,11 +46,12 @@ const Home = () => {
           </p>
         </div>
         <Card />
+        <Started icon="BsPlayFill" text1="Get Started"/>
 
- 
         <Results />
-        {/* <Faq /> */}
-        <Started/>
+        <AnimatedHeader text1="FREQUENTLY ASKED QUESTIONS"/>
+        <Faq />
+        <Started icon="BsPlayFill" text1="Get Started" />
       </div>
     </>
   );

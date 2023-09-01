@@ -105,21 +105,41 @@ code {
   }
 }
 
-.animate-charcter {
-  background-image: linear-gradient( -225deg, #231557 0%, #44107a 29%, #3d3d3d 67%, rgb(117,218,180) 100% );
-  background-size: auto auto;
-  background-clip: border-box;
-  background-size: 200% auto;
-  color: #fff;
+.content{
+ 
+  line-height: 1;
+  text-align: center;
   background-clip: text;
+  color: transparent;
+  background-image: linear-gradient( -225deg, #231557 0%, #44107a 29%, #3d3d3d 67%, rgb(127, 226, 188) 100% );
+  background-size: 200% auto;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  animation: textclip 2s linear infinite;
-  display: inline-block;
+  animation: animate 2s ease-in-out infinite;
 }
 
 
+.content span{
+  font-size: 80px;
+}
 
+@keyframes animate{
+0%{
+  background-position: 0 0;
+}
+25%{
+  background-position: 100% 0;
+}
+50%{
+  background-position: 100% 100%;
+}
+75%{
+  background-position: 0 100%;
+}
+100%{
+  background-position: 0 0;
+}
+}
   .col {
    
      
@@ -128,7 +148,7 @@ code {
      background-image: linear-gradient( -225deg, #231557 0%, #44107a 29%, #3d3d3d 67%, rgb(117,218,180) 100% );
      background-size: auto auto;
      background-clip: border-box;
-     background-size: 200% auto;
+   
      color: #fff;
      background-clip: text;
      -webkit-background-clip: text;
@@ -151,7 +171,7 @@ code {
     position: relative;
     overflow: hidden;
     border: 5px solid #ffff;
-    width: 300px;
+    width: 270px;
     height: 250px;
     
     

@@ -2,6 +2,7 @@ import React from "react";
 import peakpx from "../Assets/peakpx.jpg";
 import slack from "../Assets/slack.png";
 import { Container } from "react-bootstrap";
+import { useEffect } from "react";
 
 const details = [
   {
@@ -26,8 +27,17 @@ const details = [
 ];
 
 const GrowingAccount = () => {
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  }, []);
+
+ 
+
   return (
-    <div className="text-textcolor mt-[100px] mx-[250px] sm:mx-[100px] sm:mt-[300px]">
+    <div className="text-textcolor py-[100px] px-[250px] md:px-[100px]  sm:px-[100px] sm:py-[300px]">
       <div className="text-center">
         <h1 className="font-bold text-[26px] sm:text-[28px]">GROWING A SMALL FOREX ACCOUNT</h1>
         <p className="text-left  sm:text-center sm:text-[26px]">
@@ -53,7 +63,7 @@ const GrowingAccount = () => {
       <Container>
         <div className="ratio ratio-21x9 mt-[100px]">
           <iframe
-            className="w-[1000px] sm:w-[100%] h-[500px]"
+            className="w-[1000px] sm:w-[100%] md:w-[100%] md:h-[300px] h-[500px]"
             src="https://www.youtube.com/embed/_F8MgJ3FVm8"
             title="YouTube video"
             allowFullScreen></iframe>

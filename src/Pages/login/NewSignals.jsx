@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from "react";
 import { addDoc, collection } from "firebase/firestore";
 import { db, storage } from "../../lib/init-firebase";
@@ -9,6 +8,7 @@ export const NewSignals = () => {
   const [title, setTitle] = useState("");
   const [Price, setPrice] = useState("");
   const [duration, setDuration] = useState("");
+  const [description, setDescription] = useState("");
   const [discount, setDiscount] = useState("");
   const [image, setImage] = useState(null);
   const [imageSrc, setImageSrc] = useState("");
@@ -16,13 +16,13 @@ export const NewSignals = () => {
   const [selectedImages, setSelectedImages] = useState([]);
   const [imagesForUpload, setImagesForUpload] = useState([]);
   const [Details, setDetails] = useState("");
+  const [quantity, setQuantity] = useState(1);
 
   const navigate = useNavigate();
   const handleImageSelect = (e) => {
-  setSelectedImages([...selectedImages, ...e.target.files]);
-  console.log("New images selected");
-  
-};
+    setSelectedImages([...selectedImages, ...e.target.files]);
+    console.log("New images selected");
+  };
   const User = localStorage.getItem("user");
   useEffect(() => {
     if (!User) {
@@ -40,48 +40,34 @@ export const NewSignals = () => {
     //     getDownloadURL(pathReference).then((res) => {
     //       images.push(res);
     //       console.log(res)
-        
-        
+
     //     });
     //   });
-  
+
     // })
     // setImagesForUpload(images);
-   
+
     // console.log(imagesForUpload);
-    if (
-      title &&
-     
-      Price &&
-      duration
-  
-   
-    )
-     {
-      
+    if (description && quantity && Price && duration) {
       const SignalsRef = collection(db, "Signals");
       addDoc(SignalsRef, {
-         Title: title,
-  
-         Price,
-         Duration: duration,
-     
-       })
-       .then((res) => {
-                console.log(res);
-                alert("uploaded");
-                window.location.reload()
-                 
-              })
-              .catch((err) => {
-                console.log(err);
-                alert("error")
-              });
-            }else {
-                alert("pls fill input fields")
-            }
-
-    
+        Description: description,
+        quantity: quantity,
+        Price,
+        Duration: duration,
+      })
+        .then((res) => {
+          console.log(res);
+          alert("uploaded");
+          window.location.reload();
+        })
+        .catch((err) => {
+          console.log(err);
+          alert("error");
+        });
+    } else {
+      alert("pls fill input fields");
+    }
   };
   return (
     <div className="flex items-center   justify-center h-screen text bg-blue ">
@@ -97,7 +83,6 @@ export const NewSignals = () => {
               }}
             />
           </div>
-        
 
           <div>
             <input
@@ -105,21 +90,26 @@ export const NewSignals = () => {
               type="text"
               placeholder=" Description"
               onChange={(e) => {
-                setTitle(e.target.value);
+                setDescription(e.target.value);
               }}
             />
           </div>
-     
+
           <div>
             <input
               type="text"
               className="w-[100%] px-[10px]"
-              placeholder="Select"
+              placeholder="Duration"
               onChange={(e) => {
                 setDuration(e.target.value);
-              }
-               
-              }
+              }}
+            />
+          </div>
+          <div>
+            <input
+              type="text"
+              className="w-[100%] outline-none px-[10px]"
+              value={quantity}
             />
           </div>
 
@@ -159,7 +149,7 @@ export default NewSignals;
 //   setSelectedImages([...selectedImages, ...e.target.files]);
 //   console.log("New images selected");
 // };
- 
+
 // const handleImageDelete = (index) => {
 //   const updatedImages = [...selectedImages];
 //   updatedImages.splice(index, 1);

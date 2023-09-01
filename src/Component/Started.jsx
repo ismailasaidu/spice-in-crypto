@@ -1,14 +1,21 @@
 import React from "react";
-import { BsPlayFill } from "react-icons/bs";
+import Play from "./Play";
 // import { Store } from "../component/product";
 import { useState, useEffect } from "react";
 import { collection, getDocs } from "firebase/firestore";
 import { db } from "../lib/init-firebase";
 import { Link } from "react-router-dom";
+import { BsPlayFill } from "react-icons/bs";
 
-const Started = () => {
+const Started = ({ icon, text1, text2 }) => {
   const [Ebooks, setEbooks] = useState([]);
   // const [skeleton, setSkeleton] = useState(true);
+
+  const iconMap = {
+    BsPlayFill: <BsPlayFill />,
+
+    // Add more icons as needed
+  };
 
   useEffect(() => {
     getEbooks();
@@ -35,24 +42,26 @@ const Started = () => {
 
   return (
     <div className="">
-      {
-        Ebooks.map((item, index)=>(
-          <Link to={`description/${index}`}>
+      {Ebooks.map((item, index) => (
+      
           <div
-            className="flex justify-center mt-[30px] sm:mt-[100px]  "
+            className="flex justify-center mt-[30px]  "
             data-aos="fade-up">
-            <button className="flex justify-between bg-blue sm:bg-lightblue sm:px-[40px] rounded-2xl w-[170px] sm:w-[40%] sm:h-[60px] h-[40px] items-center  px-[20px] text-[15px] text-bold">
-              <BsPlayFill className="sm:w-[30px] sm:h-[30px]" />
-              <p className="text-black font-semibold sm:text-[24px] sm:font-bold">
-                GET STARTED
+                <Link to={`description/${index}`}>
+            <button className="flex justify-between items-center  hover:bg-black hover:text-white  text-black bg-lightblue sm:bg-lightblue   rounded-2xl w-[170px]  sm:h-[40px] h-[40px]  px-[20px] text-[15px] text-bold">
+              <div className=" "> {iconMap[icon]}</div>
+
+              <p className=" font-semibold sm:text-[14px] sm:font-bold">
+                {text1}
+              </p>
+              <p className="font-semibold sm:text-[14px] sm:font-bold">
+                {text2}
               </p>
             </button>
+            </Link>
           </div>
-          </Link>
-        ))
-      }
      
-      
+      ))}
     </div>
   );
 };
