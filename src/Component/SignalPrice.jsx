@@ -54,6 +54,8 @@ const cardDetails = [
   },
 ];
 
+
+
 const SignalPrice = ({ item }) => {
   useEffect(() => {
     console.log(item);
@@ -68,6 +70,9 @@ const SignalPrice = ({ item }) => {
   }
 
   const paymentStatus = localStorage.getItem('paymentStatus');
+
+ const loginInfo = localStorage.getItem("Account")
+ console.log(loginInfo.data.Email)
 
 
 
@@ -89,7 +94,27 @@ const SignalPrice = ({ item }) => {
     },
   ];
 
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+   
+  
+    const PurchaseDetails = collection(db, "Purchase");
+    const res = await getDocs(PurchaseDetails);
+    const purchases = await res.docs.map(doc => ({
+      data: doc.data(),
+      
+      id: doc.id,
+    }))
+    
+    const userWithAccount = purchases.find(item => item.data.Email  && item.data.Password )
+    console.log(userWithAccount)
+ 
+  }
   return (
+
+
     <>
       <div className="flex flex-row sm:flex-col md:gap-[30px]    justify-between  md:px-0 ">
         <div className="flex sm:flex-col gap-[30px] sm:gap-[50px] flex-col">

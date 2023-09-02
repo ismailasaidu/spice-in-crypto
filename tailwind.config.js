@@ -7,13 +7,16 @@ module.exports = {
   //   content: ['./src/**/*.{js,jsx,ts,tsx}', './public/index.html'],
   // },
   theme: {
-    // extend: {},
+    extend: {
+
+      flexGrow: {
+        2: "2",
+      },
+    },
     values: {
       "100px": "100px",
     },
-    flexGrow: {
-      2: "2",
-    },
+    
     colors: {
       blue: "#0F1231",
       black: "#000000",
