@@ -1,17 +1,16 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
+  plugins:[],
   content: ["./src/**/*.{js,jsx,ts,tsx}"],
 
   theme: {
-    plugins: [],
-    extend: {
-     
-    },
+   
+    extend: {},
 
     flexGrow: {
       2: "2",
     }, 
-    
+
     values: {
       "100px": "100px",
     },
