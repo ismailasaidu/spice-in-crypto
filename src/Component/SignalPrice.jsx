@@ -69,11 +69,16 @@ const SignalPrice = ({ item }) => {
     dispatch(add(item));
   }
 
-  const paymentStatus = localStorage.getItem('paymentStatus');
+  const paymentStatus = localStorage.getItem( 'paymentStatus');
 
- const loginInfo = localStorage.getItem("Account")
- console.log(loginInfo.data.Email)
+ const logs = localStorage.getItem( "Account")
+  const loginInfo = JSON.parse(logs)
+ console.log(loginInfo)
 
+
+useEffect(() => {
+  handleSubmit()
+}, [])
 
 
   const rating = [
@@ -96,7 +101,7 @@ const SignalPrice = ({ item }) => {
 
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
+    // e.preventDefault();
 
    
   
@@ -107,9 +112,15 @@ const SignalPrice = ({ item }) => {
       
       id: doc.id,
     }))
+
+// console.log(purchases.data)
+
+    purchases.map((item)=>(
+      console.log(item.data.loginInfo.Email === loginInfo.data.Email )
+    ))
     
-    const userWithAccount = purchases.find(item => item.data.Email  && item.data.Password )
-    console.log(userWithAccount)
+    // const userWithAccount = purchases.map(item => console.log(item))
+    // console.log(userWithAccount)
  
   }
   return (
