@@ -18,6 +18,10 @@ const Log = () => {
   const isLoggedIn = useSelector(state => state.auth.loggedIn)
   const dispatch = useDispatch()
 
+  useEffect(() => {
+   isLoggedIn && navigate("/")
+  }, [])
+  
 
   console.log(isLoggedIn)
   
@@ -40,6 +44,7 @@ const Log = () => {
     const res = await getDocs(Account);
     const account = await res.docs.map(doc => ({
       data: doc.data(),
+      
       id: doc.id,
     }))
     
