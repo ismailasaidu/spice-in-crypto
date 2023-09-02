@@ -2,9 +2,12 @@
 module.exports = {
   content: ["./src/**/*.{js,jsx,ts,tsx}"],
 
- 
+  // purge: {
+  //   enabled: process.env.NODE_ENV === 'production',
+  //   content: ['./src/**/*.{js,jsx,ts,tsx}', './public/index.html'],
+  // },
   theme: {
-    extend: {},
+    // extend: {},
     values: {
       "100px": "100px",
     },

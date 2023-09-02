@@ -77,7 +77,7 @@ const Signals = () => {
 
 
   return (
-    <div className="mx-[100px] md:px-0  py-[100px] sm:py-[100px]">
+    <div className="mx-[100px] md:px-0  py-[100px] sm:py-[100px] sm:mx-0">
       <div className=" text-center flex items-center gap-[30px] flex-col mt-[50px]">
         <div>
           <h1 className=" text-[34px] sm:text-[20px] text-textcolor text-MT font-bold">
@@ -87,7 +87,7 @@ const Signals = () => {
 
         <div className="w-[80px] h-[3px]  bg-anime"></div>
       </div>
-      <div data-aos="zoom-out" className="mx-[100px] sm:mx-[10%] md:flex-col justify-center gap-[40px] items-center flex sm:flex-col flex-row pt-[70px] ">
+      <div data-aos="zoom-out" className="mx-[100px] sm:mx-[10px] md:flex-col justify-center gap-[40px] items-center flex sm:flex-col flex-row pt-[70px] ">
         {Signals.slice()
           .reverse()
           .map((item, index) => (

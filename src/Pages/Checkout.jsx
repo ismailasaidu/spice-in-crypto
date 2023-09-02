@@ -26,8 +26,14 @@ const Checkout = () => {
     });
   }, []);
 
- 
 
+  useEffect(() => {
+  
+  }, [])
+  
+ const loginInfo = localStorage.getItem("Account")
+
+ 
   const navigate = useNavigate();
   const cart = useSelector((state) => state.cart.cart);
   const Cart = useSelector((state) => state.cart);
@@ -126,7 +132,8 @@ const Checkout = () => {
     });
   }, []);
   // pk_live_0ee68ae5a3a802ae06f2601a024d3626d4a3ab11
-  let publicKey = "pk_test_d1f0052807510e076b88b932ec0951db128e0f9a";
+  let publicKey = "pk_test_8cf76f0d23fcfdc83d7b740af66c10342933190b";
+ 
 
   let totalAmount = localStorage.getItem("carttotal");
   // let Total =;
@@ -150,6 +157,7 @@ const Checkout = () => {
         totalAmount,
         cart,
         Cart,
+        loginInfo
       })
         .then((response) => {
           navigate("/");

@@ -28,7 +28,7 @@ const Hero = () => {
                 Learn To Trade Like<br></br> A Pro
               </h1>
             </div>
-            <div className="mt-[20px] sm:mt-[30px] sm:text-center sm:text-[14px] sm:flex sm:flex-col gap-[15px]">
+            <div className="mt-[20px] sm:mt-[30px] sm:text-center sm:text-[16px] sm:flex sm:flex-col sm:gap-[5px] gap-[15px]">
               <div className="font-bold text-textcolor flex flex-row items-center ">
                 <p className="font-bold text-black">You are one step from</p>
               </div>

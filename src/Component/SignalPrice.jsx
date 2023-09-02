@@ -69,6 +69,8 @@ const SignalPrice = ({ item }) => {
 
   const paymentStatus = localStorage.getItem('paymentStatus');
 
+
+
   const rating = [
     {
       imgSrc: "/.png",
@@ -89,12 +91,12 @@ const SignalPrice = ({ item }) => {
 
   return (
     <>
-      <div className="flex flex-row sm:flex-col md:gap-[30px]    justify-between sm:mx-[5%] md:px-0 ">
+      <div className="flex flex-row sm:flex-col md:gap-[30px]    justify-between  md:px-0 ">
         <div className="flex sm:flex-col gap-[30px] sm:gap-[50px] flex-col">
           <div
             id="box"
-            className=" hover:text-lightblue bg-white flex text-textcolor justify-center gap-[10px] items-center sm:h-[250px] flex-col shadow-xl  rounded-xl p-[30px]">
-            <h1 className="sm:text-[20px]">{item.data.Description}</h1>
+            className=" hover:text-lightblue bg-white flex text-textcolor justify-center gap-[10px] items-center sm:h-[250px] flex-col shadow-xl rounded-xl p-[30px]">
+            <h1 className="sm:text-[20px] text-center">{item.data.Description}</h1>
             <h1 className="font-bold sm:text-[20px]  text-[24px]">
               {item.data.Price}
             </h1>

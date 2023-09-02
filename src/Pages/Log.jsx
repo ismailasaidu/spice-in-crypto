@@ -14,6 +14,14 @@ const Log = () => {
   const [password, setPassword] = useState("");
   const [accounts, setAccounts] = useState("");
 
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  }, []);
+
+
   const navigate = useNavigate();
   const isLoggedIn = useSelector(state => state.auth.loggedIn)
   const dispatch = useDispatch()
@@ -49,12 +57,13 @@ const Log = () => {
     }))
     
     const user = account.find(item => item.data.Email === email && item.data.Password === password)
-
+    console.log(user)
     if (user){
       alert("logged in")
       dispatch(logIn());
       navigate(-1);
-      localStorage.setItem('Account', user.data.Email === email &&  user.data.Password === password)
+      localStorage.setItem('Account',  JSON.stringify(user))
+
 
     }else{
       alert('Password or email incorrect')
@@ -112,7 +121,7 @@ const Log = () => {
               }}
             />
             <input
-              type="email "
+              type="password"
               placeholder="Password"
               className="w-[100%] outline-none px-[10px] h-[20%] bg-divider"
               onChange={(e) => {
