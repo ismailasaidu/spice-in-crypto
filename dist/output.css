@@ -1687,17 +1687,17 @@ video {
           filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
 }
 
-body {
+body{
   font-family: "Arimo";
 }
 
-* {
+*{
   box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
 
-#root {
+#root{
   position: relative;
 }
 
@@ -1756,7 +1756,7 @@ body {
 }
 
 #box::before,
- #box::after {
+#box::after {
   content: "";
   position: absolute;
   height: 100%;
