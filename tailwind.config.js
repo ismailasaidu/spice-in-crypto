@@ -59,6 +59,14 @@ module.exports = {
   content: ["./src/**/*.{js,jsx,ts,tsx}"],
   theme: {
     extend: {},
+
+    flexGrow: {
+      2: "2",
+    },
+
+    values: {
+      "100px": "100px",
+    },
     screens: {
       "2xl": { max: "1535px" },
       // => @media (max-width: 1535px) { ... }
@@ -76,6 +84,10 @@ module.exports = {
       // => @media (max-width: 639px) { ... }
 
       // 'sm-landscape': {'raw': '(max-width: 639px) and (orientation: landscape)'},
+    },
+
+    fontFamily: {
+      MT: ["Montserrat'"],
     },
     colors: {
       blue: "#0F1231",

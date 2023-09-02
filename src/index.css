@@ -1,8 +1,7 @@
 @tailwind base;
 @tailwind components;
-@tailwind utilities; 
-
-
+@tailwind utilities;
+/* 
 body{
   font-family: "Arimo";
 }
@@ -200,4 +199,4 @@ position: relative;
 
 .image:hover {
   --zoom: 3;
-}
+} */
