@@ -21,18 +21,13 @@ const Log = () => {
     });
   }, []);
 
-
   const navigate = useNavigate();
-  const isLoggedIn = useSelector(state => state.auth.loggedIn)
-  const dispatch = useDispatch()
+  const isLoggedIn = useSelector((state) => state.auth.loggedIn);
+  const dispatch = useDispatch();
 
   useEffect(() => {
-   isLoggedIn && navigate("/")
-  }, [])
-  
-
-  console.log(isLoggedIn)
-  
+    isLoggedIn && navigate("/");
+  }, []);
 
   // const [previousPage, setPreviousPage] = useState(null);
 
@@ -41,35 +36,32 @@ const Log = () => {
   //   setPreviousPage(document.referrer);
   // }, []);
 
-  const {logIn, logOut} = authSlice.actions;
+  const { logIn, logOut } = authSlice.actions;
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-   
-  
     const Account = collection(db, "Accounts");
     const res = await getDocs(Account);
-    const account = await res.docs.map(doc => ({
+    const account = await res.docs.map((doc) => ({
       data: doc.data(),
-      
       id: doc.id,
-    }))
-    
-    const user = account.find(item => item.data.Email === email && item.data.Password === password)
-    console.log(user)
-    if (user){
-      alert("logged in")
-      dispatch(logIn());
+    }));
+
+    const user = account.find(
+      (item) => item.data.Email === email && item.data.Password === password
+    );
+    console.log('User', user);
+    if (user) {
+      alert("logged in");
+      console.log(user.id)
+      dispatch(logIn(user.id));
       navigate(-1);
-      localStorage.setItem('Account',  JSON.stringify(user))
 
-
-    }else{
-      alert('Password or email incorrect')
+      localStorage.setItem("Account", JSON.stringify({loggedIn: true, id: user.id}));
+    } else {
+      alert("Password or email incorrect");
     }
-    console.log(user, 'here')
-
 
     // getDocs(Account)
     //   .then((response) => {
@@ -81,37 +73,35 @@ const Log = () => {
     //       const user = account.find(item => item.data.Email === email && item.data.Password === password)
     //     })
     //     .then(user => console.log(user, 'me'))
-        // account.find((item) => {
-          //   if (item.data.Email === email && item.data.Password === password) {
-          //     alert("logged in")
-          //     dispatch(logIn());
-          //     navigate(-1);
-        //     // localStorage.setItem("isLoggedIn", "true");
-        //   } else if(item.data.Email !== email && item.data.Password !== password) {
-        //     alert("password or email incorrect");
-        //   }
+    // account.find((item) => {
+    //   if (item.data.Email === email && item.data.Password === password) {
+    //     alert("logged in")
+    //     dispatch(logIn());
+    //     navigate(-1);
+    //     // localStorage.setItem("isLoggedIn", "true");
+    //   } else if(item.data.Email !== email && item.data.Password !== password) {
+    //     alert("password or email incorrect");
+    //   }
 
-          // if (previousPage) {
-          //   window.location.href = previousPage;
-          //   // console.log(previousPage)
-          // } else {
-          //   // If no previous page, redirect to a default page
-          //   window.location.href = '/';
-          // }
-        // });
-        // console.log(accounts);
-      // })
+    // if (previousPage) {
+    //   window.location.href = previousPage;
+    //   // console.log(previousPage)
+    // } else {
+    //   // If no previous page, redirect to a default page
+    //   window.location.href = '/';
+    // }
+    // });
+    // console.log(accounts);
+    // })
 
-  //     .catch((error) => toast.error(error.message));
-
-     
+    //     .catch((error) => toast.error(error.message));
   };
 
   return (
     <div>
       <form onSubmit={handleSubmit}>
-        <div className="bg-lightblue flex justify-center items-center h-[100vh]">
-          <div className="bg-white w-[30%] flex justify-between items-center flex-col px-[20px] py-[30px] h-[40%] mt-[100px]">
+        <div className="bg-lightblue flex justify-center items-center h-[100vh] ">
+          <div className="bg-white w-[30%] sm:w-[80%] sm:mt-[-20px] flex justify-between md:gap-[10px] items-center flex-col px-[20px] py-[30px] h-[40%] mt-[100px] md:mt-[40px] ">
             <input
               type="email "
               placeholder="Email"
@@ -129,7 +119,7 @@ const Log = () => {
               }}
             />
             <button
-              className="bg-blue w-[100%] h-[20%] text-[14px] text-white"
+              className="bg-blue w-[100%] h-[20%] text-[14px]  text-white"
               onClick={handleSubmit}>
               LOGIN
             </button>

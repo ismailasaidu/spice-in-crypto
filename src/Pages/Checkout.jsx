@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { PaystackButton } from "react-paystack";
 import { addDoc, collection } from "firebase/firestore";
 import { useState, useEffect } from "react";
+import { doc, updateDoc, arrayUnion } from "firebase/firestore";
 
 import { ToastContainer, toast } from "react-toastify";
 import { db } from "../lib/init-firebase";
@@ -26,22 +27,24 @@ const Checkout = () => {
     });
   }, []);
 
+  useEffect(() => {}, []);
 
-  useEffect(() => {
-  
-  }, [])
-  
- const loginInfo = localStorage.getItem("Account")
+  const logs = localStorage.getItem("Account");
+  const loginInfo = JSON.parse(logs);
+  console.log(loginInfo);
 
- 
   const navigate = useNavigate();
   const cart = useSelector((state) => state.cart.cart);
   const Cart = useSelector((state) => state.cart);
+  const userId = useSelector((state) => state.auth.id);
+
   const [novalue, setnovalue] = useState(true);
   const [errors, seterrors] = useState({});
   const [isSubmit, setisSubmit] = useState(false);
   // const [Value, setValue] = useState("");
-  // console.log(Value);
+  console.log('Cart:', cart);
+  // const coursesIds = cart.map(item => item.id)
+  // console.log('CourseIds: ', coursesIds)
 
   useEffect(() => {
     console.log(errors);
@@ -72,7 +75,7 @@ const Checkout = () => {
     if (
       !formValues.address ||
       !formValues.fullname ||
-      !formValues.email||
+      !formValues.email ||
       // !Value ||
       // !errors.invalid ||
       !formValues.town
@@ -133,7 +136,6 @@ const Checkout = () => {
   }, []);
   // pk_live_0ee68ae5a3a802ae06f2601a024d3626d4a3ab11
   let publicKey = "pk_test_8cf76f0d23fcfdc83d7b740af66c10342933190b";
- 
 
   let totalAmount = localStorage.getItem("carttotal");
   // let Total =;
@@ -151,25 +153,38 @@ const Checkout = () => {
     onSuccess: () => {
       const PurchaseRef = collection(db, "Purchase");
       const purchaseDetailsRef = collection(db, "PurchaseDetails");
+      const userRef = doc(db, "Accounts", userId);
+      const coursesIds = cart.map(item => item.id)
+
       addDoc(purchaseDetailsRef, { Cart });
       addDoc(PurchaseRef, {
         formValues,
         totalAmount,
         cart,
         Cart,
-        loginInfo
+        loginInfo,
       })
         .then((response) => {
           navigate("/");
           localStorage.removeItem("CartItems");
           localStorage.removeItem("CartValue");
-       
+
           window.location.reload();
         })
         .catch((error) => {
           console.log(error.message);
         });
+
+
+      // Set the "capital" field of the city 'DC'
+      updateDoc(userRef, {
+        userPaidCourse: arrayUnion(...coursesIds)
+      });
+      
+      console.log('checkout', userId, 'updated')
     },
+
+
 
     onClose: () => toast.error("payment cancelled"),
   };
@@ -186,9 +201,8 @@ const Checkout = () => {
               HOME/
             </span>{" "}
             <Link to="/cart">
-            <span className="text-dark">SHOPPING CART</span>
+              <span className="text-dark">SHOPPING CART</span>
             </Link>
-         
           </h1>
         </div>
         <div className="mt-[40px] ">
@@ -321,7 +335,7 @@ const Checkout = () => {
             </div>
           </div>
           <div className="relative mt-[40px] justify-between border-divider border-[1px] px-[10px] py-[10px] h-[160px]   sm:h-[150px]">
-            <div className="bg-back pl-[10px] pt-[10px] mr-[300px] md:mr-[10px]  text-[12px] text-darktext h-[45px]  md:h-[60px] sm:h-[80px]">
+            <div className="bg-black pl-[10px] pt-[10px] mr-[300px] md:mr-[10px]  text-[12px] text-darktext h-[45px]  md:h-[60px] sm:h-[80px]">
               <p className="md:px-[40px] md:py-[5px] ">
                 Cash on delivery. Please contact us if you require assistance or
                 wish to make alternate arrangements.
@@ -331,9 +345,7 @@ const Checkout = () => {
             <button
               className="bg-blue text-white mt-[20px] px-[10px]"
               style={{ display: isSubmit ? "none" : "block" }}
-              onClick={handleSubmit}
-           
-              >
+              onClick={handleSubmit}>
               Click here
             </button>
 

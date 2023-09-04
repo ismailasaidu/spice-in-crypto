@@ -36,7 +36,10 @@ const res = [
     img: "/result1.jpg",
   },
 ];
+
 const Signals = () => {
+  const [Signals, setSignals] = useState([]);
+
   useEffect(() => {
     window.scrollTo({
       top: 0,
@@ -44,21 +47,17 @@ const Signals = () => {
     });
   }, []);
 
- 
-
+  
   useEffect(() => {
     AOS.init({ duration: 3000 });
   }, []);
-
-  const [Signals, setSignals] = useState([]);
+  
   useEffect(() => {
     getSignals();
   }, []);
-
-  useEffect(() => {
-    console.log(Signals);
-  }, []);
-
+  
+  console.log('here', Signals)
+  
   function getSignals() {
     const Signal = collection(db, "Signals");
     getDocs(Signal)
@@ -90,8 +89,8 @@ const Signals = () => {
       <div data-aos="zoom-out" className="mx-[100px] sm:mx-[10px] md:flex-col justify-center gap-[40px] items-center flex sm:flex-col flex-row pt-[70px] ">
         {Signals.slice()
           .reverse()
-          .map((item, index) => (
-            <SignalPrice item={item} index={index} />
+          .map((item, index ) => (
+            <SignalPrice item={item} itemIndex={index} />
           ))}
       </div>
       <div>

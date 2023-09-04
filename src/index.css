@@ -1,8 +1,9 @@
-@tailwind base;
-@tailwind components;
+/* @tailwind base;
+@tailwind components; */
 @tailwind utilities;
-/* 
-body{
+
+
+/* body{
   font-family: "Arimo";
 }
 

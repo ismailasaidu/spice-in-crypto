@@ -2,9 +2,9 @@ import React from "react";
 import slack from "../Assets/slack.png";
 
 import { useState, useEffect } from "react";
-import { collection, getDocs } from "firebase/firestore";
+import { collection, getDocs, doc, getDoc  } from "firebase/firestore";
 import { db } from "../lib/init-firebase";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector, useDispatch} from "react-redux";
 import { add } from "../redux/CartSlice";
 import { Link, useParams } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
@@ -54,32 +54,41 @@ const cardDetails = [
   },
 ];
 
+const SignalPrice = ({ item, itemIndex }) => {
+  const userId = useSelector(state => state.auth.id);
+  const [paidCourses, setPaidCourses] = useState([]); 
 
+  const retrievePaidCourses = async () => {
+    const userRef = doc(db, "Accounts", userId);
+    const res = await getDoc(userRef);
+    const {userPaidCourse} = await res.data()
 
-const SignalPrice = ({ item }) => {
+    setPaidCourses(userPaidCourse)
+  }
+  
   useEffect(() => {
-    console.log(item);
+      retrievePaidCourses()
   }, []);
 
-  const { id } = useParams();
+  const { id } = item.id;
   const dispatch = useDispatch();
-
+  
+  // console.log('paid Courses', paidCourses)
   function Send(e) {
     e.preventDefault();
     dispatch(add(item));
   }
 
-  const paymentStatus = localStorage.getItem( 'paymentStatus');
+  const logs = localStorage.getItem("Account");
+ 
+  // console.log(loginIn.data.Password);
 
- const logs = localStorage.getItem( "Account")
-  const loginInfo = JSON.parse(logs)
- console.log(loginInfo)
+  //  const [info, setinfo] = useState("")
+  //  console.log(info)
 
-
-useEffect(() => {
-  handleSubmit()
-}, [])
-
+  useEffect(() => {
+    handleSubmit();
+  }, []);
 
   const rating = [
     {
@@ -99,70 +108,59 @@ useEffect(() => {
     },
   ];
 
-
   const handleSubmit = async (e) => {
     // e.preventDefault();
 
-   
-  
-    const PurchaseDetails = collection(db, "Purchase");
-    const res = await getDocs(PurchaseDetails);
-    const purchases = await res.docs.map(doc => ({
-      data: doc.data(),
-      
-      id: doc.id,
-    }))
-
-// console.log(purchases.data)
-
-    purchases.map((item)=>(
-      console.log(item.data.loginInfo.Email === loginInfo.data.Email )
-    ))
+    // const purchaseDetails = collection(db, "Purchase");
     
-    // const userWithAccount = purchases.map(item => console.log(item))
-    // console.log(userWithAccount)
- 
-  }
+    // const res = await getDocs(purchaseDetails);
+    // const purchases = await res.docs.map((doc) => ({
+    //   data: doc.data(),
+    //   id: doc.id,
+    // }));
+    // console.log('purch:', purchases) 
+
+    // const userPaid = purchases.map(
+    //   (item) =>
+    //     item.data.loginInfo.data
+    //     // === loginIn.data.Email &&
+    //     // item.data.loginInfo.data.Password === loginIn.data.Password
+    // );
+
+    // console.log(userPaid)
+
+    // setpaid(userPaid);
+  };
   return (
-
-
-    <>
+    <div>
       <div className="flex flex-row sm:flex-col md:gap-[30px]    justify-between  md:px-0 ">
         <div className="flex sm:flex-col gap-[30px] sm:gap-[50px] flex-col">
-          <div
+          <div0
             id="box"
             className=" hover:text-lightblue bg-white flex text-textcolor justify-center gap-[10px] items-center sm:h-[250px] flex-col shadow-xl rounded-xl p-[30px]">
-            <h1 className="sm:text-[20px] text-center">{item.data.Description}</h1>
+            <h1 className="sm:text-[20px] text-center">
+              {item.data.Description}
+            </h1>
             <h1 className="font-bold sm:text-[20px]  text-[24px]">
               {item.data.Price}
             </h1>
-            <h1 className="text-[13px] sm:text-[20px] hover:text-textcolor">
+            <h1 className="text-[13px] sm:text-[20px] 0hover:text-textcolor">
               {item.data.Duration}
             </h1>
-          </div>
-          
+          </div0>
+
           <div className="text-center">
-     
             <button
               className="bg-lightblue w-[130px] sm:w-[140px] sm:h-[50px] h-[40px] rounded-2xl text-[14px] sm:text-[14px] font-bold"
               onClick={Send}>
-             
-
-              {paymentStatus === 'success' ? (
-        <button>UNLOCKED</button>
-      ) : (
-        <button> BUY NOW</button>
-      )}
-            </button>
-            
+                {paidCourses.includes(item.id)? "UNLOCKED":"BUY NOW"}
+              </button>
           </div>
-        
+
           <div
             id="box"
             className="bg-white flex flex-col justify-between sm:gap-0 h-contain  text-center  shadow-2xl w-[272px] sm:w-[100%] text-[16px] font-bold text-textcolor sm:h-[500px] rounded-xl py-[55px] sm:py-[40px] pt-[-30px] ">
-              <div>
-                
-              </div>
+            <div></div>
             <div className="flex items-start gap-[10px] border-b border-footer p-[20px] sm:p-[10px]">
               <div className="">
                 <p> ✅</p>
@@ -189,12 +187,9 @@ useEffect(() => {
               <p className="sm:text-[14px]">85% Win-Rate</p>
             </div>
           </div>
-      
         </div>
-      
       </div>
-     
-    </>
+    </div>
   );
 };
 

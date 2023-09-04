@@ -26,10 +26,12 @@ import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { authSlice } from "./redux/AuthSlice";
 
-// import "bootstrap/dist/css/bootstrap.min.css";
 
 function App() {
   const isLoggedIn = useSelector((state) => state.auth.loggedIn);
+  const id = useSelector(state => state.auth.id)
+
+  console.log(isLoggedIn, id)
 
   const { logIn, logOut } = authSlice.actions;
   const navigate = useNavigate();
@@ -43,9 +45,10 @@ function App() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    const loggedInUser = localStorage.getItem("Account");
-    if (loggedInUser) {
-      dispatch(logIn());
+    const loggedInUser = JSON.parse(localStorage.getItem("Account"));
+    console.log('loggedInuser', loggedInUser)
+    if (loggedInUser && loggedInUser.loggedIn) {
+      dispatch(logIn(loggedInUser.id));
     }
   }, []);
 
@@ -83,3 +86,12 @@ function App() {
 }
 
 export default App;
+
+// "dependencies": {
+//   "cssnano": "^5.0.6",
+//   "jest-worker": "^27.0.2",
+//   "postcss": "^8.3.5",
+//   "schema-utils": "^4.0.0",
+//   "serialize-javascript": "^6.0.0",
+//   "source-map": "^0.6.1"
+// },

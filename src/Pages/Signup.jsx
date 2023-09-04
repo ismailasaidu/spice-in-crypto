@@ -46,7 +46,7 @@ const Signup = () => {
       })
         .then((res) => {
           console.log(res);
-          navigate("/checkout");
+          navigate("/log");
           // navigate("")
         })
         .catch((err) => {
@@ -58,7 +58,7 @@ const Signup = () => {
 
   return (
     <div className="bg-lightblue flex justify-center items-center h-[100vh]">
-      <div className="bg-white w-[30%] flex justify-between items-center flex-col px-[20px] py-[30px] h-[50%] mt-[100px]">
+      <div className="bg-white w-[30%] sm:w-[80%] flex justify-between items-center flex-col px-[20px] py-[30px] h-[50%] mt-[100px] sm:mt-[-20px]">
         <input
           type="email"
           placeholder="Email"

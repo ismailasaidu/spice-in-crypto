@@ -49,7 +49,7 @@ const PhysicalClasses = () => {
         FOREX BULLS PHYSICAL<br></br> CLASSES (ONLY LIMITED TO<br></br> FIRST 20
         PEOPLE)
       </h1>
-      <img src={peakpx} className="w-[]" />
+      <img src={peakpx} />
       <p className="border-b-footer border-b-[1px] sm:text-[18px] pb-[20px] font-bold text-[18px]">
         What You Get
       </p>

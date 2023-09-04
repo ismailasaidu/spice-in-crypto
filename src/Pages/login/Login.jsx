@@ -37,9 +37,9 @@ const Login = () => {
       .catch((error) => console.log(error.message));
   };
   return (
-    <div className="flex items-center   justify-center h-screen text bg-blue ">
+    <div className="flex items-center  justify-center h-screen text bg-blue ">
       <div>
-        <form onSubmit={handleSubmit} className="flex flex-col gap-[10px]">
+        <form onSubmit={handleSubmit} className="flex flex-col gap-[10px] ">
           <div className="form-control">
             <input className="outline-none px-[10px]"
               type="text"
