@@ -46,9 +46,6 @@ const SignalPrice = ({ item, itemIndex }) => {
   //  const [info, setinfo] = useState("")
   //  console.log(info)
 
-  useEffect(() => {
-    handleSubmit();
-  }, []);
 
   const rating = [
     {
@@ -68,29 +65,6 @@ const SignalPrice = ({ item, itemIndex }) => {
     },
   ];
 
-  const handleSubmit = async (e) => {
-    // e.preventDefault();
-
-    // const purchaseDetails = collection(db, "Purchase");
-    
-    // const res = await getDocs(purchaseDetails);
-    // const purchases = await res.docs.map((doc) => ({
-    //   data: doc.data(),
-    //   id: doc.id,
-    // }));
-    // console.log('purch:', purchases) 
-
-    // const userPaid = purchases.map(
-    //   (item) =>
-    //     item.data.loginInfo.data
-    //     // === loginIn.data.Email &&
-    //     // item.data.loginInfo.data.Password === loginIn.data.Password
-    // );
-
-    // console.log(userPaid)
-
-    // setpaid(userPaid);
-  };
   return (
     <div>
       <div className="flex flex-row sm:flex-col md:gap-[30px]    justify-between  md:px-0 ">

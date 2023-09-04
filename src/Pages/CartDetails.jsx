@@ -22,7 +22,7 @@ import { MdEmail } from "react-icons/md";
 import { GrInstagram } from "react-icons/gr";
 
 const CartDetails = () => {
-
+ 
   useEffect(() => {
     window.scrollTo({
       top: 0,
@@ -41,6 +41,7 @@ const CartDetails = () => {
     const {userPaidCourse} =  await res.data()
 
     setPaidCourses(userPaidCourse)
+  
   }
   
   useEffect(() => {
@@ -61,9 +62,9 @@ const CartDetails = () => {
      getEbooks()
     }, []);
 
-    useEffect(() => {
-    console.log("omo" ,Ebooks[id])
-     }, []);
+    // useEffect(() => {
+    // console.log("omo" ,Ebooks[id])
+    //  }, []);
    
   
     const sizes = [
