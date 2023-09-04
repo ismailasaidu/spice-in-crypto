@@ -22,6 +22,7 @@ import { MdEmail } from "react-icons/md";
 import { GrInstagram } from "react-icons/gr";
 
 const CartDetails = () => {
+
   useEffect(() => {
     window.scrollTo({
       top: 0,
@@ -34,6 +35,7 @@ const CartDetails = () => {
   const [paidCourses, setPaidCourses] = useState([]); 
 
   const retrievePaidCourses = async () => {
+   
     const userRef = doc(db, "Accounts", userId);
     const res = await getDoc(userRef);
     const {userPaidCourse} =  await res.data()
