@@ -56,7 +56,7 @@ const Log = () => {
       alert("logged in");
       console.log(user.id)
       dispatch(logIn(user.id));
-      // navigate(-1);
+      navigate("/");
 
       localStorage.setItem("Account", JSON.stringify({loggedIn: true, id: user.id}));
     } else {
