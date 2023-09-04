@@ -6,7 +6,7 @@ import PhysicalClasses from "./Pages/PhysicalClasses";
 import Resources from "./Pages/Resources";
 import Signals from "./Pages/Signals";
 import Footer from "./Component/Footer";
-import ImageView from "./Component/ImageView";
+
 import TradingSessions from "./Pages/TradingSessions";
 import Types from "./Pages/Types";
 import Trend from "./Pages/Trend";

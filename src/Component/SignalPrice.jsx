@@ -9,53 +9,13 @@ import { add } from "../redux/CartSlice";
 import { Link, useParams } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 
-const res = [
-  {
-    img: "/result1.jpg",
-  },
-  {
-    img: "/result1.jpg",
-  },
-  {
-    img: "/result1.jpg",
-  },
-  {
-    img: "/result1.jpg",
-  },
-  {
-    img: "/result1.jpg",
-  },
-  {
-    img: "/result1.jpg",
-  },
-  {
-    img: "/result1.jpg",
-  },
-  {
-    img: "/result1.jpg",
-  },
-];
 
-const cardDetails = [
-  {
-    title: "BASIC FXB SIGNALS",
-    price: "$30.00",
-    duration: "/ Month",
-  },
-  {
-    title: "STANDARD FXB SIGNALS",
-    price: "$30.00",
-    duration: "/ 3 Month",
-  },
-  {
-    title: "PREMIUM FXB SIGNALS",
-    price: "$30.00",
-    duration: "/ 6 Month",
-  },
-];
+
 
 const SignalPrice = ({ item, itemIndex }) => {
+ 
   const userId = useSelector(state => state.auth.id);
+
   const [paidCourses, setPaidCourses] = useState([]); 
 
   const retrievePaidCourses = async () => {
@@ -70,7 +30,7 @@ const SignalPrice = ({ item, itemIndex }) => {
       retrievePaidCourses()
   }, []);
 
-  const { id } = item.id;
+  // const { id } = item.id;
   const dispatch = useDispatch();
   
   // console.log('paid Courses', paidCourses)

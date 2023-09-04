@@ -4,11 +4,14 @@ import { add } from '../redux/CartSlice';
 import { useNavigate } from "react-router-dom";
 import { useParams } from "react-router-dom";
 
+import { collection, getDocs, doc, getDoc  } from "firebase/firestore";
+import { db } from "../lib/init-firebase";
+
+
 // import down from "../Assets/down.png";
 import email from "../Assets/email.png";
 // import up from "../Assets/up.png";
-import { collection, getDocs } from "firebase/firestore";
-import { db } from "../lib/init-firebase";
+
 
 import { useState, useEffect } from "react";
 
@@ -26,7 +29,22 @@ const CartDetails = () => {
     });
   }, []);
 
+  const userId = useSelector(state => state.auth.id);
  
+  const [paidCourses, setPaidCourses] = useState([]); 
+
+  const retrievePaidCourses = async () => {
+    const userRef = doc(db, "Accounts", userId);
+    const res = await getDoc(userRef);
+    const {userPaidCourse} =  await res.data()
+
+    setPaidCourses(userPaidCourse)
+  }
+  
+  useEffect(() => {
+      retrievePaidCourses()
+  }, []);
+
 
     const [Ebooks, setEbooks] = useState([]);
     const navigate = useNavigate();
@@ -42,7 +60,7 @@ const CartDetails = () => {
     }, []);
 
     useEffect(() => {
-    console.log(Ebooks[id]?.data?.Price)
+    console.log("omo" ,Ebooks[id])
      }, []);
    
   
@@ -78,7 +96,7 @@ const CartDetails = () => {
       e.preventDefault();
       dispatch(add(Ebooks[id]));
     }
-  
+
     const [show, setshow] = useState(false);
     const rating = [
       {
@@ -100,7 +118,7 @@ const CartDetails = () => {
   return (
     <div>
 
-<div style={{ opacity: show ? "0.6" : "" }} className="pt-[200px] sm:pt-[100px] md:pt-[50px] px-[100px] sm:px-[20px] md:px-[50px]">
+<div style={{ opacity: show ? "0.6" : "" }} className="pt-[50px] sm:pt-[100px] md:pt-[50px] px-[100px] sm:px-[20px] md:px-[50px]">
       <div className="px-14 sm:px-[20px]">
         <div className="flex mt-[100px] sm:flex-col   md:justify-between">
           <div className="flex-1 md:pt-[80px] sm:mt-[-100px] relative">
@@ -147,7 +165,9 @@ const CartDetails = () => {
               <button
                 className="bg-blue w-[150px] h-[50px] text-white "
                 onClick={Send}>
-                ADD TO CART
+             
+                {paidCourses.includes(Ebooks[id]?.id)? "UNLOCKED":"BUY NOW"}
+            
               </button>
             </div>
             {/* <div className=" sm:mt-[20px]">

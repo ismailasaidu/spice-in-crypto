@@ -2,15 +2,18 @@ import React from "react";
 import Play from "./Play";
 // import { Store } from "../component/product";
 import { useState, useEffect } from "react";
-import { collection, getDocs } from "firebase/firestore";
 import { db } from "../lib/init-firebase";
 import { Link } from "react-router-dom";
 import { BsPlayFill } from "react-icons/bs";
+import { collection, getDocs, doc, getDoc  } from "firebase/firestore";
+import { useSelector, useDispatch} from "react-redux";
+import { add } from "../redux/CartSlice";
 
 const Started = ({ icon, text1, text2 }) => {
   const [Ebooks, setEbooks] = useState([]);
   // const [skeleton, setSkeleton] = useState(true);
 
+  
   const iconMap = {
     BsPlayFill: <BsPlayFill />,
 
