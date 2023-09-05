@@ -8,6 +8,7 @@ import { useSelector, useDispatch} from "react-redux";
 import { add } from "../redux/CartSlice";
 import { Link, useParams } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
+import logo from "../Assets/logo.png"
 
 
 
@@ -22,7 +23,7 @@ const SignalPrice = ({ item, itemIndex }) => {
     const userRef = doc(db, "Accounts", userId);
     const res = await getDoc(userRef);
     const {userPaidCourse} = await res.data()
-
+    console.log("here", userPaidCourse)
     setPaidCourses(userPaidCourse)
   }
   
@@ -65,11 +66,17 @@ const SignalPrice = ({ item, itemIndex }) => {
     },
   ];
 
+  function calculateMonthsDifference(startDate, endDate) {
+    const months = (endDate.getFullYear() - startDate.getFullYear()) * 12;
+    return months + endDate.getMonth() - startDate.getMonth();
+  }
+
+
   return (
     <div>
       <div className="flex flex-row sm:flex-col md:gap-[30px]    justify-between  md:px-0 ">
         <div className="flex sm:flex-col gap-[30px] sm:gap-[50px] flex-col">
-          <div0
+          <div
             id="box"
             className=" hover:text-lightblue bg-white flex text-textcolor justify-center gap-[10px] items-center sm:h-[250px] flex-col shadow-xl rounded-xl p-[30px]">
             <h1 className="sm:text-[20px] text-center">
@@ -79,9 +86,9 @@ const SignalPrice = ({ item, itemIndex }) => {
               {item.data.Price}
             </h1>
             <h1 className="text-[13px] sm:text-[20px] 0hover:text-textcolor">
-              {item.data.Duration}
+           <img src={logo} alt="" className="w-[40px]" />
             </h1>
-          </div0>
+          </div>
 
           <div className="text-center">
             <button
