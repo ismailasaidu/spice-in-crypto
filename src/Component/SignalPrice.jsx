@@ -2,38 +2,34 @@ import React from "react";
 import slack from "../Assets/slack.png";
 
 import { useState, useEffect } from "react";
-import { collection, getDocs, doc, getDoc  } from "firebase/firestore";
+import { collection, getDocs, doc, getDoc } from "firebase/firestore";
 import { db } from "../lib/init-firebase";
-import { useSelector, useDispatch} from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { add } from "../redux/CartSlice";
 import { Link, useParams } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
-import logo from "../Assets/logo.png"
-
-
-
+import logo from "../Assets/logo.png";
 
 const SignalPrice = ({ item, itemIndex }) => {
- 
-  const userId = useSelector(state => state.auth.id);
+  const userId = useSelector((state) => state.auth.id);
 
-  const [paidCourses, setPaidCourses] = useState([]); 
+  const [paidCourses, setPaidCourses] = useState([]);
 
   const retrievePaidCourses = async () => {
     const userRef = doc(db, "Accounts", userId);
     const res = await getDoc(userRef);
-    const {userPaidCourse} = await res.data()
-    console.log("here", userPaidCourse)
-    setPaidCourses(userPaidCourse)
-  }
-  
+    const { userPaidCourse } = await res.data();
+    console.log("here", userPaidCourse);
+    setPaidCourses(userPaidCourse);
+  };
+
   useEffect(() => {
-      retrievePaidCourses()
+    retrievePaidCourses();
   }, []);
 
   // const { id } = item.id;
   const dispatch = useDispatch();
-  
+
   // console.log('paid Courses', paidCourses)
   function Send(e) {
     e.preventDefault();
@@ -41,12 +37,11 @@ const SignalPrice = ({ item, itemIndex }) => {
   }
 
   const logs = localStorage.getItem("Account");
- 
+
   // console.log(loginIn.data.Password);
 
   //  const [info, setinfo] = useState("")
   //  console.log(info)
-
 
   const rating = [
     {
@@ -71,7 +66,6 @@ const SignalPrice = ({ item, itemIndex }) => {
     return months + endDate.getMonth() - startDate.getMonth();
   }
 
-
   return (
     <div>
       <div className="flex flex-row sm:flex-col md:gap-[30px]    justify-between  md:px-0 ">
@@ -86,16 +80,24 @@ const SignalPrice = ({ item, itemIndex }) => {
               {item.data.Price}
             </h1>
             <h1 className="text-[13px] sm:text-[20px] 0hover:text-textcolor">
-           <img src={logo} alt="" className="w-[40px]" />
+              <img src={logo} alt="" className="w-[40px]" />
             </h1>
           </div>
 
           <div className="text-center">
-            <button
+            <div
               className="bg-lightblue w-[130px] sm:w-[140px] sm:h-[50px] h-[40px] rounded-2xl text-[14px] sm:text-[14px] font-bold"
-              onClick={Send}>
-                {paidCourses.includes(item.id)? "UNLOCKED":"BUY NOW"}
-              </button>
+             >
+              {paidCourses.includes(item.id) ? (
+                <>
+                  <button onClick={() => window.open(`${item.link}`)}>UNCLOCKED</button>
+                </>
+              ) : (
+                <>
+                <button onClick={Send} >  BUY NOW</button>
+                </>
+              )}
+            </div>
           </div>
 
           <div
