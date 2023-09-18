@@ -11,16 +11,22 @@ import { ToastContainer, toast } from "react-toastify";
 import logo from "../Assets/logo.png";
 
 const SignalPrice = ({ item, itemIndex }) => {
+  const auth = useSelector(state => state.auth)
   const userId = useSelector((state) => state.auth.id);
-
+  const accountId = useSelector((state) => state.auth.accountId);
   const [paidCourses, setPaidCourses] = useState([]);
 
+  // console.log("signals accouont id", auth);
   const retrievePaidCourses = async () => {
-    const userRef = doc(db, "Accounts", userId);
+    // console.log("accountId", accountId, "userId", userId);
+    const userRef = doc(db, "Accounts", accountId);
     const res = await getDoc(userRef);
-    const { userPaidCourse } = await res.data();
-    console.log("here", userPaidCourse);
+    const data = res.data();
+    // console.log("my matter", data);
+    const { userPaidCourse } = res.data();
+    // console.log("here", userPaidCourse);
     setPaidCourses(userPaidCourse);
+  
   };
 
   useEffect(() => {
@@ -61,15 +67,11 @@ const SignalPrice = ({ item, itemIndex }) => {
     },
   ];
 
-  function calculateMonthsDifference(startDate, endDate) {
-    const months = (endDate.getFullYear() - startDate.getFullYear()) * 12;
-    return months + endDate.getMonth() - startDate.getMonth();
-  }
-
+  
   return (
     <div>
-      <div className="flex flex-row sm:flex-col md:gap-[30px]    justify-between  md:px-0 ">
-        <div className="flex sm:flex-col gap-[30px] sm:gap-[50px] flex-col">
+      <div className="flex flex-row sm:flex-col items-center md:gap-[30px]    justify-between  md:px-0 ">
+        <div className="flex sm:flex-col gap-[30px] items-center sm:gap-[50px] flex-col">
           <div
             id="box"
             className=" hover:text-lightblue bg-white flex text-textcolor justify-center gap-[10px] items-center sm:h-[250px] flex-col shadow-xl rounded-xl p-[30px]">
@@ -90,11 +92,11 @@ const SignalPrice = ({ item, itemIndex }) => {
              >
               {paidCourses.includes(item.id) ? (
                 <>
-                  <button onClick={() => window.open(`${item.link}`)}>UNCLOCKED</button>
+                  <button onClick={() => window.open(`${item.link}`)} className="">UNCLOCKED</button>
                 </>
               ) : (
                 <>
-                <button onClick={Send} >  BUY NOW</button>
+                <button className="text-center" onClick={Send} >  BUY NOW</button>
                 </>
               )}
             </div>

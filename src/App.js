@@ -25,6 +25,7 @@ import Log from "./Pages/Log";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { authSlice } from "./redux/AuthSlice";
+import ForgetPassword from "./Pages/ForgetPassword";
 
 
 function App() {
@@ -46,9 +47,12 @@ function App() {
 
   useEffect(() => {
     const loggedInUser = JSON.parse(localStorage.getItem("Account"));
+    const id = JSON.parse(localStorage.getItem("Account"));
+    const accountId = JSON.parse(localStorage.getItem("Account"));
+
     console.log('loggedInuser', loggedInUser)
     if (loggedInUser && loggedInUser.loggedIn) {
-      dispatch(logIn(loggedInUser.id));
+      dispatch(logIn(loggedInUser))
     }
   }, []);
 
@@ -72,6 +76,7 @@ function App() {
         <Route path="/newproduct" element={<NewProduct />} />
         <Route path="/checkout" element={<Checkout />} />
         <Route path="/newsignals" element={<NewSignals />} />
+        <Route path="/forgetpassword" element={<ForgetPassword/>}/>
         {!isLoggedIn ? (
           <Route path="/log" element={<Log />} />
         ) : (

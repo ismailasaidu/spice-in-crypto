@@ -52,7 +52,7 @@ const Header = () => {
     <div
       className={`${
         show ? "sm:h-[80px]" : "sm:h-[42%vh]"
-      }  bg-headerwhite overflow-hidden z-[100]     shadow-xl sm:duration-800 sm:ease-in px-[90px]  md:px-0 sm:px-[0px] w-[100%] fixed top-0`}>
+      }  bg-headerwhite overflow-hidden z-[100] f    shadow-xl sm:duration-800 sm:ease-in px-[90px] items-center  md:px-0 sm:px-[0px] w-[100%] fixed top-0`}>
       <div
         className={`header ${
           scrolling ? "scrolling" : ""
@@ -62,11 +62,11 @@ const Header = () => {
             <img src={logo} width={90} className="sm:w-[70px]" />
           </Link>
         </div>
-        <div className="flex  items-center ml-[170px] gap-[30px]  md:gap-[10px] md:ml-[20px] md:text-[10px] text-blue font-bold text-[15px] sm:hidden">
+        <div className="flex  items-center ml-[200px] gap-[20px]  md:gap-[10px] md:ml-[20px] md:text-[10px] text-blue font-bold text-[15px] sm:hidden">
           {headerList.map((item, index) => (
-            <div className="link1 px-[10px] ">
+            <div className="link1 px-[10px]  ">
               <Link to={item?.to} key={index}>
-                <h1 className=" md:text-[12px]  cursor-pointer md:font-bold hover:text-blue">
+                <h1 className=" md:text-[12px]    cursor-pointer md:font-bold hover:text-blue">
                   {item.p}
                 </h1>
               </Link>
@@ -106,7 +106,8 @@ const Header = () => {
 
         <div className="flex gap-[20px] items-center">
           <Link to="/cart">
-            <div className="relative hidden mt-[-5px] sm:block">
+            <div className="relative hidden mt-[-5px] sm:block" 
+            onClick={() => setshow(!show)}>
               <BsCart4 color="#0F1231" className="w-[25px] h-[25px]" />
               <div className="absolute top-0 left-[15px] bg-blue rounded-full w-[13px] h-[13px]">
                 <p className="ml-[4px] mt-[-1px] text-[10px] font-black text-white">

@@ -6,16 +6,28 @@ import { ref, getDownloadURL, uploadBytes } from "firebase/storage";
 import { Navigate, useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import { Link } from "react-router-dom";
+import { auth } from "../lib/init-firebase";
+import { createUserWithEmailAndPassword } from "firebase/auth";
+
+
+const addUserToDb = (newUserId) => {
+  const userRef = collection(db, "Accounts" );
+  addDoc(userRef, {
+    id: newUserId,
+    userPaidCourse: []
+  })
+}
+
+
 const Signup = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmpassword, setConfirmPassword] = useState("");
- 
+
   const navigate = useNavigate();
   const upload = async (e) => {
     e.preventDefault();
 
-  
     const symbolPattern = /[!@#$%^&*()_\-+=<>?]/;
     const uppercasePattern = /[A-Z]/;
     const numberPattern = /[0-9]/;
@@ -39,20 +51,21 @@ const Signup = () => {
         "Password needs to have at least one symbol, one uppercase letter, and one number."
       );
     } else if (isValidEmail(email) && password === confirmpassword) {
-      const SignalsRef = collection(db, "Accounts");
-      addDoc(SignalsRef, {
-        Email: email,
-        Password: password,
-      })
-        .then((res) => {
-          console.log(res);
+      createUserWithEmailAndPassword(auth, email, password, confirmpassword)
+        .then((data) => {
+          console.log(data, "authData");
+          const newUserId = data.user.uid;
+          console.log(newUserId, "new id");
+
+          addUserToDb(newUserId)
           navigate("/log");
-          // navigate("")
+
         })
-        .catch((err) => {
-          console.log(err);
-          alert("error");
-        });
+        .catch(
+          (err) => {
+            toast.error(err.message);
+          }
+        );
     }
   };
 
@@ -92,11 +105,8 @@ const Signup = () => {
         <p className="text-[14px] cursor-pointer">
           Already have an account?{" "}
           <Link to="/log">
-          <span className="text-lightblue" >
-            Login
-          </span>
+            <span className="text-lightblue">Login</span>
           </Link>
-         
         </p>
       </div>
       <ToastContainer />

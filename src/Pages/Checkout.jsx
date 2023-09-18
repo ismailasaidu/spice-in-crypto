@@ -36,7 +36,7 @@ const Checkout = () => {
   const navigate = useNavigate();
   const cart = useSelector((state) => state.cart.cart);
   const Cart = useSelector((state) => state.cart);
-  const userId = useSelector((state) => state.auth.id);
+  const userId = useSelector((state) => state.auth.accountId);
 
   const [novalue, setnovalue] = useState(true);
   const [errors, seterrors] = useState({});
