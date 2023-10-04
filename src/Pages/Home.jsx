@@ -28,21 +28,22 @@ const Home = () => {
       <div className="md:w-[100%]">
         <Hero />
         <div className="text-center sm:text-[28px]  pt-[50px] sm:px-[30px] md:px-[100px]  flex gap-[30px] flex-col">
-     <AnimatedHeader text1="HOW THE PROGRAM WORKS
+     <AnimatedHeader text1="WHAT AWAITS YOU IN THIS MASTERCLASS
 "/>
-          <p className="hide font-medium sm:font-bold sm:text-[15px] md:font-bold text-textcolor font-MT ">
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Libero
-            dolor accusamus ducimus iste rem,<br></br> dolorem voluptas ad
-            temporibus vel beatae nam repudiandae harum atque maiores
-            dignissimos odio ex quibusdam?<br></br> Omnis sequi ab optio numquam
-            nisi voluptate ad repudiandae laboriosam ipsam!
+          <p className="hide sm:font-bold  font-semibold sm:text-[15px] text-[18px] md:font-bold text-textcolor font-MT ">
+          • In-depth look at the Crypto markets.<br></br>
+    • 20+ hours of recorded lessons.<br></br>
+    • Introduction to futures trading. <br></br>
+    • Breakdown of my trading strategy and techniques. <br></br>
+    • Advanced Technical Analysis breakdown. 
           </p>
-          <p className="hide font-medium sm:font-bold sm:text-[15px]  md:font-bold text-textcolor">
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Libero
-            dolor accusamus ducimus iste rem,<br></br> dolorem voluptas ad
-            temporibus vel beatae nam repudiandae harum atque maiores
-            dignissimos odio ex quibusdam?<br></br> Omnis sequi ab optio numquam
-            nisi voluptate ad repudiandae laboriosam ipsam!
+          <p className="hide  font-semibold sm:font-bold sm:text-[15px] text-[18px] md:font-bold text-textcolor">
+          • Fundamental Analysis.<br></br>
+    • Risk Management.<br></br>
+    • Psychology. <br></br>
+    • Free eBooks. <br></br>
+    • A community of traders to grow with. <br></br>
+    • And many more. 
           </p>
         </div>
         <Card />

@@ -20,24 +20,26 @@ const Hero = () => {
           <div data-aos="fade-right">
             <div className="sm:hidden ">
               <h1 className=" content  text-[34px]  ml-[50px] md:block sm:ml-0 sm:text-[54px] md:ml-0 md:text-[34px]  md:text-left   font-black">
-                Learn To Trade Like A Pro
+              Trade Smarter, Not Harder!
               </h1>
             </div>
             <div className="hidden sm:block ">
-              <h1 className="col ml-[50px] sm:ml-0   sm:text-[30px]  hidden font-black">
-                Learn To Trade Like<br></br> A Pro
+              <h1 className="col ml-[50px] sm:ml-0 pt-[60px] sm:mt-0  sm:text-[30px]  hidden font-black">
+                Trade Smarter, Not <br></br>Harder!
               </h1>
             </div>
-            <div className="mt-[20px] sm:mt-[30px] sm:text-center sm:text-[16px] sm:flex sm:flex-col sm:gap-[5px] gap-[15px]">
-              <div className="font-bold text-textcolor flex flex-row items-center ">
-                <p className="font-bold text-black">You are one step from</p>
+            <div className="mt-[20px] sm:mt-[30px]    sm:text-[16px] sm:flex sm:flex-col sm:gap-[5px] gap-[15px]">
+              <div className="font-bold text-textcolor flex flex-row items-center mt-[30px] sm:mt-0">
+                <p className="font-bold text-black sm:hidden block ">Your Journey to Financial Freedom Begins Here!</p>
+                <p className="font-bold text-black sm:block hidden">Your Journey to Financial Freedom Begins <br></br>Here!</p>
               </div>
 
-              <div className="font-bold flex flex-row items-center ">
+              <div className="font-bold flex flex-row items-start ">
                 <p>.</p>
-                <p>financial freedom</p>
+                <p>Knowledge gathered within 7 years <br></br>of trading broken down<br></br> for easy assimilation. </p>
+                <p>Let's get you started on a life changing journey.</p>
               </div>
-              <div className="font-bold text-black flex flex-row items-center ">
+              {/* <div className="font-bold text-black flex flex-row items-center ">
                 <p>.</p>
                 <p>time freedom and</p>
               </div>
@@ -47,7 +49,7 @@ const Hero = () => {
               </div>
               <div className="font-bold text-black flex flex-row items-center ">
                 <p>Let’s get you started on a life changing journey!</p>
-              </div>
+              </div> */}
             </div>
           </div>
           <div data-aos="zoom-in-left" className=" md:hidden   sm:hidden">

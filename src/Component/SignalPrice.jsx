@@ -30,7 +30,7 @@ const SignalPrice = ({ item, itemIndex }) => {
   };
 
   useEffect(() => {
-    retrievePaidCourses();
+   if(accountId) retrievePaidCourses();
   }, []);
 
   // const { id } = item.id;

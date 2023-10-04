@@ -15,20 +15,28 @@ const Faq = () => {
   const [open, setopen] = useState("true");
   const Faq = [
     {
-      h1: "   Lorem ipsum, dolor sit amet consectetur adipisicing elit. Suntoptio necessitatibus vitae maiores quos illo.",
-      p: "   Lorem ipsum, dolor sit amet consectetur adipisicing elit. Suntoptio necessitatibus vitae maiores quos illo.",
+      h1: "Will this mentorship make me a pro trader?",
+      p: "  With the value-packed videos and free materials, you'll to learn to trade like a pro trader. ",
     },
     {
-      h1: "   Lorem ipsum, dolor sit amet consectetur adipisicing elit. Suntoptio necessitatibus vitae maiores quos illo.",
-      p: "   Lorem ipsum, dolor sit amet consectetur adipisicing elit. Suntoptio necessitatibus vitae maiores quos illo.",
+      h1: "What are crypto futures?",
+      p: "Crypto futures are like bets on where the price of cryptocurrencies will go, without actually owning them.",
     },
     {
-      h1: "   Lorem ipsum, dolor sit amet consectetur adipisicing elit. Suntoptio necessitatibus vitae maiores quos illo.",
-      p: "   Lorem ipsum, dolor sit amet consectetur adipisicing elit. Suntoptio necessitatibus vitae maiores quos illo.",
+      h1: " Can I make a lot of money from crypto trading?",
+      p: "Yes! That's how I make a living.",
     },
     {
-      h1: "   Lorem ipsum, dolor sit amet consectetur adipisicing elit. Suntoptio necessitatibus vitae maiores quos illo.",
-      p: "   Lorem ipsum, dolor sit amet consectetur adipisicing elit. Suntoptio necessitatibus vitae maiores quos illo.",
+      h1: "How to stay safe?",
+      p: "To be safe, don't risk too much money on one trade, and use tools like stop-loss orders to limit your losses.",
+    },
+       {
+      h1: "What's leverage?",
+      p: "Leverage is like a loan to make bigger trades, but it can make wins and losses much bigger, so be careful.",
+    },
+    {
+      h1: "Is Crypto trading gambling?",
+      p: "Yes it is if you don't have a profitable strategy.",
     },
   ];
   return (
@@ -40,10 +48,10 @@ const Faq = () => {
             data-aos="fade-left"
             className=" shadow-xl rounded-md p-[1px] bg-gradient-to-b sm:h-[265px]    sm:w-[100%] w-[650px] ">
             <div className="rounded-md px-[20px] py-[20px] sm:py-[36px]  sm:px-[15px] relative flex flex-col  text-center  gap-[40px] bg-white overflow-hidden">
-              <FaRegComments color="#2C9ED7"   className="absolute w-[100px] h-[100px] z-[-10px] opacity-[0.2] top-[-5px] sm:left-[-15px] sm:top-[2px] left-[-10px]"/>
+              <FaRegComments color="#2C9ED7"   className="absolute w-[100px] h-[100px]  z-[-10px] opacity-[0.2] top-[-5px] sm:left-[-15px] sm:top-[2px] left-[-10px]"/>
             <i class="fa-light fa-comments  "></i>
-              <div className="flex flex-row sm:mt-[-24px] justify-between items-center">
-                <h1 className="font-bold text-textcolor sm:text-[16px] text-[18px]">
+              <div className=" sm:mt-[-24px] text-center">
+                <h1 className="font-bold text-textcolor sm:text-[16px] text-center text-[18px]">
                   {item.h1}
                 </h1>
               </div>
