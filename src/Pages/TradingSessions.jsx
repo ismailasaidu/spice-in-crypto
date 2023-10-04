@@ -16,7 +16,7 @@ const tradingSessions = () => {
  
 
   return (
-    <div className="py-[150px] md:py-[100px] text-textcolor px-[200px] sm:mt-[200px] md:px-[100px] sm:px-[50px]">
+    <div className="py-[150px] sm:py-0 md:py-[100px] text-textcolor px-[200px] sm:mt-[80px] md:px-[100px] sm:px-[30px]">
       <div className="flex flex-row sm:flex-col md:flex-col justify-between">
         <div className="flex flex-col gap-[20px]">
           <div>
@@ -24,20 +24,20 @@ const tradingSessions = () => {
               Forex Trading Sessions
             </h1>
           </div>
-          <div className="sm:text-[26px]">
-            <div className="flex flex-row items-center">
+          <div className="sm:text-[22px]">
+            <div className="flex flex-row items-center sm:items-start">
               <p> ✅</p>
               <p>New York opens at 8:00 am to 5:00 pm EST (EDT)</p>
             </div>
-            <div className="flex flex-row items-center">
+            <div className="flex flex-row items-center sm:items-start">
               <p> ✅</p>
               <p>New York opens at 8:00 am to 5:00 pm EST (EDT)</p>
             </div>
-            <div className="flex flex-row items-center">
+            <div className="flex flex-row items-center sm:items-start">
               <p> ✅</p>
               <p>New York opens at 8:00 am to 5:00 pm EST (EDT)</p>
             </div>
-            <div className="flex flex-row items-center">
+            <div className="flex flex-row items-center sm:items-start">
               <p> ✅</p>
               <p>New York opens at 8:00 am to 5:00 pm EST (EDT)</p>
             </div>
@@ -47,21 +47,21 @@ const tradingSessions = () => {
               Most Active Hours = when two sessions overlap:
             </h1>
           </div>
-          <div className="sm:text-[26px]">
-            <div className="flex flex-row items-center">
+          <div className="sm:text-[22px]">
+            <div className="flex flex-row items-center sm:items-start">
               <p> ✅</p>
               <p>New York opens at 8:00 am to 5:00 pm EST (EDT)</p>
             </div>
-            <div className="flex flex-row items-center">
+            <div className="flex flex-row items-center sm:items-start">
               <p> ✅</p>
               <p>New York opens at 8:00 am to 5:00 pm EST (EDT)</p>
             </div>
-            <div className="flex flex-row items-center">
+            <div className="flex flex-row items-center sm:items-start">
               <p> ✅</p>
               <p>New York opens at 8:00 am to 5:00 pm EST (EDT)</p>
             </div>
           </div>
-          <div className="sm:text-[26px]">
+          <div className="sm:text-[22px]">
             <p>Join The Forex Bulls Community For Free</p>
           </div>
         </div>
@@ -73,7 +73,7 @@ const tradingSessions = () => {
       <Container>
         <div className="ratio ratio-21x9 mt-[50px]">
           <iframe
-            className="w-[1000px] sm:w-[100%] md:w-[100%] md:h-[300px] h-[500px]"
+            className="w-[1000px] sm:w-[100%] md:w-[100%] md:h-[300px] sm:h-[200px] h-[500px]"
             src="https://www.youtube.com/embed/_F8MgJ3FVm8"
             title="YouTube video"
             allowFullScreen></iframe>

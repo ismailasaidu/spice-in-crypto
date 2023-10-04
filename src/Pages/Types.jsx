@@ -31,24 +31,24 @@ const Types = () => {
 
  
   return (
-    <div className="text-textcolor px-[200px] flex flex-col sm:mt-[200px] md:px-[100px] sm:px-[80px] gap-[30px]">
+    <div className="text-textcolor px-[200px] flex flex-col sm:mt-[100px] md:px-[100px] sm:px-[20px] gap-[30px]">
       <div>
         <h1 className="font-bold text-[28px]  text- mt-[100px] text-center">
           Types Of Forex Trading
         </h1>
       </div>
       <div className="font-medium">
-        <div className="flex gap-[10px] flex-row items-center ">
+        <div className="flex gap-[10px] flex-row items-center sm:items-start">
         <p> ✅</p>
-          <p className="sm:text-[26px]">New York opens at 8:00 am to 5:00 pm EST (EDT)</p>
+          <p className="sm:text-[22px]">New York opens at 8:00 am to 5:00 pm EST (EDT)</p>
         </div>
-        <div className="flex gap-[10px] flex-row items-center">
+        <div className="flex gap-[10px] flex-row items-center sm:items-start">
         <p> ✅</p>
-          <p  className="sm:text-[26px]">New York opens at 8:00 am to 5:00 pm EST (EDT)</p>
+          <p  className="sm:text-[22px]">New York opens at 8:00 am to 5:00 pm EST (EDT)</p>
         </div>
-        <div className="flex gap-[10px] flex-row items-center">
+        <div className="flex gap-[10px] flex-row items-center sm:items-start">
         <p> ✅</p>
-          <p  className="sm:text-[26px]">New York opens at 8:00 am to 5:00 pm EST (EDT)</p>
+          <p  className="sm:text-[22px]">New York opens at 8:00 am to 5:00 pm EST (EDT)</p>
         </div>
       </div>
       <div>
@@ -58,8 +58,8 @@ const Types = () => {
         {typeDetails.map((item, index) => (
           <div className="flex flex-row sm:flex-col gap-[30px] items-center">
             <div className="w-[400px] sm:w-[100%] flex-1">
-              <h1 className="underline sm:text-[28px] sm:font-bold text-[20px] ">{item.h1}</h1>
-              <p className="font-bold sm:text-[26px] sm:font-medium">{item.p}</p>
+              <h1 className="underline sm:text-[24px] sm:font-bold text-[20px] ">{item.h1}</h1>
+              <p className="font-bold sm:text-[22px] sm:font-medium">{item.p}</p>
             </div>
 
             <div className="flex flex-[1.5px]">

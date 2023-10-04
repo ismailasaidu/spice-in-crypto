@@ -74,7 +74,7 @@ const SignalPrice = ({ item, itemIndex }) => {
         <div className="flex sm:flex-col gap-[30px] items-center sm:gap-[50px] flex-col">
           <div
             id="box"
-            className=" hover:text-lightblue bg-white flex text-textcolor justify-center gap-[10px] items-center sm:h-[250px] flex-col shadow-xl rounded-xl p-[30px]">
+            className=" hover:text-lightblue w-[100%] bg-white flex text-textcolor justify-center gap-[10px] items-center sm:h-[250px] flex-col shadow-xl rounded-xl p-[30px]">
             <h1 className="sm:text-[20px] text-center">
               {item.data.Description}
             </h1>
@@ -88,7 +88,7 @@ const SignalPrice = ({ item, itemIndex }) => {
 
           <div className="text-center">
             <div
-              className="bg-lightblue w-[130px] sm:w-[140px] sm:h-[50px] h-[40px] rounded-2xl text-[14px] sm:text-[14px] font-bold"
+              className="bg-lightblue w-[130px] flex  justify-center sm:w-[140px] sm:h-[50px] h-[40px] rounded-2xl text-[14px] sm:text-[14px] font-bold"
              >
               {paidCourses.includes(item.id) ? (
                 <>
@@ -96,7 +96,9 @@ const SignalPrice = ({ item, itemIndex }) => {
                 </>
               ) : (
                 <>
-                <button className="text-center" onClick={Send} >  BUY NOW</button>
+                <button className="" onClick={Send} > <p>
+                BUY NOW
+                  </p></button>
                 </>
               )}
             </div>

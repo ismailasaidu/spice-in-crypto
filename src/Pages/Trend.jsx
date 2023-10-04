@@ -31,7 +31,7 @@ const typeDetails = [
    
 
     return (
-      <div className="text-textcolor px-[200px] md:px-[100px] flex flex-col gap-[30px] sm:mt-[200px] sm:px-[50px]">
+      <div className="text-textcolor px-[200px] md:px-[100px] flex flex-col gap-[30px] sm:mt-[80px] sm:px-[50px]">
         <div>
           <h1 className="font-bold text-[28px] text- mt-[100px]  text-center ">
             Types Of Forex Trading
@@ -69,7 +69,7 @@ const typeDetails = [
         <Container>
         <div className="ratio ratio-21x9 mt-[100px]">
           <iframe
-            className="w-[1000px] sm:w-[100%] md:w-[100%] md:h-[300px] h-[500px]"
+            className="w-[1000px] sm:w-[100%] md:w-[100%] md:h-[300px] sm:h-[200px] h-[500px]"
             src="https://www.youtube.com/embed/_F8MgJ3FVm8"
             title="YouTube video"
             allowFullScreen></iframe>

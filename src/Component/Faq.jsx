@@ -46,7 +46,8 @@ const Faq = () => {
         {Faq.map((item, index) => (
           <div
             data-aos="fade-left"
-            className=" shadow-xl rounded-md p-[1px] bg-gradient-to-b sm:h-[265px]    sm:w-[100%] w-[650px] ">
+            id="box"
+            className=" shadow-2xl rounded-md p-[1px] bg-gradient-to-b sm:h-[265px]    sm:w-[100%] w-[650px] ">
             <div className="rounded-md px-[20px] py-[20px] sm:py-[36px]  sm:px-[15px] relative flex flex-col  text-center  gap-[40px] bg-white overflow-hidden">
               <FaRegComments color="#2C9ED7"   className="absolute w-[100px] h-[100px]  z-[-10px] opacity-[0.2] top-[-5px] sm:left-[-15px] sm:top-[2px] left-[-10px]"/>
             <i class="fa-light fa-comments  "></i>
