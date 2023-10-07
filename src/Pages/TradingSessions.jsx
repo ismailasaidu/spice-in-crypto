@@ -29,14 +29,14 @@ const tradingSessions = () => {
   ];
 
   return (
-    <div className="py-[150px] sm:py-0 md:py-[100px] text-textcolor px-[200px] sm:mt-[80px] md:px-[100px] sm:px-[30px]">
+    <div className="py-[150px] sm:py-0 md:py-[100px] text-textcolor px-[200px] sm:mt-[180px] md:px-[100px] sm:px-[30px]">
       <div className="flex flex-row sm:flex-col md:flex-col gap-[130px] sm:gap-0">
         <div className="flex flex-col gap-[40px]">
           {typeDetails.map((item, index) => (
             <div className="flex flex-row sm:flex-col gap-[30px] items-center">
               <div className="w-[400px] sm:w-[100%] flex-1">
                 {/* <h1 className="underline sm:text-[24px] sm:font-bold text-[20px] ">{item.h1}</h1> */}
-                <p className="font-bold sm:text-[22px] sm:font-medium">
+                <p className="font-bold sm:text-[18px] sm:font-medium">
                   {item.p}
                 </p>
               </div>

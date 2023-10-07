@@ -61,8 +61,8 @@ const Types = () => {
         {typeDetails.map((item, index) => (
           <div className="flex flex-row sm:flex-col gap-[30px] items-center">
             <div className="w-[400px] sm:w-[100%] flex-1">
-              <h1 className="underline sm:text-[24px] sm:font-bold text-[20px] ">{item.h1}</h1>
-              <p className="font-bold sm:text-[22px] sm:font-medium">{item.p}</p>
+              <h1 className="underline sm:text-[20px] sm:font-bold text-[20px] ">{item.h1}</h1>
+              <p className="font-bold sm:text-[18px] sm:font-medium">{item.p}</p>
             </div>
 
             <div className="flex flex-[1.5px]">
