@@ -15,22 +15,22 @@ const Resources = () => {
 
   const images = [
     {
-      img: "/logo.png",
-      p: "Forex Trading Sessions",
+      img: "/tradsess.png",
+      p: "Trading Sessions",
       link: "/trading-sessions ",
     },
     {
-      img: "/logo.png",
-      p: "Forex Trading Sessions",
-      link: "/types",
-    },
-    {
-      img: "/logo.png",
-      p: "Forex Trading Sessions",
+      img: "/Riskman.png",
+      p: "Choosing a Strong Risk Management Strategy",
       link: "/trend",
     },
     {
-      img: "/logo.png",
+      img: "/tradestyle.png",
+      p: "Trading Styles",
+      link: "/types",
+    },
+    {
+      img: "/tradepsy.png",
       p: "Forex Trading Sessions",
       link: "/growing-small-account",
     },
@@ -55,9 +55,9 @@ const Resources = () => {
               className="image w-[300px]   sm:w-[300px] sm:h-[270px] cursor-pointer hover:bg-rescol rounded-2xl   ">
               <img
                 src={item.img}
-                className="rounded-2xl opacity-[1px] bg-rescol "
+                className="rounded-2xl opacity-[1px] "
               />
-              <div className="w-[190px] h-[45px]  relative top-[40%] left-[13%] sm:left-[16%] md:left-[13%] sm:top-[45%] bg-rescol   border-white border-[1px] border-b-0">
+              {/* <div className="w-[190px] h-[45px]  relative top-[40%] left-[13%] sm:left-[16%] md:left-[13%] sm:top-[45%] bg-rescol   border-white border-[1px] border-b-0">
                 <p className="text-[16px] text-center py-[10px] text-white">
                   {item.p}
                 </p>
@@ -68,7 +68,7 @@ const Resources = () => {
                   className="  text-white  "
                   value={{ color: "", size: "50px" }}
                 />
-              </div>
+              </div> */}
 
               {/* <BsImages
               size={30}

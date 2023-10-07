@@ -1,6 +1,7 @@
 import React from "react";
 import logo from "../Assets/logo.png";
 import { useEffect } from "react";
+import spice1 from "../Assets/spice1.jpeg"
 
 
 
@@ -15,10 +16,13 @@ const OurStory = () => {
  
 
   return (
-    
+  
     <div className="px-[200px] pt-[150px] text-textcolor sm:px-[50px] md:px-[50px] sm:pt-[150px] ">
-      <div className="text-center">
-        <h1 className="font-bold text-[18px] sm:text-[18px]">ABOUT ME</h1>
+      <div className="flex justify-center">
+        <img src={spice1} width={800}/>
+      </div>
+      <div className="text-center mt-[50px]">
+        <h1 className="font-bold text-[18px] sm:text-[18px] underline">ABOUT ME</h1>
        
       </div>
       <div className="flex gap-[20px] justify-center mt-[20px] sm:mt-[40px] flex-col items-center">

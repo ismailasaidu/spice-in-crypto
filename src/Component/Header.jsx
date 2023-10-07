@@ -44,7 +44,7 @@ const Header = () => {
       to: "/ourstory",
     },
     { p: "SIGNALS", to: "/signals" },
-    { p: "PHYSICAL CLASSES", to: "/physicalclasses" },
+    { p: "OFFER", to: "/physicalclasses" },
     { p: "RESOURCES", to: "/resources" },
   ];
 
@@ -52,7 +52,7 @@ const Header = () => {
     <div
       className={`${
         show ? "sm:h-[80px]" : "sm:h-[42%vh]"
-      }  bg-headerwhite overflow-hidden z-[100] f    shadow-xl sm:duration-800 sm:ease-in px-[90px] items-center  md:px-0 sm:px-[0px] w-[100%] fixed top-0`}>
+      }  bg-headerwhite overflow-hidden z-[100] f    shadow-xl sm:duration-8900 sm:ease-in px-[90px] items-center  md:px-0 sm:px-[0px] w-[100%] fixed top-0`}>
       <div
         className={`header ${
           scrolling ? "scrolling" : ""

@@ -9,7 +9,7 @@ const footList = [
     p: "Best Broker",
   },
   {
-    p: "FXB Community",
+    p: "SIC Community",
   },
   {
     p: "Spice in Crytpo 2.0",
@@ -31,14 +31,10 @@ const Footer = () => {
             TRADING DISCLAIMER
           </h1>
           <p className="text-textcolor md:hidden sm:text-[10px]  font-medium  ">
-            Lorem ipsum dolor sit, amet consectetur <br></br>adipisicing elit.
-            Quo saepe accusantium <br></br>dicta, ritatis rerum nisi nihil
-            <br></br> ut provident repudiandae?
+          Remember to always trade what<br></br> you can afford to loose
           </p>
           <p className="text-textcolor hidden md:block sm:text-[16px] text-center font-medium  ">
-            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quo saepe
-            accusantium
-            <br /> dicta, ritatis rerum nisi nihil ut provident repudiandae?
+          Remember to always trade what you can afford to loose
           </p>
         </div>
         <div className="flex gap-[30px] md:gap-[15px] md:text-center sm:items-center flex-col">

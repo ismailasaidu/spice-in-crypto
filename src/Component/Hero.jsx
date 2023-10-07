@@ -15,7 +15,7 @@ const Hero = () => {
 
   return (
     <div>
-      <div className="bg-[url('./Assets/peakpx.jpg')]  bg-cover bg-center relative  bg-no-repeat h-[1300px] sm:h-[800px] md:h-[800px] py-[80px] sm:px-[30px] sm:pt-[130px] pt-[150px] md:pt-[120px] px-[150px] ">
+      <div className="bg-[url('./Assets/peakpx.jpg')]  bg-cover bg-center relative  bg-no-repeat h-[1300px] sm:h-[840px] md:h-[800px] py-[80px] sm:px-[30px] sm:pt-[130px] pt-[150px] md:pt-[120px] px-[150px] ">
         <div className="flex flex-row md:flex-col justify-between  absolute">
           <div data-aos="fade-right">
             <div className="sm:hidden ">
@@ -35,12 +35,12 @@ const Hero = () => {
               </div>
 
               <div className="font-bold flex flex-row items-start ">
-                <p>.</p>
+                {/* <p>.</p> */}
                 <p>Knowledge gathered within 7 years <br></br>of trading broken down<br></br> for easy assimilation. </p>
                
               </div>
               <div className="font-bold flex flex-row items-start ">
-              <p>.</p>
+              {/* <p>.</p> */}
               <p>Let's get you started on a life changing journey.</p>
               </div>
               {/* <div className="font-bold text-black flex flex-row items-center ">
@@ -60,8 +60,8 @@ const Hero = () => {
             <img
               src={phone}
               alt=""
-              className="ml-[100px] md:hidden sm:hidden"
-              width={400}
+              className="ml-[80px] mt-[-50px] md:hidden sm:hidden"
+              width={600}
             />
           </div>
         </div>

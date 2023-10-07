@@ -5,19 +5,22 @@ import { useEffect } from "react";
 
 const typeDetails = [
   {
-    h1: "Scalping",
-    p: " Traders hold trades for a short period of time and take profits. Traders open big lot sizes to catch a few pips and leave the markets. They usually trade these times frames below 15 Minute i.e m5 and m1. They are many scalpingstrategies traders use and am going to discuss them in here. When scalping, a trader starts analyzing the markets from H4 and scales down to the entry time frame which can be m1or m5.",
+    h1: "SCALPING",
+    p: "A short-term strategy where traders make quick, small-profit trades within seconds to minutes, aiming to capitalize on minor price movements. It involves low risk per trade but requires rapid decision-making and intense focus.",
     imgSrc: "/peakpx.jpg",
   },
   {
-    h1: "Scalping",
-    p: " Traders hold trades for a short period of time and take profits. Traders open big lot sizes to catch a few pips and leave the markets. They usually trade these times frames below 15 Minute i.e m5 and m1. They are many scalpingstrategies traders use and am going to discuss them in here. When scalping, a trader starts analyzing the markets from H4 and scales down to the entry time frame which can be m1or m5.",
+    h1: "INTRA-DAY TRADING (DAY TRADING)",
+    p: " Traders open and close positions within the same trading day, seeking to profit from daily price fluctuations. Timeframes range from minutes to hours, with moderate risk and the goal of closing all positions by day's end. ",
     imgSrc: "/peakpx.jpg",
   },
   {
-    h1: "Scalping",
-    p: " Traders hold trades for a short period of time and take profits. Traders open big lot sizes to catch a few pips and leave the markets. They usually trade these times frames below 15 Minute i.e m5 and m1. They are many scalpingstrategies traders use and am going to discuss them in here. When scalping, a trader starts analyzing the markets from H4 and scales down to the entry time frame which can be m1or m5.",
+    h1: "SWING TRADING",
+    p: " Now, swing trading takes a slightly longer approach. Trades here are held from a few days to a few weeks, capturing price swings. This style requires less monitoring compared to day trading, making it suitable for those with busier schedules.",
     imgSrc: "/peakpx.jpg",
+  }, {
+    h1: "POSITION TRADING",
+    p: " A longer-term strategy where traders hold positions for weeks, months, or even years. It involves higher risk due to the extended holding time but offers potential for higher rewards. It relies on fundamental analysis and macroeconomic trends.",
   },
 ];
 
@@ -34,10 +37,10 @@ const Types = () => {
     <div className="text-textcolor px-[200px] flex flex-col sm:mt-[100px] md:px-[100px] sm:px-[20px] gap-[30px]">
       <div>
         <h1 className="font-bold text-[28px]  text- mt-[100px] text-center">
-          Types Of Forex Trading
+          Types Of  Trading
         </h1>
       </div>
-      <div className="font-medium">
+      {/* <div className="font-medium">
         <div className="flex gap-[10px] flex-row items-center sm:items-start">
         <p> ✅</p>
           <p className="sm:text-[22px]">New York opens at 8:00 am to 5:00 pm EST (EDT)</p>
@@ -50,7 +53,7 @@ const Types = () => {
         <p> ✅</p>
           <p  className="sm:text-[22px]">New York opens at 8:00 am to 5:00 pm EST (EDT)</p>
         </div>
-      </div>
+      </div> */}
       <div>
         <p className="sm:text-[18px]">Click This Link To Trade With The Best Broker</p>
       </div>

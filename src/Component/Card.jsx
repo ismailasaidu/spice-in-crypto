@@ -19,11 +19,11 @@ const Card = () => {
           className="flex gap-[30px] w-[300px] sm:w-[100%] flex-col items-center">
           <img src={slack} width={20} className="sm:w-[50px]" />
           <h1 className="uppercase text-center sm:text-[13px] ">
-            Lorem ipsum dolor sit amet, consectetur adipisicing.
+          Trading is a business
           </h1>
           <div className="w-[100px] sm:w-[25%] bg-lightblue h-[5px] mt-[-15px]"></div>
           <h1 className="font-bold text-textcolor sm:text-[18px]">
-            Lorem ipsum dolor sit amet.
+          Treat it like one.
           </h1>
         </div>
         <div
@@ -40,12 +40,12 @@ const Card = () => {
           </div>
           <div className="flex gap-[20px]  bp-[30px] flex-col items-center">
             <h1 className="uppercase text-center sm:text-[18px] ">
-              Lorem ipsum dolor sit amet,
-              <br /> consectetur adipisicing.
+            Cut your losses quickly, 
+              <br /> without hesitation.
             </h1>
             <div className="w-[100px] bg-lightblue h-[5px] mt-[-8px]"></div>
-            <h1 className="font-bold sm:text-[18px] text-headerwhite">
-              Lorem ipsum dolor sit amet.
+            <h1 className="font-bold sm:text-[18px] text-center text-headerwhite">
+            Don't waste time hoping that a bad trade will turn around. 
             </h1>
           </div>
         </div>
@@ -54,11 +54,11 @@ const Card = () => {
           className="flex gap-[30px] w-[300px] sm:mt-[-120px] sm:w-[100%] flex-col items-center">
           <img src={slack} width={20} className="sm:w-[50px]" />
           <h1 className="uppercase text-center sm:text-[13px] ">
-            Lorem ipsum dolor sit amet, consectetur adipisicing.
+          Risk comes from not knowing what you're doing.
           </h1>
           <div className="w-[100px] sm:w-[25%] bg-lightblue h-[5px] mt-[-15px]"></div>
-          <h1 className="font-bold text-textcolor sm:text-[18px]">
-            Lorem ipsum dolor sit amet.
+          <h1 className="font-bold text-textcolor text-center sm:text-[18px]">
+          The goal of a profitable trader is to make money, not to be right! 
           </h1>
         </div>
         <div
@@ -66,11 +66,11 @@ const Card = () => {
           className="flex gap-[30px] w-[300px] sm:w-[100%] flex-col items-center">
           <img src={slack} width={20} className="sm:w-[50px]" />
           <h1 className="uppercase text-center sm:text-[13px] ">
-            Lorem ipsum dolor sit amet, consectetur adipisicing.
+          In trading, it's not about how much you make
           </h1>
           <div className="w-[100px] sm:w-[25%] bg-lightblue h-[5px] mt-[-15px]"></div>
           <h1 className="font-bold text-textcolor sm:text-[18px]">
-            Lorem ipsum dolor sit amet.
+          but rather how much you don't lose
           </h1>
         </div>
         <div
@@ -87,12 +87,14 @@ const Card = () => {
           </div>
           <div className="flex gap-[20px]  bp-[30px] flex-col items-center">
             <h1 className="uppercase text-center sm:text-[18px] ">
-              Lorem ipsum dolor sit amet,
-              <br /> consectetur adipisicing.
+        
+The goal of a successful trader is to make the best trades
+              
             </h1>
             <div className="w-[100px] bg-lightblue h-[5px] mt-[-8px]"></div>
             <h1 className="font-bold sm:text-[18px] text-headerwhite">
-              Lorem ipsum dolor sit amet.
+            Money is secondary.
+
             </h1>
           </div>
         </div>
@@ -101,11 +103,11 @@ const Card = () => {
           className="flex gap-[30px] w-[300px] sm:mt-[-120px] sm:w-[100%] flex-col items-center">
           <img src={slack} width={20} className="sm:w-[50px]" />
           <h1 className="uppercase text-center sm:text-[13px] ">
-            Lorem ipsum dolor sit amet, consectetur adipisicing.
+          In trading, you have to be defensive 
           </h1>
           <div className="w-[100px] sm:w-[25%] bg-lightblue h-[5px] mt-[-15px]"></div>
           <h1 className="font-bold text-textcolor sm:text-[18px]">
-            Lorem ipsum dolor sit amet.
+          and aggressive at the same time
           </h1>
         </div>
         <div
@@ -113,11 +115,11 @@ const Card = () => {
           className="flex gap-[30px] w-[300px] sm:w-[100%] flex-col items-center">
           <img src={slack} width={20} className="sm:w-[50px]" />
           <h1 className="uppercase text-center sm:text-[13px] ">
-            Lorem ipsum dolor sit amet, consectetur adipisicing.
+          Don't focus on making money
           </h1>
           <div className="w-[100px] sm:w-[25%] bg-lightblue h-[5px] mt-[-15px]"></div>
           <h1 className="font-bold text-textcolor sm:text-[18px]">
-            Lorem ipsum dolor sit amet.
+          focus on protecting what you have! 
           </h1>
         </div>
         <div
@@ -134,12 +136,11 @@ const Card = () => {
           </div>
           <div className="flex gap-[20px]  bp-[30px] flex-col items-center">
             <h1 className="uppercase text-center sm:text-[18px] ">
-              Lorem ipsum dolor sit amet,
-              <br /> consectetur adipisicing.
+            The market is a device for transferring money
             </h1>
             <div className="w-[100px] bg-lightblue h-[5px] mt-[-8px]"></div>
             <h1 className="font-bold sm:text-[18px] text-headerwhite">
-              Lorem ipsum dolor sit amet.
+            from the impatient to the patient.
             </h1>
           </div>
         </div>
@@ -148,11 +149,11 @@ const Card = () => {
           className="flex gap-[30px] w-[300px] sm:mt-[-120px] sm:w-[100%] flex-col items-center">
           <img src={slack} width={20} className="sm:w-[50px]" />
           <h1 className="uppercase text-center sm:text-[13px] ">
-            Lorem ipsum dolor sit amet, consectetur adipisicing.
+          It is not the strongest or the most intelligent who will survive
           </h1>
           <div className="w-[100px] sm:w-[25%] bg-lightblue h-[5px] mt-[-15px]"></div>
-          <h1 className="font-bold text-textcolor sm:text-[18px]">
-            Lorem ipsum dolor sit amet.
+          <h1 className="font-bold text-textcolor text-center sm:text-[18px]">
+          but those who can best manage change
           </h1>
         </div>
         

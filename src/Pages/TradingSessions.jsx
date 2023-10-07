@@ -13,60 +13,43 @@ const tradingSessions = () => {
   //   });
   // }, []);
 
- 
+  const typeDetails = [
+    {
+      p: "Sydney Session: This session starts the Forex trading day. It begins at 10:00 PM GMT and ends at 7:00 AM GMT. Major currency pairs involving the Australian and New Zealand Dollars are often active during this session.",
+    },
+    {
+      p: "Tokyo Session: Following the Sydney session, the Tokyo session starts at 11:00 PM GMT and concludes at 8:00 AM GMT. It primarily involves the Japanese Yen and overlaps with the Sydney session, creating liquidity in Asian markets. ",
+    },
+    {
+      p: " London Session: The London session is one of the most significant. It commences at 8:00 AM GMT and ends at 4:00 PM GMT. The Euro (EUR) and British Pound (GBP) are heavily traded during this session. It also overlaps with the Tokyo session for a few hours, resulting in increased trading activity.",
+    },
+    {
+      p: "  New York Session: Starting at 1:00 PM GMT and closing at 10:00 PM GMT, the New York session is another major player in Forex trading. The U.S. Dollar (USD) is the dominant currency during this session. It overlaps with the London session, creating high trading volume.",
+    },
+  ];
 
   return (
     <div className="py-[150px] sm:py-0 md:py-[100px] text-textcolor px-[200px] sm:mt-[80px] md:px-[100px] sm:px-[30px]">
-      <div className="flex flex-row sm:flex-col md:flex-col justify-between">
-        <div className="flex flex-col gap-[20px]">
-          <div>
-            <h1 className="font-bold text-[24px] sm:text-[28px] ">
-              Forex Trading Sessions
-            </h1>
-          </div>
-          <div className="sm:text-[22px]">
-            <div className="flex flex-row items-center sm:items-start">
-              <p> ✅</p>
-              <p>New York opens at 8:00 am to 5:00 pm EST (EDT)</p>
+      <div className="flex flex-row sm:flex-col md:flex-col gap-[130px] sm:gap-0">
+        <div className="flex flex-col gap-[40px]">
+          {typeDetails.map((item, index) => (
+            <div className="flex flex-row sm:flex-col gap-[30px] items-center">
+              <div className="w-[400px] sm:w-[100%] flex-1">
+                {/* <h1 className="underline sm:text-[24px] sm:font-bold text-[20px] ">{item.h1}</h1> */}
+                <p className="font-bold sm:text-[22px] sm:font-medium">
+                  {item.p}
+                </p>
+              </div>
+
+              {/* <div className="flex flex-[1.5px]">
+              <img src={item.imgSrc} alt="" width={900} height={300}  />
+            </div> */}
             </div>
-            <div className="flex flex-row items-center sm:items-start">
-              <p> ✅</p>
-              <p>New York opens at 8:00 am to 5:00 pm EST (EDT)</p>
-            </div>
-            <div className="flex flex-row items-center sm:items-start">
-              <p> ✅</p>
-              <p>New York opens at 8:00 am to 5:00 pm EST (EDT)</p>
-            </div>
-            <div className="flex flex-row items-center sm:items-start">
-              <p> ✅</p>
-              <p>New York opens at 8:00 am to 5:00 pm EST (EDT)</p>
-            </div>
-          </div>
-          <div>
-            <h1 className="font-medium text-[18px] sm:text-[28px] underline ">
-              Most Active Hours = when two sessions overlap:
-            </h1>
-          </div>
-          <div className="sm:text-[22px]">
-            <div className="flex flex-row items-center sm:items-start">
-              <p> ✅</p>
-              <p>New York opens at 8:00 am to 5:00 pm EST (EDT)</p>
-            </div>
-            <div className="flex flex-row items-center sm:items-start">
-              <p> ✅</p>
-              <p>New York opens at 8:00 am to 5:00 pm EST (EDT)</p>
-            </div>
-            <div className="flex flex-row items-center sm:items-start">
-              <p> ✅</p>
-              <p>New York opens at 8:00 am to 5:00 pm EST (EDT)</p>
-            </div>
-          </div>
-          <div className="sm:text-[22px]">
-            <p>Join The Forex Bulls Community For Free</p>
-          </div>
+          ))}
         </div>
         <div>
           <img src={sessions} alt="" width={400} />
+          <p className="font-bold sm:text-[22px] sm:font-medium">NOTE: These sessions represent the main trading hours in the global Forex market. The Crypto <br></br>markets are open 24/7 but it's during these times we get the most volume so it's advised <br></br>to trade during these sessions.</p>
         </div>
       </div>
 
@@ -79,7 +62,7 @@ const tradingSessions = () => {
             allowFullScreen></iframe>
         </div>
       </Container>
-      <Started icon=" BsPlayFill" text1="GET STARTED"/>
+      <Started icon=" BsPlayFill" text1="GET STARTED" />
     </div>
   );
 };
