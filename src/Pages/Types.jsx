@@ -36,7 +36,7 @@ const Types = () => {
   return (
     <div className="text-textcolor px-[200px] flex flex-col sm:mt-[100px] md:px-[100px] sm:px-[20px] gap-[30px]">
       <div>
-        <h1 className="font-bold text-[28px]  text- mt-[100px] text-center">
+        <h1 className="font-bold text-[28px]  text- mt-[100px] sm:mt-[50px] text-center">
           Types Of  Trading
         </h1>
       </div>
