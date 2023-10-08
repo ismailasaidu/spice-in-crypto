@@ -90,15 +90,7 @@ const Trend = () => {
       <div className="text-textcolor font-semibold">
         <p>Remember there's no one way of doing this. Your main goal should be to follow your plan while aiming for consistent, sustainable returns.</p>
       </div>
-      <Container>
-        <div className="ratio ratio-21x9 mt-[100px]">
-          <iframe
-            className="w-[1000px] sm:w-[100%] md:w-[100%] md:h-[300px] sm:h-[200px] h-[500px]"
-            src="https://www.youtube.com/embed/_F8MgJ3FVm8"
-            title="YouTube video"
-            allowFullScreen></iframe>
-        </div>
-      </Container>
+   
     </div>
   );
 };

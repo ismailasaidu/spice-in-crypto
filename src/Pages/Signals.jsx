@@ -95,7 +95,7 @@ const Signals = () => {
       </div>
       <div>
         <p className="text-[14px] text-center mt-[40px] sm:px-[20px] font-bold text-blue sm:text-lightblue sm:text-[18px]">
-          Sign Up With Our Recommended Broker For the Best Spreads and Execution
+       Sign Up For Our Expert Signals
         </p>
       </div>
       <div className=" text-center flex items-center gap-[30px] flex-col mt-[50px]">

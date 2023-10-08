@@ -127,10 +127,10 @@ const GrowingAccount = () => {
       <div className=" mt-[30px] sm:mt-[50px]">
         {details.map((item, index) => (
           <div className="flex items-start  gap-[20px] flex-col">
-            <h1 className="underline text-center sm:text-[28px]"> {item.h1}</h1>
+            <h1 className="underline text-center text-[20px] font-bold sm:text-[26px]"> {item.h1}</h1>
             <div className="flex gap-[10px] flex-row">
             <p className="" > ✅</p>
-              <p className="text-[26px] sm:text-[18px]">{item.p}</p>
+              <p className="text-[18px] sm:text-[18px]">{item.p}</p>
             </div>
             <div>
               <img src={item.imgSrc} alt="" width={400} />
@@ -138,7 +138,7 @@ const GrowingAccount = () => {
           </div>
         ))}
       </div>
-      <div className="text-[26px] sm:text-[18px] font-semibold">
+      <div className="text-[20px] sm:text-[18px] font-semibold">
         <p>Master your emotions and maintain a rational, disciplined approach to enhance your trading psychology and increase your chances of success in the financial markets.</p>
       </div>
 

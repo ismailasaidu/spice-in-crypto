@@ -7,17 +7,17 @@ const typeDetails = [
   {
     h1: "SCALPING",
     p: "A short-term strategy where traders make quick, small-profit trades within seconds to minutes, aiming to capitalize on minor price movements. It involves low risk per trade but requires rapid decision-making and intense focus.",
-    imgSrc: "/peakpx.jpg",
+    imgSrc: "/scalping.png",
   },
   {
     h1: "INTRA-DAY TRADING (DAY TRADING)",
     p: " Traders open and close positions within the same trading day, seeking to profit from daily price fluctuations. Timeframes range from minutes to hours, with moderate risk and the goal of closing all positions by day's end. ",
-    imgSrc: "/peakpx.jpg",
+    imgSrc: "/day.png",
   },
   {
     h1: "SWING TRADING",
     p: " Now, swing trading takes a slightly longer approach. Trades here are held from a few days to a few weeks, capturing price swings. This style requires less monitoring compared to day trading, making it suitable for those with busier schedules.",
-    imgSrc: "/peakpx.jpg",
+    imgSrc: "/swing.png",
   }, {
     h1: "POSITION TRADING",
     p: " A longer-term strategy where traders hold positions for weeks, months, or even years. It involves higher risk due to the extended holding time but offers potential for higher rewards. It relies on fundamental analysis and macroeconomic trends.",
@@ -66,7 +66,7 @@ const Types = () => {
             </div>
 
             <div className="flex flex-[1.5px]">
-              <img src={item.imgSrc} alt="" width={900} height={300}  />
+              <img src={item.imgSrc} alt="" width={300} height={300}  />
             </div>
           </div>
         ))}
