@@ -1,5 +1,9 @@
 import React from "react";
 import slack from "../Assets/slack.png";
+import {FaInstagram, FaTelegramPlane, FaTwitter }from "react-icons/fa"
+import {FaWhatsapp} from "react-icons/fa"
+import { useNavigate } from "react-router-dom";
+
 
 const footList = [
   {
@@ -23,6 +27,7 @@ const footList = [
 ];
 
 const Footer = () => {
+  const navigate = useNavigate()
   return (
     <div className="mt-[150px] sm:mt-[100px]  text-textcolor px-[250px] md:px-0  py-[50px]  border-t  border-headerwhite h-[470px] sm:h-[750px] md:h-[700px]">
       <div className="flex flex-rol sm:flex-col md:grid md:justify-center  sm:gap-[30px] md:gap-[40px] justify-between">
@@ -55,11 +60,27 @@ const Footer = () => {
             </h1>
           </div>
 
-          <div className="flex sm:gap-[30px] items-center flex-row">
-            <img src={slack} className="w-[34px] h-[44px]" />
-            <img src={slack} className="w-[34px] h-[44px]" />
-            <img src={slack} alt="" className="w-[34px] h-[44px]" />
-            <img src={slack} alt="" className="w-[34px] h-[44px]" />
+          <div className="flex sm:gap-[30px] justify-between items-center flex-row">
+          <FaTelegramPlane size={25}   onClick={() => {
+                  window.open(
+                    "https://https://t.me/SpiceincryptoAcademy"
+                  );
+                }}/>
+          <FaWhatsapp size={25}  onClick={() => {
+                  window.open(
+                    "https://api.whatsapp.com/send/?phone=%2B2349012916019&text&type=phone_number&app_absent=0"
+                  );
+                }}/>
+          <FaInstagram size={25} onClick={() => {
+                  window.open(
+               "https://www.instagram.com/spice_in_crypto_academy/"
+                  );
+                }} />
+          <FaTwitter size={25}  onClick={() => {
+                  window.open(
+                    "https://twitter.com/spiceincryptoa?s=21&t=Vf939D5KtPrbr660NkKnjw"
+                  );
+                }}/>
           </div>
         </div>
       </div>
