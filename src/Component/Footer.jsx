@@ -63,7 +63,7 @@ const Footer = () => {
           <div className="flex sm:gap-[30px] justify-between items-center flex-row">
           <FaTelegramPlane size={25}   onClick={() => {
                   window.open(
-                    "https://https://t.me/SpiceincryptoAcademy"
+                    "https://t.me/SpiceincryptoAcademy"
                   );
                 }}/>
           <FaWhatsapp size={25}  onClick={() => {
