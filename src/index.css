@@ -199,5 +199,5 @@ position: relative;
 }
 
 .image:hover {
-  --zoom: 3;
+  --zoom: 1.4;
 } 

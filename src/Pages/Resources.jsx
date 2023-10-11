@@ -52,7 +52,7 @@ const Resources = () => {
           <Link to={item.link}>
             <div
               // data-aos="fade-left"
-              className="image w-[300px]   sm:w-[300px] sm:h-[270px] cursor-pointer hover:bg-rescol rounded-2xl   ">
+              className="image w-[300px]   sm:w-[300px] sm:h-[270px] cursor-pointer rounded-2xl   ">
               <img
                 src={item.img}
                 className="rounded-2xl opacity-[1px] "

@@ -12,7 +12,7 @@ const Card = () => {
   }, []);
 
   return (
-    <div className="flex justify-center items-center flex-col mt-[100px]  sm:px-[40px] md:px-0 px-[200px] sm:gap-[10px] gap-[30px]">
+    <div className="flex justify-center hidden sm:block items-center flex-col mt-[100px]  sm:px-[40px] md:px-0 px-[200px] sm:gap-[10px] gap-[30px]">
       <div className="grid grid-cols-3 sm:grid-cols-1  md:grid-cols-2  sm:  gap-[60px] sm:gap-[100px]">
         <div
           data-aos="fade-up"

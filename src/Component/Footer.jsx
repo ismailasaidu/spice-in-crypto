@@ -49,8 +49,8 @@ const Footer = () => {
             </h1>
           </div>
           <div className="sm:text-center sm:text-[16px] font-medium">
-            <p>0808642634</p>
-            <p>support@spiceincryto.com</p>
+            <p>09012916019</p>
+            <p>spiceincryptoacademy@gmail.com</p>
           </div>
         </div>
         <div className="flex gap-[30px] md:gap-[30px] md:text-center md:items-center sm:items-center items flex-col">
@@ -60,7 +60,7 @@ const Footer = () => {
             </h1>
           </div>
 
-          <div className="flex sm:gap-[30px] justify-between items-center flex-row">
+          <div className="flex sm:gap-[30px] md:gap-[30px] justify-between items-center flex-row">
           <FaTelegramPlane size={25}   onClick={() => {
                   window.open(
                     "https://t.me/SpiceincryptoAcademy"
