@@ -59,7 +59,7 @@ const Header = () => {
         }  font-MT  flex justify-between md:items-center md:px-[20px] md:overflow-hidden  sm:border-b sm:py-[20px]  w-[100%] py-[10px] items-center   sm:px-[30px] `}>
         <div>
           <Link to="/">
-            <img src={logo} width={90} className="sm:w-[70px]" />
+            <img src={logo} width={90} className="sm:w-[70px]"  onClick={()=>{setshow(!show)}}/>
           </Link>
         </div>
         <div className="flex  items-center ml-[200px] gap-[20px]  md:gap-[10px] md:ml-[20px] md:text-[10px] text-blue font-bold text-[15px] sm:hidden">
