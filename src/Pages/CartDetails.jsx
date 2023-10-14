@@ -18,6 +18,7 @@ import { ToastContainer, toast } from "react-toastify";
 import { AiFillFacebook, AiFillTwitterSquare } from "react-icons/ai";
 import { MdEmail } from "react-icons/md";
 import { GrInstagram } from "react-icons/gr";
+import phone from "../Assets/phone.png"
 
 const CartDetails = () => {
   
@@ -128,7 +129,7 @@ const CartDetails = () => {
           <div className="flex mt-[100px] sm:flex-col   md:justify-between">
             <div className="flex-1 md:pt-[80px] sm:mt-[-100px] relative">
               <img
-                src={Ebooks[id]?.data?.imgSrc}
+                src={phone}
                 alt=""
                 className="w-[490px] h-[500px]  object-cover sm:h-[300px] sm:w-[400px] md:w-[500px] md:h-[370px]"
               />

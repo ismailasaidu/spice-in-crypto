@@ -39,7 +39,7 @@ const Footer = () => {
           Remember to always trade what<br></br> you can afford to loose
           </p>
           <p className="text-textcolor hidden md:block sm:text-[16px] text-center font-medium  ">
-          Remember to always trade what you can afford to loose
+          Remember to always risk what you can afford to loose
           </p>
         </div>
         <div className="flex gap-[30px] md:gap-[15px] md:text-center sm:items-center flex-col">
