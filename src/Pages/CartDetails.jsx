@@ -215,7 +215,7 @@ const CartDetails = () => {
             <h1>Review(0)</h1>
           </div> */}
           </div>
-          <div className="mx-14 sm:mx-[20px]">
+          {/* <div className="mx-14 sm:mx-[20px]">
             <p className="border-divider border   h-[250px] text-grey sm:overflow-scroll py-[15px] px-[30px] md:overflow-scroll">
               A key objective is engaging digital marketing customers and
               allowing them to interact with the brand through servicing and
@@ -232,7 +232,7 @@ const CartDetails = () => {
               <br></br> mediums due to lack of face to face communication and
               information being wide spread instead to a selective audience.
             </p>
-          </div>
+          </div> */}
         </div>
       </div>
       <ToastContainer />
