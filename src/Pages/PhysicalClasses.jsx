@@ -3,7 +3,7 @@ import logo from "../Assets/logo.png";
 import peakpx from "../Assets/peakpx.jpg";
 import slack from "../Assets/slack.png";
 import { useEffect } from "react";
-import spice4 from "../Assets/spice4.jpeg"
+import spice1 from "../Assets/spice1.jpeg"
 
 const WYG = [
   { p: "In-depth look at the Crypto markets." },
@@ -50,7 +50,7 @@ const PhysicalClasses = () => {
         SPICE IN CRYPTO PHYSICAL<br></br> CLASSES (ONLY LIMITED TO<br></br> FIRST 20
         PEOPLE)
       </h1>
-      <img src={spice4} />
+      <img src={spice1} />
       <p className="border-b-footer border-b-[1px] sm:text-[18px] pb-[20px] font-bold text-[18px]">
       What Awaits You In This Masterclass
       </p>
