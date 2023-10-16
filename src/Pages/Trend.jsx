@@ -62,7 +62,7 @@ const Trend = () => {
     <div className="text-textcolor px-[200px] md:px-[100px] flex flex-col gap-[30px] sm:mt-[80px] sm:px-[50px]">
       <div>
         <h1 className="font-bold text-[28px] text- mt-[100px]  text-center ">
-          Types Of Forex Trading
+          Types Of  Trading
         </h1>
       </div>
       <div className="font-medium">

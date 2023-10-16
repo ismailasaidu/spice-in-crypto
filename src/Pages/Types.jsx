@@ -21,6 +21,7 @@ const typeDetails = [
   }, {
     h1: "POSITION TRADING",
     p: " A longer-term strategy where traders hold positions for weeks, months, or even years. It involves higher risk due to the extended holding time but offers potential for higher rewards. It relies on fundamental analysis and macroeconomic trends.",
+    imgSrc: "/position.jpg",
   },
 ];
 
