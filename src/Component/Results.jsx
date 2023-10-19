@@ -64,7 +64,7 @@ const Results = () => {
           </div>
         ))}
       </div>
-      <div className="grid sm:block hidden grid-cols-3 sm:flex sm:flex-col gap-[30px] mx-[210px]  sm:mx-[15%]   mt-[100px]">
+      <div className="grid sm:block hidden grid-cols-3 sm:flex sm:flex-col gap-[30px] mx-[210px]  sm:mx-[8%]   mt-[100px]">
         {res.map((item, index) => (
           <div
             data-aos="fade-up"
