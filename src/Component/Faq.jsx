@@ -42,22 +42,22 @@ const Faq = () => {
   return (
     <div className=" mt-[100px] sm:px-[20px] ">
     
-      <div className="items-center mt-[100px] flex gap-[30px]  flex-col">
+      <div className="items-center flex gap-[30px] sm:gap-[20px] flex-col">
         {Faq.map((item, index) => (
           <div
             data-aos="fade-left"
             id="box"
-            className=" shadow-2xl rounded-md p-[1px] bg-gradient-to-b sm:h-[265px]    sm:w-[100%] w-[650px] ">
-            <div className="rounded-md px-[20px] py-[20px] sm:py-[36px]  sm:px-[15px] relative flex flex-col  text-center  gap-[40px] bg-white overflow-hidden">
+            className=" shadow-2xl  rounded-md p-[1px] bg-gradient-to-b sm:h-[155px]  h-[150px]  sm:w-[100%] w-[650px] ">
+            <div className="rounded-md px-[20px]    sm:py-[20px]   sm:px-[0px] relative flex flex-col  text-center  gap-[30px] sm:gap-[10px] bg-white overflow-hidden">
               <FaRegComments color="#2C9ED7"   className="absolute w-[100px] h-[100px]  z-[-10px] opacity-[0.2] top-[-5px] sm:left-[-15px] sm:top-[2px] left-[-10px]"/>
             <i class="fa-light fa-comments  "></i>
-              <div className=" sm:mt-[-24px] text-center">
+              <div className=" ">
                 <h1 className="font-bold text-textcolor sm:text-[16px] text-center text-[18px]">
                   {item.h1}
                 </h1>
               </div>
               <div>
-              <p className="text-[15px] sm:text-[14px] px-[30px] text-textcolor">{item.p}</p>
+              <p className="text-[15px]  px-[30px] sm:px-[15px] text-textcolor">{item.p}</p>
               </div>
              
             </div>

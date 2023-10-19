@@ -8,32 +8,32 @@ import AnimatedHeader from "./AnimatedHeader";
 
 const res = [
   {
-    img: "/result1.jpg",
+    img: "/result1.jpeg",
   },
   {
-    img: "/result1.jpg",
+    img: "/result2.jpeg",
   },
   {
-    img: "/result1.jpg",
+    img: "/result3.jpeg",
   },
   {
-    img: "/result1.jpg",
+    img: "/result4.jpeg",
   },
   {
-    img: "/result1.jpg",
+    img:"/result5.jpeg",
   },
   {
-    img: "/result1.jpg",
+    img: "/result6.jpeg",
   },
-  {
-    img: "/result1.jpg",
-  },
-  {
-    img: "/result1.jpg",
-  },
-  {
-    img: "/result1.jpg",
-  },
+  // {
+  //   img: "/result1.jpg",
+  // },
+  // {
+  //   img: "/result1.jpg",
+  // },
+  // {
+  //   img: "/result1.jpg",
+  // },
 ];
 
 const Results = () => {
@@ -53,7 +53,7 @@ const Results = () => {
         {res.map((item, index) => (
           <div
             data-aos="fade-left"
-            className="image w-[400px] sm:w-[70%] sm:h-[350px] md:w-[100%]  cursor-pointer "
+            className="image w-[400px] sm:w-[85%] sm:h-[350px] md:w-[100%]  cursor-pointer "
             onClick={() => window.open(`${item.img}`)}>
             <img src={item.img} className="rounded-2xl relative " />
             <p

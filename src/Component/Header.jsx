@@ -51,15 +51,15 @@ const Header = () => {
   return (
     <div
       className={`${
-        show ? "sm:h-[80px]" : "sm:h-[42%vh]"
-      }  bg-headerwhite overflow-hidden z-[100] f    shadow-xl sm:duration-8900 sm:ease-in px-[90px] items-center  md:px-0 sm:px-[0px] w-[100%] fixed top-0`}>
+        show ? "sm:h-[80px]" : "sm:h-[42%vh]" 
+      } sm:duration-800 bg-headerwhite overflow-hidden z-[100] f    shadow-xl  sm:ease-in px-[90px] items-center  md:px-0 sm:px-[0px] w-[100%] fixed top-0`}>
       <div
         className={`header ${
           scrolling ? "scrolling" : ""
         }  font-MT  flex justify-between md:items-center md:px-[20px] md:overflow-hidden  sm:border-b sm:py-[20px]  w-[100%] py-[10px] items-center   sm:px-[30px] `}>
         <div>
           <Link to="/">
-            <img src={logo} width={90} className="sm:w-[70px]"  onClick={()=>{setshow(!show)}}/>
+            <img src={logo} width={90} className="sm:w-[70px]"  />
           </Link>
         </div>
         <div className="flex  items-center ml-[200px] gap-[20px]  md:gap-[10px] md:ml-[20px] md:text-[10px] text-blue font-bold text-[15px] sm:hidden">
@@ -107,7 +107,7 @@ const Header = () => {
         <div className="flex gap-[20px] items-center">
           <Link to="/cart">
             <div className="relative hidden mt-[-5px] sm:block" 
-            onClick={() => setshow(!show)}>
+         >
               <BsCart4 color="#0F1231" className="w-[25px] h-[25px]" />
               <div className="absolute top-0 left-[15px] bg-blue rounded-full w-[13px] h-[13px]">
                 <p className="ml-[4px] mt-[-1px] text-[10px] font-black text-white">
@@ -123,7 +123,8 @@ const Header = () => {
           />
         </div>
       </div>
-      <div className=" flex flex-col  px-[20px] py-[20px]  space-y-[14px]  z-[100] w-[100%] hidden sm:block  text-black font-bold  sm:text-left">
+      <div 
+       className=" flex flex-col  px-[20px] py-[20px]  space-y-[14px]  z-[100] w-[100%] hidden sm:block  text-black font-bold  sm:text-left">
         {headerList.map((item, index) => (
           <div className={`${show ? "hidden" : "block"}  px-[10px]  `}>
             <Link to={item?.to} key={index} onClick={() => setshow(!show)}>
