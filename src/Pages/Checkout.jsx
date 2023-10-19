@@ -191,7 +191,7 @@ const Checkout = () => {
 
   return (
     <div>
-      <div className="px-14 sm:px-[10px] pt-[200px] sm:pt-[200px]  relative">
+      <div className="px-14 sm:px-[10px] pt-[200px] md:pt-[100px] sm:pt-[200px]  relative">
         <div>
           <h1 className="text-grey mt-[50px] sm:mt-[-40px] className='cursor-pointer'">
             <span
@@ -201,7 +201,7 @@ const Checkout = () => {
               HOME/
             </span>{" "}
             <Link to="/cart">
-              <span className="text-dark">SHOPPING CART</span>
+              <span className="text-dark">CART</span>
             </Link>
           </h1>
         </div>
@@ -334,11 +334,10 @@ const Checkout = () => {
               </p>
             </div>
           </div>
-          <div className="relative mt-[40px] justify-between border-divider border-[1px] px-[10px] py-[10px] h-[160px]   sm:h-[150px]">
-            <div className="bg-black pl-[10px] pt-[10px] mr-[300px] md:mr-[10px]  text-[12px] text-darktext h-[45px]  md:h-[60px] sm:h-[80px]">
+          <div className="relative mt-[40px] justify-between border-divider border-[1px] px-[10px] py-[10px] h-[120px]   sm:h-[150px]">
+            <div className="bg-white pl-[10px] pt-[10px] mr-[300px] md:mr-[10px]  text-[12px] text-darktext h-[45px]  md:h-[60px] sm:h-[80px]">
               <p className="md:px-[40px] md:py-[5px] ">
-                Cash on delivery. Please contact us if you require assistance or
-                wish to make alternate arrangements.
+                 Please contact us if you wish to make further enquiries.
               </p>
             </div>
 

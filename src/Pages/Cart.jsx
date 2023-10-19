@@ -59,48 +59,49 @@ const Cart = () => {
               <span
                 className="cursor-pointer sm:pl-[30px]"
                 onClick={() => {
-                  navigate("/");
+                  navigate("/signals");
                 }}>
-                HOME/
+                SIGNALS/
               </span>
-              <span className="text-dark cursor-pointer">SHOPPING CART</span>
+              <span className="text-dark cursor-pointer">CART</span>
             </h1>
           </div>
           <div>
             <div className="md:mt-[-50px]">
-              <div className="grid grid-cols-4  sm:place-items-center sm:justify-center border-b-[1px] gap-[100px] border-divider pl-[100px] h-[50px] mt-[100px]   sm:mt-[140px] sm:gap-0 sm:text-[14px]  md:gap-[90px] md:pl-[35px]">
-                <h1 className="font-bold text-[18px] pt-[15px] sm:text-[14px]">
+              <div className="grid grid-cols-2 sm:grid-cols-2  sm:place-items-center w-[600px] sm:w-[100%] border-b-[1px] gap-[130px] border-divider pl-[100px] sm:pl-[50px] sm:pr-[50px] h-[50px] mt-[100px] sm:gap-0 sm:mt-[140px] sm:text-[14px]  md:gap-[90px] md:pl-[35px]">
+                <h1 className="font-bold text-[18px] pt-[15px] sm:text-[16px]">
                   Product
                 </h1>
-                <h1 className="font-bold text-[18px] pt-[15px] sm:text-[14px]">
+                <h1 className="font-bold text-[18px] pt-[15px] sm:text-[16px]">
                   Price
                 </h1>
-                <h1 className="font-bold text-[18px] pt-[15px] sm:text-[14px]">
+                {/* <h1 className="font-bold text-[18px] pt-[15px] sm:text-[14px]">
                   Quantity
-                </h1>
-                <h1 className="font-bold text-[18px] pt-[15px] sm:text-[14px]">
+                </h1> */}
+                {/* <h1 className="font-bold text-[18px] pt-[15px] sm:text-[14px]">
                   Total
-                </h1>
+                </h1> */}
               </div>
               {cart.length > 0
                 ? cart.map((item) => {
                     return (
-                      <div className="grid grid-cols-4 items-center sm:place-items-center border-b-[1px] gap-[100px]  border-divider pl-[100px] sm:h-[80px] md:h-[80px] h-[60px] mt-[40px] font-display relative  sm:gap-0 sm:text-[14px] md:gap-[70px] md:items-center md:pl-[35px] md:pb-[20px]">
+                      <div className="grid grid-cols-2 sm:grid-cols-2 items-center w-[600px] sm:w-[100%]
+                      sm:place-items-center border-b-[1px] gap-[130px]  border-divider  sm:gap-0 pl-[100px] sm:h-[80px] md:h-[80px] h-[60px] mt-[40px] font-display relative sm:pl-[80px] sm:pr-[50px]  sm:text-[14px] md:gap-[70px] md:items-center  md:pl-[35px] md:pb-[20px]">
                         <img
                           src={close}
-                          className="absolute left-0 mt-[20px] md:mt-[-5px] sm:left-[5px] "
+                          className="absolute left-0  md:mt-[-5px] sm:left-[30px] "
                           onClick={() => {
                             handleRemove(item);
                           }}
                         />
-                        <h1 className="font-bold text-[16px] uppercase md:text-[14px] mr-[40px] md:mt-[0px] text-grey pt-[15px] sm:text-[12px] sm:text-center  md:text-center">
+                        <h1 className="font-bold text-[16px] uppercase md:text-[14px] mr-[40px] md:mt-[15px] text-grey  sm:text-[12px] sm:text-center  md:text-center">
                           {item.data.Description}
                         </h1>
-                        <h1 className="font-medium text-[18px] text-grey pt-[15px]  md:pl-[10px] ">
+                        <h1 className="font-medium text-[18px] text-grey md:mt-[15px]   md:pl-[10px] ">
                           ₦{item.data.Price}
                           {/* ${item.data.Price - (item.data.Discount / 100) * item.data.Price} */}
                         </h1>
-                        <div className="flex items-center gap-[5px]   md:pl-[10px]">
+                        {/* <div className="flex items-center gap-[5px]   md:pl-[10px]">
                           <button
                             onClick={() => {
                               decrement(item.id);
@@ -117,10 +118,10 @@ const Cart = () => {
                             }}>
                             <AiOutlinePlus className="mt-[10px]" />
                           </button>
-                        </div>
-                        <h1 className="font-medium text-[18px] text-grey object-contain pt-[15px] md:pl-[20px]">
+                        </div> */}
+                        {/* <h1 className="font-medium text-[18px] text-grey object-contain pt-[15px] md:pl-[20px]">
                           ₦{Math.round(item.data.Price * item.data.quantity)}
-                        </h1>
+                        </h1> */}
                       </div>
                     );
                   })

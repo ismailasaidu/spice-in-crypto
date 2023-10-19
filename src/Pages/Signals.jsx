@@ -76,7 +76,7 @@ const Signals = () => {
 
 
   return (
-    <div className="mx-[100px] md:px-0  py-[100px] sm:py-[100px] sm:mx-0">
+    <div className="mx-[100px] md:px-0  py-[100px] sm:pt-[100px] sm:mx-0">
       <div className=" text-center flex items-center gap-[30px] flex-col mt-[50px]">
         <div>
           <h1 className=" text-[34px] sm:text-[20px] text-textcolor text-MT font-bold">
@@ -98,7 +98,7 @@ const Signals = () => {
        Sign Up For Our Expert Signals
         </p>
       </div>
-      <div className=" text-center flex items-center gap-[30px] flex-col mt-[50px]">
+      {/* <div className=" text-center flex items-center gap-[30px] flex-col mt-[50px]">
         <div>
           <h1 className=" text-[34px] sm:text-[20px] text-textcolor text-MT font-bold">
             Results
@@ -106,8 +106,8 @@ const Signals = () => {
         </div>
 
         <div className="w-[80px] h-[3px]  bg-anime"></div>
-      </div>
-      <div className="grid grid-cols-4 sm:grid-cols-1 gap-[90px] sm: md:grid-cols-3  md:px-[50px] place-items-center mt-[150px]">
+      </div> */}
+      {/* <div className="grid grid-cols-4 sm:grid-cols-1 gap-[90px] sm: md:grid-cols-3  md:px-[50px] place-items-center mt-[150px]">
         {res.map((item, index) => (
           <div className="">
             <img
@@ -118,7 +118,7 @@ const Signals = () => {
             />
           </div>
         ))}
-      </div>
+      </div> */}
       
     <ToastContainer/>
     </div>
