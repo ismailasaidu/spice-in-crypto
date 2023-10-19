@@ -3,26 +3,33 @@ import slack from "../Assets/slack.png";
 import {FaInstagram, FaTelegramPlane, FaTwitter }from "react-icons/fa"
 import {FaWhatsapp} from "react-icons/fa"
 import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 
 const footList = [
   {
     p: "Home",
+    link:"/"
   },
   {
-    p: "Best Broker",
+    p: "Best Exchanger",
+    link:"https://partner.bybit.com/b/56682"
   },
   {
     p: "SIC Community",
+    link:"https://t.me/SpiceincryptoAcademy"
   },
   {
     p: "Spice in Crytpo 2.0",
+    link:""
   },
   {
     p: "Signals",
+    link:"/signals"
   },
   {
     p: "Resources",
+    link:"/resources"
   },
 ];
 
@@ -87,7 +94,10 @@ const Footer = () => {
       <div className="mt-[100px] sm:mt-[60px] text-[16px] md:mx-[70px] justify-between md:justify-between md:px-0  sm:px-[20px] sm:mx-0 sm:gap-[10px] flex sm:grid sm:grid-cols-2 place-items-center px-[50px] sm:justify-between  ">
         {footList.map((item, index) => (
           <div className="link px-[5px]">
+            <Link to={item.link}>
             <h1 className="  cursor-pointer hover:text-grey">{item.p}</h1>
+            </Link>
+           
           </div>
         ))}
       </div>

@@ -55,14 +55,15 @@ const OurStory = () => {
             everybody! Explore our courses, connect with our community, and let
             us guide your path to success in trading!
           </p>
-        </div>
-        <div></div>
-      </div>
-      <button
-        className=" bg-lightblue w-[100px] h-[35px]  rounded-xl"
+          <button
+        className=" bg-lightblue w-[100px] h-[35px] mt-[30px] sm:mt-0 rounded-xl"
         onClick={navigateToWhatsApp}>
         Sign up
       </button>
+        </div>
+        <div></div>
+      </div>
+      
     </div>
   );
 };

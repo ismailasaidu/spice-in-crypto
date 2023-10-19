@@ -76,7 +76,14 @@ const Trend = () => {
         </div>
       </div>
       <div>
-        <p>Click This Link To Trade With The Best Broker</p>
+        <p 
+        className="cursor-pointer underline text-lightblue"
+         onClick={() => {
+          window.open(
+            "https://partner.bybit.com/b/56682"
+          );
+        }}
+        >Click This Link To Trade With The Best Exchanger</p>
       </div>
       <div className="grid grid-cols-2 sm:grid-cols-1 justify-between pb-[20px] ">
         {WYG.map((item, index) => (

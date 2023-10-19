@@ -56,7 +56,14 @@ const Types = () => {
         </div>
       </div> */}
       <div>
-        <p className="sm:text-[18px]">Click This Link To Trade With The Best Broker</p>
+      <p 
+        className="cursor-pointer underline text-lightblue"
+         onClick={() => {
+          window.open(
+            "https://partner.bybit.com/b/56682"
+          );
+        }}
+        >Click This Link To Trade With The Best Exchanger</p>
       </div>
       <div className="flex flex-col gap-[40px]">
         {typeDetails.map((item, index) => (
