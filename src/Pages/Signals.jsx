@@ -76,7 +76,7 @@ const Signals = () => {
 
 
   return (
-    <div className="mx-[100px] md:px-0  py-[100px] sm:pt-[100px] sm:mx-0">
+    <div className="mx-[100px] md:px-0  mt-[100px] sm:pt-[100px] sm:mx-0">
       <div className=" text-center flex items-center gap-[30px] flex-col mt-[50px]">
         <div>
           <h1 className=" text-[34px] sm:text-[20px] text-textcolor text-MT font-bold">

@@ -75,11 +75,11 @@ const SignalPrice = ({ item, itemIndex }) => {
           <div
             id="box"
             className=" hover:text-lightblue w-[100%] bg-white flex text-textcolor justify-center gap-[10px] items-center sm:h-[250px] flex-col shadow-xl rounded-xl p-[30px]">
-            <h1 className="sm:text-[20px] text-center">
+            <h1 className="sm:text-[20px]  text-grey text-center">
               {item.data.Description}
             </h1>
             <h1 className="font-bold sm:text-[20px]  text-[24px]">
-              {item.data.Price}
+              ${item.data.Price}
             </h1>
             <h1 className="text-[13px] sm:text-[20px] 0hover:text-textcolor">
               <img src={logo} alt="" className="w-[40px]" />
@@ -121,17 +121,17 @@ const SignalPrice = ({ item, itemIndex }) => {
 
             <div className=" flex items-center gap-[10px] justify-center  border-b h-[80px] border-footer mx-[50px] py-[25px] px-[5px]">
               <p> ✅</p>
-              <p className="sm:text-[14px]">85% Win-Rate</p>
+              <p className="sm:text-[14px]">95% Win-Rate</p>
             </div>
             <div className="flex items-start gap-[10px] justify-center border-b border-footer p-[20px]">
               <p className=""> ✅</p>
               <p className="sm:text-[14px]">
-                Daily signals on a variety of currency pairs
+               Well calculated risk
               </p>
             </div>
             <div className=" flex items-center gap-[10px] justify-center  border-b h-[80px] border-footer mx-[50px] py-[25px] px-[5px]">
               <p> ✅</p>
-              <p className="sm:text-[14px]">85% Win-Rate</p>
+              <p className="sm:text-[14px]">{item.data.setUp}</p>
             </div>
           </div>
         </div>

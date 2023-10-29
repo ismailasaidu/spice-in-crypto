@@ -17,6 +17,9 @@ const Log = () => {
   const [password, setPassword] = useState("");
   const [accounts, setAccounts] = useState("");
 
+// smoke33@gmail.Component
+// @Bigsmok1
+
   useEffect(() => {
     window.scrollTo({
       top: 0,
@@ -30,6 +33,7 @@ const Log = () => {
 
   useEffect(() => {
     isLoggedIn && navigate("/");
+    // navigate(-1);
   }, []);
 
   // const [previousPage, setPreviousPage] = useState(null);

@@ -24,7 +24,7 @@ module.exports = {
       md: { max: "1224px" },
       // => @media (max-width: 767px) { ... }
 
-      sm: { max: "780px" },
+      sm: { max: "639px" },
       // => @media (max-width: 639px) { ... }
 
       // 'sm-landscape': {'raw': '(max-width: 639px) and (orientation: landscape)'},

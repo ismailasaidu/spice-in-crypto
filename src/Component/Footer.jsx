@@ -3,6 +3,9 @@ import slack from "../Assets/slack.png";
 import {FaInstagram, FaTelegramPlane, FaTwitter }from "react-icons/fa"
 import {FaWhatsapp} from "react-icons/fa"
 import { useNavigate } from "react-router-dom";
+import {FiPhoneCall} from "react-icons/fi"
+import {IoLocationOutline} from "react-icons/io5"
+import {AiOutlineMail} from "react-icons/ai"
 import { Link } from "react-router-dom";
 
 
@@ -56,8 +59,21 @@ const Footer = () => {
             </h1>
           </div>
           <div className="sm:text-center sm:text-[16px] font-medium">
-            <p>09012916019</p>
+            <div className="flex  gap-[10px] items-center">
+            <FiPhoneCall/>
+            <p> 09012916019</p>
+            </div>
+            <div className="flex  gap-[10px] items-center">
+            <AiOutlineMail/>
             <p>spiceincryptoacademy@gmail.com</p>
+            </div>
+            <div className="flex  gap-[10px] items-center">
+            <IoLocationOutline/>
+         <p>Opposite north gate Samaru Zaria Kaduna State</p>
+            </div>
+          
+            
+           
           </div>
         </div>
         <div className="flex gap-[30px] md:gap-[30px] md:text-center md:items-center sm:items-center items flex-col">

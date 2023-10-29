@@ -26,6 +26,7 @@ import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { authSlice } from "./redux/AuthSlice";
 import ForgetPassword from "./Pages/ForgetPassword";
+import PageNotFound from "./Pages/PageNotFound";
 
 
 function App() {
@@ -76,13 +77,19 @@ function App() {
         <Route path="/newproduct" element={<NewProduct />} />
         <Route path="/checkout" element={<Checkout />} />
         <Route path="/newsignals" element={<NewSignals />} />
+        
+
+        
         <Route path="/forgetpassword" element={<ForgetPassword/>}/>
-        {!isLoggedIn ? (
-          <Route path="/log" element={<Log />} />
+        {/* {!isLoggedIn ? (
+          
         ) : (
           <Route path="/" element={<Home/>} />
-        )}
+        )} */}
+        <Route path="/log" element={<Log />} />
         <Route path="/signup" element={<Signup />} />
+        {/* <Route path="*" element={<PageNotFound/>} /> */}
+
       </Routes>
 
       <Footer />

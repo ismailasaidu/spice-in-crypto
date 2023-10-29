@@ -15,7 +15,7 @@ const Hero = () => {
 
   return (
     <div>
-      <div className="bg-[url('./Assets/peakpx.jpg')]  bg-cover bg-center relative  bg-no-repeat h-[1300px] sm:h-[840px] md:h-[800px] py-[80px] sm:px-[30px] sm:pt-[130px] pt-[150px] md:pt-[120px] px-[150px] ">
+      <div className="bg-[url('./Assets/peakpx.jpg')]  bg-cover bg-center relative  bg-no-repeat h-[1300px] sm:h-[840px] md:h-[800px] py-[80px] sm:px-[30px] sm:pt-[80px] pt-[150px] md:pt-[120px] px-[150px] ">
         <div className="flex flex-row md:flex-col justify-between  absolute">
           <div data-aos="fade-right">
             <div className="sm:hidden ">
