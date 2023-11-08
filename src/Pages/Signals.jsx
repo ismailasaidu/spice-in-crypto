@@ -9,6 +9,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { add } from "../redux/CartSlice";
 import { useParams } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
+import Mentorship from "../Component/Mentorship";
 
 const res = [
   {
@@ -39,6 +40,7 @@ const res = [
 
 const Signals = () => {
   const [Signals, setSignals] = useState([]);
+  const [Mentorships, setMentorships] = useState([]);
 
   useEffect(() => {
     window.scrollTo({
@@ -53,6 +55,7 @@ const Signals = () => {
 
   useEffect(() => {
     getSignals();
+    getMentorships();
   }, []);
 
   console.log("here", Signals);
@@ -66,6 +69,23 @@ const Signals = () => {
           id: doc.id,
         }));
         setSignals(signal);
+     
+      })
+
+
+      .catch((error) => toast.error(error.message));
+  }
+
+  function getMentorships() {
+    const Mentorship = collection(db, "Mentorship");
+    getDocs(Mentorship)
+      .then((response) => {
+        const Mentorship = response.docs.map((doc) => ({
+          data: doc.data(),
+          id: doc.id,
+        }));
+        setMentorships(Mentorship);
+        console.log(Mentorship)
       })
 
       .catch((error) => toast.error(error.message));
@@ -87,6 +107,15 @@ const Signals = () => {
       <div
         data-aos="zoom-out"
         className="mx-[100px] sm:mx-[10px] md:flex-col justify-center gap-[40px] items-center flex sm:flex-col flex-row pt-[70px] ">
+        {Mentorships.slice()
+          .reverse()
+          .map((item, index) => (
+            <Mentorship item2={item} itemIndex2={index}/>
+          ))}
+      </div>
+      <div
+        data-aos="zoom-out"
+        className="mx-[100px] sm:mx-[10px] md:flex-col justify-center gap-[40px] items-center flex sm:flex-col flex-row pt-[70px] ">
         {Signals.slice()
           .reverse()
           .map((item, index) => (
@@ -95,25 +124,10 @@ const Signals = () => {
       </div>
       <div>
         <p className="text-[14px] text-center mt-[50px] sm:px-[20px] font-bold text-blue sm:text-lightblue sm:text-[18px]">
-          Sign Up For Our Expert Mentorship
+          Sign Up For Our Expert Signals
         </p>
       </div>
-      <div className="mx-[100px] flex items-center justify-center gap-[40px] mt-[40px] ">
-        <div id="box" className="text-center flex flex-col bg-white shadow-2xl px-[10px] py-[35px] rounded-xl h-[170px] w-[200px] items-center justify-between">
-          <h1 className=" font-bold text-lightblue">Online Mentorship</h1>
-          <h1 className="font-bold">$30</h1>
-          <button className="bg-lightblue w-[100px] text-[14px] rounded-2xl h-[35px] font-bold">
-            Enroll
-          </button>
-        </div>
-        <div id="box" className="text-center flex flex-col bg-white shadow-2xl px-[10px] py-[35px] rounded-xl h-[170px] w-[200px] items-center justify-between">
-          <h1 className=" font-semibold text-lightblue">Physical Mentorship</h1>
-          <h1 className="font-bold">$50</h1>
-          <button className="bg-lightblue w-[100px] text-[14px] rounded-2xl h-[35px] font-bold">
-            Enroll 
-          </button>
-        </div>
-      </div>
+      
       <ToastContainer />
     </div>
   );
