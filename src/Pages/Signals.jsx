@@ -47,17 +47,16 @@ const Signals = () => {
     });
   }, []);
 
-  
   useEffect(() => {
     AOS.init({ duration: 3000 });
   }, []);
-  
+
   useEffect(() => {
     getSignals();
   }, []);
-  
-  console.log('here', Signals)
-  
+
+  console.log("here", Signals);
+
   function getSignals() {
     const Signal = collection(db, "Signals");
     getDocs(Signal)
@@ -74,7 +73,6 @@ const Signals = () => {
 
   const dispatch = useDispatch();
 
-
   return (
     <div className="mx-[100px] md:px-0  mt-[100px] sm:pt-[100px] sm:mx-0">
       <div className=" text-center flex items-center gap-[30px] flex-col mt-[50px]">
@@ -86,41 +84,37 @@ const Signals = () => {
 
         <div className="w-[80px] h-[3px]  bg-anime"></div>
       </div>
-      <div data-aos="zoom-out" className="mx-[100px] sm:mx-[10px] md:flex-col justify-center gap-[40px] items-center flex sm:flex-col flex-row pt-[70px] ">
+      <div
+        data-aos="zoom-out"
+        className="mx-[100px] sm:mx-[10px] md:flex-col justify-center gap-[40px] items-center flex sm:flex-col flex-row pt-[70px] ">
         {Signals.slice()
           .reverse()
-          .map((item, index ) => (
+          .map((item, index) => (
             <SignalPrice item={item} itemIndex={index} />
           ))}
       </div>
       <div>
-        <p className="text-[14px] text-center mt-[40px] sm:px-[20px] font-bold text-blue sm:text-lightblue sm:text-[18px]">
-       Sign Up For Our Expert Signals
+        <p className="text-[14px] text-center mt-[50px] sm:px-[20px] font-bold text-blue sm:text-lightblue sm:text-[18px]">
+          Sign Up For Our Expert Mentorship
         </p>
       </div>
-      {/* <div className=" text-center flex items-center gap-[30px] flex-col mt-[50px]">
-        <div>
-          <h1 className=" text-[34px] sm:text-[20px] text-textcolor text-MT font-bold">
-            Results
-          </h1>
+      <div className="mx-[100px] flex items-center justify-center gap-[40px] mt-[40px] ">
+        <div id="box" className="text-center flex flex-col bg-white shadow-2xl px-[10px] py-[35px] rounded-xl h-[170px] w-[200px] items-center justify-between">
+          <h1 className=" font-bold text-lightblue">Online Mentorship</h1>
+          <h1 className="font-bold">$30</h1>
+          <button className="bg-lightblue w-[100px] text-[14px] rounded-2xl h-[35px] font-bold">
+            Enroll
+          </button>
         </div>
-
-        <div className="w-[80px] h-[3px]  bg-anime"></div>
-      </div> */}
-      {/* <div className="grid grid-cols-4 sm:grid-cols-1 gap-[90px] sm: md:grid-cols-3  md:px-[50px] place-items-center mt-[150px]">
-        {res.map((item, index) => (
-          <div className="">
-            <img
-              src={item.img}
-              alt=""
-              width={370}
-              className="h-[370px] sm:w-[250px] sm:h-[500px]"
-            />
-          </div>
-        ))}
-      </div> */}
-      
-    <ToastContainer/>
+        <div id="box" className="text-center flex flex-col bg-white shadow-2xl px-[10px] py-[35px] rounded-xl h-[170px] w-[200px] items-center justify-between">
+          <h1 className=" font-semibold text-lightblue">Physical Mentorship</h1>
+          <h1 className="font-bold">$50</h1>
+          <button className="bg-lightblue w-[100px] text-[14px] rounded-2xl h-[35px] font-bold">
+            Enroll 
+          </button>
+        </div>
+      </div>
+      <ToastContainer />
     </div>
   );
 };

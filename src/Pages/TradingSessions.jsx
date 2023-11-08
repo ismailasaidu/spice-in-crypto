@@ -67,7 +67,8 @@ const tradingSessions = () => {
         <div className="ratio ratio-21x9 mt-[50px]">
           <iframe
             className="w-[1000px] sm:w-[100%] md:w-[100%] md:h-[300px] sm:h-[200px] h-[500px]"
-            src="https://www.youtube.com/embed/_F8MgJ3FVm8"
+            // src="https://www.youtube.com/embed/_F8MgJ3FVm8"
+            src="https://www.youtube.com/embed/nK8fzdffwYw?si=I0N4cx6eNGA6XYc7" 
             title="YouTube video"
             allowFullScreen></iframe>
         </div>

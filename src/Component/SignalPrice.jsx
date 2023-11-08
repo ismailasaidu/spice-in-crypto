@@ -72,7 +72,7 @@ const SignalPrice = ({ item, itemIndex }) => {
     <div>
       <div className="flex flex-row sm:flex-col items-center md:gap-[30px]    justify-between  md:px-0 ">
         <div className="flex sm:flex-col gap-[30px] items-center sm:gap-[50px] flex-col">
-          <div
+          {/* <div
             id="box"
             className=" hover:text-lightblue w-[100%] bg-white flex text-textcolor justify-center gap-[10px] items-center sm:h-[250px] flex-col shadow-xl rounded-xl p-[30px]">
             <h1 className="sm:text-[20px]  text-grey text-center">
@@ -84,6 +84,9 @@ const SignalPrice = ({ item, itemIndex }) => {
             <h1 className="text-[13px] sm:text-[20px] 0hover:text-textcolor">
               <img src={logo} alt="" className="w-[40px]" />
             </h1>
+          </div> */}
+          <div className="">
+            <img src={item.data.image} alt="" width={250} />
           </div>
 
           <div className="text-center">
@@ -136,6 +139,7 @@ const SignalPrice = ({ item, itemIndex }) => {
           </div>
         </div>
       </div>
+    
     </div>
   );
 };
