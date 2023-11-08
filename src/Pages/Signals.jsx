@@ -98,7 +98,7 @@ const Signals = () => {
       <div className=" text-center flex items-center gap-[30px] flex-col mt-[50px]">
         <div>
           <h1 className=" text-[34px] sm:text-[20px] text-textcolor text-MT font-bold">
-            Our Pricing
+            Our Mentorship
           </h1>
         </div>
 
@@ -112,6 +112,15 @@ const Signals = () => {
           .map((item, index) => (
             <Mentorship item2={item} itemIndex2={index}/>
           ))}
+      </div>
+      <div className=" text-center flex items-center gap-[30px] flex-col mt-[50px]">
+        <div>
+          <h1 className=" text-[34px] sm:text-[20px] text-textcolor text-MT font-bold">
+            Our Signals
+          </h1>
+        </div>
+
+        <div className="w-[80px] h-[3px]  bg-anime"></div>
       </div>
       <div
         data-aos="zoom-out"
