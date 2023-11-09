@@ -50,7 +50,8 @@ const Started = ({ icon, text1, text2 }) => {
           <div
             className="flex justify-center mt-[30px]  "
             data-aos="fade-up">
-                <Link to={`description/${index}`}>
+                {/* <Link to={`description/${index}`}> */}
+                <Link to="/signals">
             <button className="flex justify-between items-center  hover:bg-black hover:text-white  text-black bg-lightblue sm:bg-lightblue   rounded-2xl w-[170px]  sm:h-[40px] h-[40px]  px-[20px] text-[15px] text-bold">
               <div className=" "> {iconMap[icon]}</div>
 
@@ -62,6 +63,7 @@ const Started = ({ icon, text1, text2 }) => {
               </p>
             </button>
             </Link>
+            {/* </Link> */}
           </div>
      
       ))}

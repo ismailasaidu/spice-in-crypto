@@ -208,9 +208,9 @@ const CartDetails = () => {
         </div>
         <div className="mt-[100px]  ">
           <div className="flex  mx-14 sm:mx-[20px] ">
-            <div className="border-divider  sm:flex-[1px] border h-[50px] cursor-pointer text-grey   sm:w-[100px] py-[15px] px-[10px]  ">
+            {/* <div className="border-divider  sm:flex-[1px] border h-[50px] cursor-pointer text-grey   sm:w-[100px] py-[15px] px-[10px]  ">
               <h1>Description</h1>
-            </div>
+            </div> */}
             {/* <div className="border-divider  sm:flex-[1px] border h-[50px] cursor-pointer text-grey  py-[15px] px-[10px]  ">
             <h1>Review(0)</h1>
           </div> */}

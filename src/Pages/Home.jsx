@@ -27,6 +27,7 @@ const Home = () => {
   return (
     <>
       <div className="md:w-[100%]">
+        
         <Hero />
         <div className="text-center sm:text-[28px]  pt-[50px] sm:px-[30px] md:px-[100px]  flex gap-[30px] flex-col">
      <AnimatedHeader text1="WHAT AWAITS YOU IN THIS MASTERCLASS

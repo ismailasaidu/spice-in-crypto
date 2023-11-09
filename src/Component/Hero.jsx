@@ -7,6 +7,7 @@ import AOS from "aos";
 import "aos/dist/aos.css";
 import Started from "./Started";
 import Play from "./Play";
+import { Link } from "react-router-dom";
 
 const Hero = () => {
   useEffect(() => {
@@ -15,9 +16,15 @@ const Hero = () => {
 
   return (
     <div>
-      <div className="bg-[url('./Assets/peakpx.jpg')]  bg-cover bg-center relative  bg-no-repeat h-[1300px] sm:h-[840px] md:h-[800px] py-[80px] sm:px-[30px] sm:pt-[80px] pt-[150px] md:pt-[120px] px-[150px] ">
-        <div className="flex flex-row md:flex-col justify-between  absolute">
+      <div className="bg-[url('./Assets/peakpx.jpg')]  bg-cover bg-center relative  bg-no-repeat h-[1300px] sm:h-[100%] md:h-[800px] py-[80px] sm:px-[30px] sm:pt-[80px] pt-[150px] md:pt-[120px] px-[150px] ">
+        <Link to="/signals">
+      <div className="text-center mt-[-80px] sm:mt-[60px]">
+        <button className="bg-lightblue w-[100px] h-[40px] text-[16px] font-bold text-white rounded-md">Join Us</button>
+      </div>
+      </Link>
+        <div className="flex flex-row md:flex-col justify-between mt-[40px] sm:mt-0 absolute">
           <div data-aos="fade-right">
+            
             <div className="sm:hidden ">
               <h1 className=" content  text-[34px]  ml-[50px] md:block sm:ml-0 sm:text-[54px] md:ml-0 md:text-[34px]  md:text-left   font-black">
               Trade Smarter, Not Harder!

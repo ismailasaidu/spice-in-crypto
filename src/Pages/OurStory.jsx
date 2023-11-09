@@ -6,13 +6,14 @@ import spice1 from "../Assets/spice1.jpeg";
 const OurStory = () => {
   useEffect(() => {
     window.scrollTo({
+      
       top: 0,
       behavior: "smooth",
     });
   }, []);
 
   const navigateToWhatsApp = () => {
-    const phoneNumber = encodeURIComponent("2348081590479");
+    const phoneNumber = encodeURIComponent("2349012916019");
     const whatsappUrl = `https://api.whatsapp.com/send?phone=${phoneNumber}`;
 
     window.open(whatsappUrl, "_blank");
