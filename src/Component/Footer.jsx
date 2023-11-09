@@ -39,7 +39,7 @@ const footList = [
 const Footer = () => {
   const navigate = useNavigate()
   return (
-    <div className="mt-[150px] sm:mt-[100px]  text-textcolor px-[250px] md:px-0  py-[50px]  sm:border-none  border-t  border-headerwhite h-[470px] sm:h-[100%] md:h-[100%]">
+    <div className="mt-[150px] sm:mt-[30px]  text-textcolor px-[250px] md:px-0  py-[50px]  sm:border-none  border-t  border-headerwhite h-[470px] sm:h-[100%] md:h-[100%]">
       <div className="flex flex-rol sm:flex-col md:grid md:justify-center  sm:gap-[30px] md:gap-[40px] justify-between">
         <div className="flex gap-[30px] sm:text-center md:text-center sm:px-[10px] flex-col">
           <h1 className="font-black text-[18px] sm:text-[20px] text-textcolor">

@@ -74,7 +74,7 @@ const PhysicalClasses = () => {
           Instead of $150 you will be getting all these for $120. Claim your
           spot now.
         </p> */}
-        <div className="flex sm:gap-[30px] md:gap-[30px] gap-[10px]   flex-col">
+        <div className="flex sm:gap-[20px] md:gap-[30px] gap-[10px]   flex-col">
           <div
             className="flex flex-row gap-[10px] cursor-pointer"
             onClick={() => {
@@ -84,32 +84,36 @@ const PhysicalClasses = () => {
             <p> https://t.me/SpiceincryptoAcademy</p>
           </div>
           <div
-            className="flex flex-row gap-[10px] cursor-pointer"
+            className="flex flex-row items-center gap-[10px] cursor-pointer"
             onClick={() => {
               window.open(
                 "https://api.whatsapp.com/send/?phone=%2B2349012916019&text&type=phone_number&app_absent=0"
               );
             }}>
             <FaWhatsapp size={20} />
-            <p>https://api.whatsapp.com/send/?phone=%2B2349012916019&text&type=phone_number&app_absent=0</p>
+            <p className="sm:hidden ">https://api.whatsapp.com/send/?phone=%2B2349012916019&text&type=phone_number&app_absent=0</p>
+            <p className="hidden sm:block">09012916019</p>
           </div>
           <div
-            className="flex flex-row gap-[10px] cursor-pointer"
+            className="flex flex-row items-center gap-[10px] cursor-pointer"
             onClick={() => {
               window.open("https://www.instagram.com/spice_in_crypto_academy/");
             }}>
             <FaInstagram size={20} />
-            <p>https://www.instagram.com/spice_in_crypto_academy/</p>
+            <p className="sm:hidden">https://www.instagram.com/spice_in_crypto_academy/</p>
+            <p >
+spice_in_crypto_academy</p>
           </div>
           <div
-            className="flex flex-row gap-[10px] cursor-pointer"
+            className="flex flex-row gap-[10px] items-center cursor-pointer"
             onClick={() => {
               window.open(
                 "https://twitter.com/spiceincryptoa?s=21&t=Vf939D5KtPrbr660NkKnjw"
               );
             }}>
             <FaTwitter size={20} />
-            <p>https://twitter.com/spiceincryptoa?s=21&t=Vf939D5KtPrbr660NkKnjw </p>
+            <p className="sm:hidden">https://twitter.com/spiceincryptoa?s=21&t=Vf939D5KtPrbr660NkKnjw </p>
+            <p className="hidden sm:block">Spice in crypto Academy</p>
           </div>
           <div
             className="flex flex-row gap-[10px] cursor-pointer"
@@ -119,7 +123,8 @@ const PhysicalClasses = () => {
               );
             }}>
             <FaFacebook size={20} />
-            <p>https://www.facebook.com/profile.php?id=100088378617770&mibextid=LQQJ4d  </p>
+            <p className="sm:hidden ">https://www.facebook.com/profile.php?id=100088378617770&mibextid=LQQJ4d  </p>
+            <p className="hidden sm:block">Spice in Crypto Academy</p>
           </div>
           <div
             className="flex flex-row gap-[10px] cursor-pointer"
@@ -129,14 +134,18 @@ const PhysicalClasses = () => {
               );
             }}>
             <FaTiktok size={20} />
-            <p>https://www.tiktok.com/@spiceincryptoacad?_t=8hBdduZGHBd&_r=1</p>
+            <p className="sm:hidden">https://www.tiktok.com/@spiceincryptoacad?_t=8hBdduZGHBd&_r=1</p>
+            <p className="hidden sm:block">@spiceincryptoacad</p>
           </div>
-        </div>
-        <button
-          className="absolute left-0 top-[220px] sm:top-[70px] bg-lightblue w-[100px] h-[35px]  rounded-xl"
+          <div className="sm:mt-[20px]">
+          <button
+          className=" bg-lightblue w-[100px] h-[35px]  rounded-xl"
           onClick={navigateToWhatsApp}>
           Sign up
         </button>
+          </div>
+        </div>
+        
       </div>
     </div>
   );
