@@ -44,7 +44,7 @@ const Header = () => {
       to: "/ourstory",
     },
     { p: "SIGNALS", to: "/signals" },
-    { p: "OFFER", to: "/physicalclasses" },
+    { p: "CONTACT", to: "/physicalclasses" },
     { p: "RESOURCES", to: "/resources" },
   ];
 

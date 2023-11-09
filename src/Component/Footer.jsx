@@ -39,7 +39,7 @@ const footList = [
 const Footer = () => {
   const navigate = useNavigate()
   return (
-    <div className="mt-[150px] sm:mt-[100px]  text-textcolor px-[250px] md:px-0  py-[50px]  border-t  border-headerwhite h-[470px] sm:h-[750px] md:h-[700px]">
+    <div className="mt-[150px] sm:mt-[100px]  text-textcolor px-[250px] md:px-0  py-[50px]  sm:border-none  border-t  border-headerwhite h-[470px] sm:h-[100%] md:h-[100%]">
       <div className="flex flex-rol sm:flex-col md:grid md:justify-center  sm:gap-[30px] md:gap-[40px] justify-between">
         <div className="flex gap-[30px] sm:text-center md:text-center sm:px-[10px] flex-col">
           <h1 className="font-black text-[18px] sm:text-[20px] text-textcolor">
@@ -117,7 +117,7 @@ const Footer = () => {
           </div>
         ))}
       </div>
-      <h1 className="text-center text-[14px] sm:h-[100px] sm:text-[12px] sm:mx-[40px] md:mx-[40px]  border-t pt-[30px] border-footer font-bold mt-[40px]">
+      <h1 className="text-center text-[14px]  sm:text-[12px] sm:mx-[40px] md:mx-[40px]  border-t pt-[30px] border-footer font-bold mt-[40px]">
         © 2023 Spice in Crytpo. All rights reserved.
       </h1>
     </div>

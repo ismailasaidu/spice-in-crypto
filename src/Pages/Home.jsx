@@ -8,6 +8,7 @@ import Started from "../Component/Started";
 import Results from "../Component/Results";
 import FancyText from "@carefully-coded/react-text-gradient";
 import AnimatedHeader from "../Component/AnimatedHeader";
+import Review from "../Component/Review";
 
 const Home = () => {
   useEffect(() => {
@@ -50,8 +51,9 @@ const Home = () => {
         <Started icon="BsPlayFill" text1="Get Started"/>
 
         <Results />
-        <AnimatedHeader text1="FREQUENTLY ASKED QUESTIONS"/>
-        <Faq />
+        <AnimatedHeader text1="REVIEWS"/>
+        {/* <Faq /> */}
+        <Review/>
         <Started icon="BsPlayFill" text1="Get Started" />
       </div>
     </>
