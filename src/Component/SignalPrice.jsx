@@ -95,7 +95,7 @@ const SignalPrice = ({ item, itemIndex }) => {
              >
               {paidCourses.includes(item.id) ? (
                 <>
-                  <button onClick={() => window.open(`${item.link}`)} className="">UNCLOCKED</button>
+                  <button onClick={() => window.open(`${item.data.link}`)} className="">UNCLOCKED</button>
                 </>
               ) : (
                 <>

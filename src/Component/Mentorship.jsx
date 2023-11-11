@@ -92,7 +92,7 @@ const Mentorship = ({ item2, itemIndex2 }) => {
               {paidCourses.includes(item2.id) ? (
                 <>
                   <button
-                    onClick={() => window.open(`${item2.link}`)}
+                    onClick={() => window.open(`${item2.data.link}`)}
                     className="">
                     ENROLLED
                   </button>

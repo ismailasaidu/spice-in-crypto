@@ -29,6 +29,7 @@ const Header = () => {
     localStorage.removeItem("Account");
     dispatch(logOut());
     navigate("/");
+    window.location.reload()
   };
 
   const { logIn, logOut } = authSlice.actions;

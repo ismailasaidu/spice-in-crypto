@@ -2,11 +2,10 @@ import React from "react";
 import logo from "../Assets/logo.png";
 import { useEffect } from "react";
 import spice1 from "../Assets/spice1.jpeg";
-
 const OurStory = () => {
   useEffect(() => {
     window.scrollTo({
-      
+
       top: 0,
       behavior: "smooth",
     });

@@ -61,7 +61,7 @@ const Cart = () => {
                 onClick={() => {
                   navigate("/signals");
                 }}>
-                SIGNALS/
+                ENROLL/
               </span>
               <span className="text-dark cursor-pointer">CART</span>
             </h1>
