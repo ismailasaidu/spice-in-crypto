@@ -12,6 +12,7 @@ import "react-toastify/dist/ReactToastify.css";
 // import 'react-phone-number-input/style.css';
 // import './custom-styles.css'; // Import your custom CSS
 import { Link } from "react-router-dom";
+import Crypto from "../Component/Crypto";
 // import PhoneInput, {
 //   formatPhoneNumber,
 //   formatPhoneNumberIntl,
@@ -27,7 +28,25 @@ const Checkout = () => {
     });
   }, []);
 
-  useEffect(() => {}, []);
+  const [open, setOpen] = useState(false)
+  const updateStateInParent = (newValue) => {
+    setOpen(newValue);
+  };
+
+
+  open
+  ? (document.body.style.overflow = "hidden")
+  : (document.body.style.overflow = "auto");
+
+ const handleOpen =()=>{
+    setOpen(!open);
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  }
+
+
 
   const logs = localStorage.getItem("Account");
   const loginInfo = JSON.parse(logs);
@@ -134,7 +153,7 @@ const Checkout = () => {
       behavior: "smooth",
     });
   }, []);
-  // pk_live_0ee68ae5a3a802ae06f2601a024d3626d4a3ab11
+
   let publicKey = "pk_test_8cf76f0d23fcfdc83d7b740af66c10342933190b";
 
   let totalAmount = localStorage.getItem("carttotal");
@@ -191,7 +210,7 @@ const Checkout = () => {
 
   return (
     <div>
-      <div className="px-14 sm:px-[10px] pt-[200px] md:pt-[100px] sm:pt-[200px]  relative">
+      <div className={`${open?"opacity-[0.5]":"opacity-1"}   px-14 sm:px-[10px] pt-[200px] md:pt-[100px] sm:pt-[200px]   relative`}>
         <div>
           <h1 className="text-grey mt-[50px] sm:mt-[-40px] className='cursor-pointer'">
             <span
@@ -334,7 +353,7 @@ const Checkout = () => {
               </p>
             </div>
           </div>
-          <div className="relative mt-[40px] justify-between border-divider border-[1px] px-[10px] py-[10px] h-[120px]   sm:h-[150px]">
+          <div className="relative mt-[40px] justify-between border-divider border-[1px] px-[10px] py-[10px] h-[100%]   sm:h-[150px]">
             <div className="bg-white pl-[10px] pt-[10px] mr-[300px] md:mr-[10px]  text-[12px] text-darktext h-[45px]  md:h-[60px] sm:h-[80px]">
               <p className="md:px-[40px] md:py-[5px] ">
                  Please contact us if you wish to make further enquiries.
@@ -342,23 +361,34 @@ const Checkout = () => {
             </div>
 
             <button
-              className="bg-blue text-white mt-[20px] px-[10px]"
+              className="bg-blue text-white mt-[20px] w-[100%]   px-[10px]"
               style={{ display: isSubmit ? "none" : "block" }}
               onClick={handleSubmit}>
               Click here
             </button>
+           
 
             {isSubmit ? (
-              <PaystackButton
+              <div className="">
+                 <PaystackButton
                 {...componentProps}
-                className="bg-secondary bg-blue absolute right-[20px] top-[80px]  h-[50px] w-[150px]   text-white sm:w-[100px] sm:h-[40px] sm:text-[12px] sm:right-[10px] sm:top-[100px]"
+                className="bg-secondary bg-blue    h-[40px] w-[100%]   text-white  sm:h-[40px] sm:text-[12px] sm:right-[10px] sm:top-[100px]"
               />
+
+             <button className="bg-lightblue w-[100%] h-[40px] mt-[10px] " onClick={handleOpen}>Pay With Crypto(${(totalAmount/1000)})</button>
+              </div>
+             
             ) : (
               ""
             )}
           </div>
+        
         </form>
+      
       </div>
+      <div className={`${open?"block":"hidden"}  absolute top-[30vh] sm:left-[6%] left-[35%]`}>
+            <Crypto passedState={open} updateParentState={updateStateInParent} />
+          </div>
       <ToastContainer />
     </div>
   );
