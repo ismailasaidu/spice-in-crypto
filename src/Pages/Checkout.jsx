@@ -387,7 +387,7 @@ const Checkout = () => {
         </form>
       
       </div>
-      <div className={`${open?"block":"hidden"}  absolute top-[30vh] sm:left-[6%] left-[35%]`}>
+      <div className={`${open?"block":"hidden"}  absolute sm:top-[25vh] top-[30vh] sm:left-[7%] left-[35%]`}>
             <Crypto passedState={open} updateParentState={updateStateInParent} />
           </div>
       <ToastContainer />
