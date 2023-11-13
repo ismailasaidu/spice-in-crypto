@@ -154,7 +154,8 @@ const Checkout = () => {
     });
   }, []);
 
-  let publicKey = "pk_test_8cf76f0d23fcfdc83d7b740af66c10342933190b";
+  let publicKey = process.env.REACT_APP_API_KEY;
+ 
 
   let totalAmount = localStorage.getItem("carttotal");
   // let Total =;
@@ -361,7 +362,7 @@ const Checkout = () => {
             </div>
 
             <button
-              className="bg-blue text-white mt-[20px] w-[100%]   px-[10px]"
+              className="bg-blue text-white mt-[20px] w-[100%] h-[40px]   px-[10px]"
               style={{ display: isSubmit ? "none" : "block" }}
               onClick={handleSubmit}>
               Click here
