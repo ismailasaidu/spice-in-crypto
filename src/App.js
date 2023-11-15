@@ -6,7 +6,7 @@ import PhysicalClasses from "./Pages/PhysicalClasses";
 import Resources from "./Pages/Resources";
 import Signals from "./Pages/Signals";
 import Footer from "./Component/Footer";
-
+import "@stripe/stripe-js";
 import TradingSessions from "./Pages/TradingSessions";
 import Types from "./Pages/Types";
 import Trend from "./Pages/Trend";
@@ -28,12 +28,11 @@ import { authSlice } from "./redux/AuthSlice";
 import ForgetPassword from "./Pages/ForgetPassword";
 import PageNotFound from "./Pages/PageNotFound";
 
-
 function App() {
   const isLoggedIn = useSelector((state) => state.auth.loggedIn);
-  const id = useSelector(state => state.auth.id)
+  const id = useSelector((state) => state.auth.id);
 
-  console.log(isLoggedIn, id)
+  console.log(isLoggedIn, id);
 
   const { logIn, logOut } = authSlice.actions;
   const navigate = useNavigate();
@@ -51,9 +50,9 @@ function App() {
     const id = JSON.parse(localStorage.getItem("Account"));
     const accountId = JSON.parse(localStorage.getItem("Account"));
 
-    console.log('loggedInuser', loggedInUser)
+    console.log("loggedInuser", loggedInUser);
     if (loggedInUser && loggedInUser.loggedIn) {
-      dispatch(logIn(loggedInUser))
+      dispatch(logIn(loggedInUser));
     }
   }, []);
 
@@ -70,6 +69,7 @@ function App() {
         <Route path="/trading-sessions" element={<TradingSessions />} />
         <Route path="/types" element={<Types />} />
         <Route path="/trend" element={<Trend />} />
+        {/* <Route index element={<Checkout />} /> */}
         <Route path="/growing-small-account" element={<GrowingAccount />} />
         <Route path="/cart" element={<Cart />} />
         <Route path="description/:id" element={<CartDetails />} />
@@ -77,10 +77,8 @@ function App() {
         <Route path="/newproduct" element={<NewProduct />} />
         <Route path="/checkout" element={<Checkout />} />
         <Route path="/newsignals" element={<NewSignals />} />
-        
 
-        
-        <Route path="/forgetpassword" element={<ForgetPassword/>}/>
+        <Route path="/forgetpassword" element={<ForgetPassword />} />
         {/* {!isLoggedIn ? (
           
         ) : (
@@ -89,7 +87,6 @@ function App() {
         <Route path="/log" element={<Log />} />
         <Route path="/signup" element={<Signup />} />
         {/* <Route path="*" element={<PageNotFound/>} /> */}
-
       </Routes>
 
       <Footer />

@@ -59,6 +59,7 @@ const Signup = () => {
 
           addUserToDb(newUserId)
           navigate("/log");
+          
 
         })
         .catch(

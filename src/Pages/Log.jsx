@@ -78,6 +78,7 @@ const Log = () => {
           dispatch(logIn({id: uId, accountId: accountIdSet.accountId}));
           navigate("/");
           localStorage.setItem("Account", JSON.stringify({loggedIn: true, id: uId, accountId: accountIdSet.accountId}));
+          toast.success("Welcome")
 
         }
       }
