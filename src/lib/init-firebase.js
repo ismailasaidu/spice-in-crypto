@@ -8,25 +8,14 @@ import { getStorage } from "firebase/storage";
 // import 'firebase/database';
 
 export const firebaseConfig = {
-
-
-    apiKey: "AIzaSyDLEvyjCACR0BdCY7dkW2pCWyIyl0L4Z1w",
-    authDomain: "spice-in-crypto.firebaseapp.com",
-    projectId: "spice-in-crypto",
-    storageBucket: "spice-in-crypto.appspot.com",
-    messagingSenderId: "704333457690",
-    appId: "1:704333457690:web:30c7352c3db8f7c38624a3",
-    measurementId: "G-3JV0J7H44B"
-
-  
-
+  apiKey: process.env.REACT_APP_API_KEY,
+  authDomain: process.env.REACT_APP_AUTHDOMAIN_KEY,
+  projectId: process.env.REACT_APP_PROJECTID_KEY,
+  storageBucket: process.env.REACT_APP_STORAGE_BUCKET_KEY,
+  messagingSenderId: process.env.REACT_APP_MESSENGER_ID_KEY,
+  appId: process.env.REACT_APP_APP_ID_KEY,
+  measurementId: process.env.REACT_APP_MEASUREMNT_ID_KEY,
 };
-
-
-
-
-
-
 
 const app = initializeApp(firebaseConfig);
 // const analytics = getAnalytics(app);

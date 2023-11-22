@@ -25,7 +25,7 @@ const Cart = () => {
   const dispatch = useDispatch();
 
   const cart = useSelector((state) => state.cart.cart);
-  const isLoggedIn = useSelector(state => state.auth.loggedIn)
+  const isLoggedIn = useSelector((state) => state.auth.loggedIn);
 
   const Cart = useSelector((state) => state.cart);
 
@@ -49,7 +49,7 @@ const Cart = () => {
     dispatch(Subtotal());
   }, [Cart, dispatch]);
 
-  const User = localStorage.getItem("user")
+  const User = localStorage.getItem("user");
   return (
     <div className=" py-[150px]  md:py-[80px]  sm:pt-[200px] ">
       <div className="">
@@ -85,7 +85,8 @@ const Cart = () => {
               {cart.length > 0
                 ? cart.map((item) => {
                     return (
-                      <div className="grid grid-cols-2 sm:grid-cols-2 items-center w-[600px] sm:w-[100%]
+                      <div
+                        className="grid grid-cols-2 sm:grid-cols-2 items-center w-[600px] sm:w-[100%]
                       sm:place-items-center border-b-[1px] gap-[130px]  border-divider  sm:gap-0 pl-[100px] sm:h-[80px] md:h-[80px] h-[60px] mt-[40px] font-display relative sm:pl-[80px] sm:pr-[50px]  sm:text-[14px] md:gap-[70px] md:items-center  md:pl-[35px] md:pb-[20px]">
                         <img
                           src={close}
@@ -98,7 +99,7 @@ const Cart = () => {
                           {item.data.Description}
                         </h1>
                         <h1 className="font-medium text-[18px] text-grey md:mt-[15px]   md:pl-[10px] ">
-                          ₦{item.data.Price}
+                          ${item.data.Price}
                           {/* ${item.data.Price - (item.data.Discount / 100) * item.data.Price} */}
                         </h1>
                         {/* <div className="flex items-center gap-[5px]   md:pl-[10px]">
@@ -139,7 +140,7 @@ const Cart = () => {
                   Subtotal
                 </h1>
                 <p className="font-medium text-[18px]">
-                  ₦{Cart.cartTotalAmount}
+                  ${Cart.cartTotalAmount}
                 </p>
               </div>
 
@@ -155,8 +156,10 @@ const Cart = () => {
                   onClick={() => {
                     !cart.length
                       ? toast.info("You Have No Items In Cart")
-                      // localStorage.setItem('previousPage', window.location.href)
-                      : !isLoggedIn ? navigate('/log'): navigate('/checkout') 
+                      : // localStorage.setItem('previousPage', window.location.href)
+                      !isLoggedIn
+                      ? navigate("/log")
+                      : navigate("/checkout");
                   }}>
                   PROCEED TO CHECKOUT
                 </button>

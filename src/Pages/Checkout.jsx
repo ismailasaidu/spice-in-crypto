@@ -5,9 +5,11 @@ import { PaystackButton } from "react-paystack";
 import { addDoc, collection } from "firebase/firestore";
 import { useState, useEffect } from "react";
 import { doc, updateDoc, arrayUnion } from "firebase/firestore";
-
+import { FlutterWaveButton, closePaymentModal } from "flutterwave-react-v3";
 import { ToastContainer, toast } from "react-toastify";
 import { db } from "../lib/init-firebase";
+import "react-phone-number-input/style.css";
+import PhoneInput from "react-phone-number-input";
 import "react-toastify/dist/ReactToastify.css";
 // import 'react-phone-number-input/style.css';
 // import './custom-styles.css'; // Import your custom CSS
@@ -89,12 +91,10 @@ const Checkout = () => {
     seterrors(validate(formValues));
 
     if (
-      !formValues.address ||
+      // !formValues.address ||
       !formValues.fullname ||
-      !formValues.email ||
-      // !Value ||
-      // !errors.invalid ||
-      !formValues.town
+      !formValues.email
+      // !errors.invalid || !formValues.town
     ) {
       setisSubmit(false);
       window.scrollTo({
@@ -106,6 +106,8 @@ const Checkout = () => {
     }
   };
 
+  const [value, setValue] = useState();
+
   // Submit the form
 
   const validate = (values) => {
@@ -116,12 +118,12 @@ const Checkout = () => {
     if (!values.fullname) {
       errors.fullname = "Fullname required!";
     }
-    if (!values.address) {
-      errors.address = "Adress required!";
-    }
-    if (!values.town) {
-      errors.town = "Town/City required!";
-    }
+    // if (!values.address) {
+    //   errors.address = "Adress required!";
+    // }
+    // if (!values.town) {
+    //   errors.town = "Town/City required!";
+    // }
     // if (!Value) {
     //   errors.Value = "Phone number required!";
     // } else if (Value && isValidPhoneNumber(Value)) {
@@ -151,54 +153,115 @@ const Checkout = () => {
     });
   }, []);
 
-  let publicKey = process.env.REACT_APP_API_KEY;
+  let publicKey = process.env.REACT_APP_FLUTTER_KEY;
 
   let totalAmount = localStorage.getItem("carttotal");
   // let Total =;
   // localStorage.setItem("totalamount",JSON.stringify(Total))
-  const componentProps = {
-    email: formValues.email,
-    amount: `${totalAmount * 100}`,
+  // const componentProps = {
+  //   email: formValues.email,
+  //   amount: `${totalAmount * 100}`,
 
-    metadata: {
-      formValues,
-      // Value,
+  //   metadata: {
+  //     formValues,
+  //     // Value,
+  //   },
+  //   publicKey,
+  //   text: `Pay Now(₦${totalAmount})`,
+  //   onSuccess: () => {
+  //     const PurchaseRef = collection(db, "Purchase");
+  //     const purchaseDetailsRef = collection(db, "PurchaseDetails");
+  //     const userRef = doc(db, "Accounts", userId);
+  //     const coursesIds = cart.map((item) => item.id);
+
+  //     addDoc(purchaseDetailsRef, { Cart });
+  //     addDoc(PurchaseRef, {
+  //       formValues,
+  //       totalAmount,
+  //       cart,
+  //       Cart,
+  //       loginInfo,
+  //     })
+  //       .then((response) => {
+  //         navigate("/");
+  //         localStorage.removeItem("CartItems");
+  //         localStorage.removeItem("CartValue");
+
+  //         window.location.reload();
+  //       })
+  //       .catch((error) => {
+  //         console.log(error.message);
+  //       });
+
+  //     // Set the "capital" field of the city 'DC'
+  //     updateDoc(userRef, {
+  //       userPaidCourse: arrayUnion(...coursesIds),
+  //     });
+
+  //     console.log("checkout", userId, "updated");
+  //   },
+
+  //   onClose: () => toast.error("payment cancelled"),
+  // };
+
+  const config = {
+    public_key: publicKey,
+    tx_ref: Date.now(),
+    amount: totalAmount,
+    currency: "USD",
+    payment_options: "card,mobilemoney,ussd",
+    customer: {
+      email: formValues.email,
+      phone_number: value,
+      name: formValues.name,
     },
-    publicKey,
-    text: `Pay Now(₦${totalAmount})`,
-    onSuccess: () => {
-      const PurchaseRef = collection(db, "Purchase");
-      const purchaseDetailsRef = collection(db, "PurchaseDetails");
-      const userRef = doc(db, "Accounts", userId);
-      const coursesIds = cart.map((item) => item.id);
+    customizations: {
+      title: "Spice In Crypto Academy",
+      description: "Payment for items in cart",
+      // logo: "https://st2.depositphotos.com/4403291/7418/v/450/depositphotos_74189661-stock-i",
+    },
+  };
 
-      addDoc(purchaseDetailsRef, { Cart });
-      addDoc(PurchaseRef, {
-        formValues,
-        totalAmount,
-        cart,
-        Cart,
-        loginInfo,
-      })
-        .then((response) => {
-          navigate("/");
-          localStorage.removeItem("CartItems");
-          localStorage.removeItem("CartValue");
+  const fwConfig = {
+    ...config,
+    text: "Pay with Flutterwave!",
+    callback: (response) => {
+      if (response.status !== "completed") {
+        toast.error("Failed Transaction");
+      } else {
+        const PurchaseRef = collection(db, "Purchase");
+        const purchaseDetailsRef = collection(db, "PurchaseDetails");
+        const userRef = doc(db, "Accounts", userId);
+        const coursesIds = cart.map((item) => item.id);
 
-          window.location.reload();
+        addDoc(purchaseDetailsRef, { Cart });
+        addDoc(PurchaseRef, {
+          formValues,
+          totalAmount,
+          cart,
+          Cart,
+          loginInfo,
         })
-        .catch((error) => {
-          console.log(error.message);
+          .then((response) => {
+            navigate("/");
+            localStorage.removeItem("CartItems");
+            localStorage.removeItem("CartValue");
+
+            window.location.reload();
+          })
+          .catch((error) => {
+            console.log(error.message);
+          });
+
+        // Set the "capital" field of the city 'DC'
+        updateDoc(userRef, {
+          userPaidCourse: arrayUnion(...coursesIds),
         });
 
-      // Set the "capital" field of the city 'DC'
-      updateDoc(userRef, {
-        userPaidCourse: arrayUnion(...coursesIds),
-      });
-
-      console.log("checkout", userId, "updated");
+        console.log("checkout", userId, "updated");
+      }
+      closePaymentModal(); // this will close the modal programmatically
     },
-
     onClose: () => toast.error("payment cancelled"),
   };
 
@@ -228,7 +291,7 @@ const Checkout = () => {
         </div>
 
         <form onSubmit={handleSubmit}>
-          <div className="flex flex-col  gap-[20px] mt-[50px]   ">
+          <div className="flex flex-col  gap-[8px] mt-[50px]   ">
             <div className="flex flex-col ">
               <label htmlFor="FullName" className="text-darktext  text-[12px]">
                 Full Name<sup className="text-star">*</sup>
@@ -250,34 +313,16 @@ const Checkout = () => {
               <label
                 htmlFor="StreetAddress"
                 className="text-darktext text-[12px]">
-                Street Address<sup className="text-star">*</sup>
+                {/* Phone Number<sup className="text-star">*</sup> */}
               </label>
-              <input
-                id="StreetAddress"
-                type="text"
-                name="address"
-                required
-                className="w-[600px] border-divider  md:w-[100%] border-[2px] h-[30px] outline-none px-[20px]  sm:w-[100%]"
-                value={formValues.address}
-                onChange={handleChange}
-              />
-
-              <p className="text-red text-[12px]">{errors.address}</p>
-            </div>
-
-            <div className="flex flex-col">
-              <label htmlFor="T/C" className="text-darktext  text-[12px]">
-                Town / City<sup className="text-star">*</sup>
-              </label>
-              <input
-                id="T/C"
-                type="text"
-                name="town"
-                className="w-[600px] border-divider border-[2px] h-[30px] outline-none px-[20px] md:w-[100%] sm:w-[100%]"
-                value={formValues.town}
-                onChange={handleChange}
-              />
-              <p className="text-red text-[12px]">{errors.town}</p>
+              <PhoneInput
+                defaultCountry="NG"
+                className="w-[600px] input-phone-number border-divider  md:w-[100%] border-[2px] h-[30px] outline-none px-[20px]  sm:w-[100%]"
+                placeholder="Enter phone number"
+                value={value}
+                onChange={setValue}
+              />{" "}
+              {/* <p className="text-red text-[12px]">{errors.phone}</p> */}
             </div>
 
             {/* <div className="flex flex-col">
@@ -335,7 +380,7 @@ const Checkout = () => {
                         {item.data.Description}
                       </p>
                       <p className="font-medium text-[14px]  text-darktext font-Arimo">
-                        ₦{Math.round(item.data.Price * item.data.quantity)}
+                        ${Math.round(item.data.Price * item.data.quantity)}
                       </p>
                     </div>
                   );
@@ -346,7 +391,7 @@ const Checkout = () => {
                 Subtotal
               </p>
               <p className="font-bold text-[16px]  text-dark font-Arimo">
-                ₦{totalAmount}
+                ${totalAmount}
               </p>
             </div>
           </div>
@@ -366,9 +411,9 @@ const Checkout = () => {
 
             {isSubmit ? (
               <div className="">
-                <PaystackButton
-                  {...componentProps}
-                  className="bg-secondary bg-blue    h-[40px] w-[100%]   text-white  sm:h-[40px] sm:text-[12px] sm:right-[10px] sm:top-[100px]"
+                <FlutterWaveButton
+                  {...fwConfig}
+                  className="bg-blue text-headerwhite w-[100%] h-[40px] mt-[10px] "
                 />
 
                 <button
