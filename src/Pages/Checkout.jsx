@@ -309,11 +309,11 @@ const Checkout = () => {
               <p className="text-red text-[12px]">{errors.fullname}</p>
             </div>
 
-            <div className="flex flex-col">
+            {/* <div className="flex flex-col">
               <label
                 htmlFor="StreetAddress"
                 className="text-darktext text-[12px]">
-                {/* Phone Number<sup className="text-star">*</sup> */}
+                Phone Number<sup className="text-star">*</sup>
               </label>
               <PhoneInput
                 defaultCountry="NG"
@@ -322,8 +322,8 @@ const Checkout = () => {
                 value={value}
                 onChange={setValue}
               />{" "}
-              {/* <p className="text-red text-[12px]">{errors.phone}</p> */}
-            </div>
+              <p className="text-red text-[12px]">{errors.phone}</p>
+            </div> */}
 
             {/* <div className="flex flex-col">
               <label htmlFor="Phone" className="text-darktext  text-[12px]">
