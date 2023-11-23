@@ -227,8 +227,6 @@ const Checkout = () => {
     text: "Pay with Flutterwave!",
     callback: (response) => {
       if (response.status !== "completed") {
-        toast.error("Failed Transaction");
-      } else {
         const PurchaseRef = collection(db, "Purchase");
         const purchaseDetailsRef = collection(db, "PurchaseDetails");
         const userRef = doc(db, "Accounts", userId);
@@ -259,6 +257,8 @@ const Checkout = () => {
         });
 
         console.log("checkout", userId, "updated");
+      } else {
+        toast.error("Failed Transaction");
       }
       closePaymentModal(); // this will close the modal programmatically
     },
