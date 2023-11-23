@@ -209,7 +209,7 @@ const Checkout = () => {
     tx_ref: Date.now(),
     amount: totalAmount,
     currency: "USD",
-    payment_options: "card , mobilemoney , ussd",
+    payment_options: "card, mobilemoneyghana, ussd",
     customer: {
       email: formValues.email,
       phone_number: value,
