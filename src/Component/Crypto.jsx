@@ -1,8 +1,11 @@
 import React from "react";
 import logo from "../Assets/logo.png";
 import { useState } from "react";
-import { ToastContainer,toast } from "react-toastify";
-import {GrFormClose} from "react-icons/gr"
+import { ToastContainer, toast } from "react-toastify";
+import { GrFormClose } from "react-icons/gr";
+import AOS from "aos";
+import "aos/dist/aos.css";
+import { useEffect } from "react";
 
 const cryptos = [
   {
@@ -23,16 +26,18 @@ const cryptos = [
 ];
 
 const Crypto = (props) => {
+  useEffect(() => {
+    AOS.init({ duration: 2000 });
+  }, []);
 
-// const [first, setfirst] = useState(second)
+  // const [first, setfirst] = useState(second)
 
-const handleButtonClick = () => {
-  // Update the state in the parent by invoking the callback function
-  props.updateParentState(false);
-};
+  const handleButtonClick = () => {
+    // Update the state in the parent by invoking the callback function
+    props.updateParentState(false);
+  };
 
-
-let totalAmount = localStorage.getItem("carttotal");
+  let totalAmount = localStorage.getItem("carttotal");
   const handleCopyAddress = (address) => {
     // Create a temporary input element
     const tempInput = document.createElement("input");
@@ -56,14 +61,24 @@ let totalAmount = localStorage.getItem("carttotal");
 
   return (
     <div>
-      <div className="flex flex-col gap-[5%] justify-center w-[30vw] sm:w-[90%] h-[60vh] bg-divider p-[5%] ">
+      <div
+        data-aos="zoom-out"
+        className="flex flex-col gap-[5%] justify-center w-[30vw] sm:w-[90%] h-[60vh] bg-divider p-[5%] ">
         <div className="flex justify-between items-center ">
-        <h1 className="text-[1rem]">Pay with Cryptocurrency</h1>
-        <h1 className="text-[22px] cursor-pointer" onClick={handleButtonClick}><GrFormClose/></h1>
+          <h1 className="text-[1rem]">Pay with Cryptocurrency</h1>
+          <h1
+            className="text-[22px] cursor-pointer"
+            onClick={handleButtonClick}>
+            <GrFormClose />
+          </h1>
         </div>
-       <div className=" text-grey">
-        <p className="text-[14px]">Pay <span className="font-bold text-lightblue">${totalAmount/1000}</span> worth of crypto to any of the address below. click Confirm Payment below to validate your transaction.</p>
-       </div>
+        <div className=" text-grey">
+          <p className="text-[14px]">
+            Pay <span className="font-bold text-lightblue">${totalAmount}</span>{" "}
+            worth of crypto to any of the address below. click Confirm Payment
+            below to validate your transaction.
+          </p>
+        </div>
         {cryptos.map((item, index) => (
           <div className=" text-black px-[3%] cursor-pointer flex items-center justify-between text-[12px] bg-white rounded w-[100%] h-[40%] ">
             <div className="flex items-center gap-[10px]">
@@ -74,11 +89,17 @@ let totalAmount = localStorage.getItem("carttotal");
             <div className="w-[40%] overflow-hidden">
               <p>{item.address}</p>
             </div>
-            <h1 onClick={()=>handleCopyAddress(item.address)}>Copy</h1>
+            <h1 onClick={() => handleCopyAddress(item.address)}>Copy</h1>
           </div>
         ))}
         <div className="flex w-[100%] h-[40%] justify-center  items-center bg-blue">
-          <button className="text-white font-bold" onClick={()=>{window.open("https://wa.link/0c3bzp")}}>Confirm Payment</button>
+          <button
+            className="text-white font-bold"
+            onClick={() => {
+              window.open("https://wa.link/0c3bzp");
+            }}>
+            Confirm Payment
+          </button>
         </div>
 
         {/* <div className=' text-black bg-white w-[100%] rounded h-[20%] '>

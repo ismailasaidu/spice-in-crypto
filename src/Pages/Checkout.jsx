@@ -11,6 +11,8 @@ import { db } from "../lib/init-firebase";
 import "react-phone-number-input/style.css";
 import PhoneInput from "react-phone-number-input";
 import "react-toastify/dist/ReactToastify.css";
+import AOS from "aos";
+import "aos/dist/aos.css";
 // import 'react-phone-number-input/style.css';
 // import './custom-styles.css'; // Import your custom CSS
 import { Link } from "react-router-dom";
@@ -23,6 +25,10 @@ import Crypto from "../Component/Crypto";
 // } from "react-phone-number-input";
 
 const Checkout = () => {
+  useEffect(() => {
+    AOS.init({ duration: 2000 });
+  }, []);
+
   useEffect(() => {
     window.scrollTo({
       top: 0,
@@ -419,7 +425,7 @@ const Checkout = () => {
                 <button
                   className="bg-lightblue w-[100%] h-[40px] mt-[10px] "
                   onClick={handleOpen}>
-                  Pay With Crypto(${totalAmount / 1000})
+                  Pay With Crypto(${totalAmount})
                 </button>
               </div>
             ) : (
@@ -432,7 +438,11 @@ const Checkout = () => {
         className={`${
           open ? "block" : "hidden"
         }  absolute sm:top-[25vh] top-[30vh] sm:left-[7%] left-[35%]`}>
-        <Crypto passedState={open} updateParentState={updateStateInParent} />
+        <Crypto
+          data-aos="zoom-out"
+          passedState={open}
+          updateParentState={updateStateInParent}
+        />
       </div>
       <ToastContainer />
     </div>

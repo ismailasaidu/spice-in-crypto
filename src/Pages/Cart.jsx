@@ -147,7 +147,7 @@ const Cart = () => {
               <div className="flex justify-between font-display w-[440px] mt-[20px]  h-[40px]  border-b-[2px] border-grey sm:w-[340px]">
                 <h1 className="text-grey text-[18px] font-semibold ">Total</h1>
                 <p className="font-medium  text-[18px]">
-                  ₦{Cart.cartTotalAmount}
+                  ${Cart.cartTotalAmount}
                 </p>
               </div>
               <div>
