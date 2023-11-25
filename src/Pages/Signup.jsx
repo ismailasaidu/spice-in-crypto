@@ -9,15 +9,13 @@ import { Link } from "react-router-dom";
 import { auth } from "../lib/init-firebase";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 
-
 const addUserToDb = (newUserId) => {
-  const userRef = collection(db, "Accounts" );
+  const userRef = collection(db, "Accounts");
   addDoc(userRef, {
     id: newUserId,
-    userPaidCourse: []
-  })
-}
-
+    userPaidCourse: [],
+  });
+};
 
 const Signup = () => {
   const [email, setEmail] = useState("");
@@ -57,16 +55,12 @@ const Signup = () => {
           const newUserId = data.user.uid;
           console.log(newUserId, "new id");
 
-          addUserToDb(newUserId)
+          addUserToDb(newUserId);
           navigate("/log");
-          
-
         })
-        .catch(
-          (err) => {
-            toast.error(err.message);
-          }
-        );
+        .catch((err) => {
+          toast.error(err.message);
+        });
     }
   };
 
