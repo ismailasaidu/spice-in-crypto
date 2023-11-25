@@ -55,7 +55,7 @@ const Checkout = () => {
 
   const logs = localStorage.getItem("Account");
   const loginInfo = JSON.parse(logs);
-  console.log(loginInfo);
+  // console.log(loginInfo);
 
   const navigate = useNavigate();
   const cart = useSelector((state) => state.cart.cart);
@@ -66,12 +66,12 @@ const Checkout = () => {
   const [errors, seterrors] = useState({});
   const [isSubmit, setisSubmit] = useState(false);
   // const [Value, setValue] = useState("");
-  console.log("Cart:", cart);
+  // console.log("Cart:", cart);
   // const coursesIds = cart.map(item => item.id)
   // console.log('CourseIds: ', coursesIds)
 
   useEffect(() => {
-    console.log(errors);
+    // console.log(errors);
     if (Object.keys(errors).length === 0 && isSubmit) {
     }
   }, [errors]);
@@ -83,11 +83,11 @@ const Checkout = () => {
     //  value:Value,
     town: "",
   };
-  console.log(initialValues);
+  // console.log(initialValues);
   const [formValues, setFormValues] = useState(initialValues);
 
   const handleChange = (e) => {
-    console.log(e.target);
+    // console.log(e.target);
     const { name, value } = e.target;
     setFormValues({ ...formValues, [name]: value });
   };
@@ -254,7 +254,7 @@ const Checkout = () => {
             window.location.reload();
           })
           .catch((error) => {
-            console.log(error.message);
+            // console.log(error.message);
           });
 
         // Set the "capital" field of the city 'DC'
@@ -262,7 +262,7 @@ const Checkout = () => {
           userPaidCourse: arrayUnion(...coursesIds),
         });
 
-        console.log("checkout", userId, "updated");
+        // console.log("checkout", userId, "updated");
       } else {
         toast.error("Failed Transaction");
       }
