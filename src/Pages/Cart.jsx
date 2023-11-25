@@ -43,7 +43,7 @@ const Cart = () => {
     dispatch(decreaseQuantity(item));
   };
 
-  console.log(Cart.cartTotalAmount);
+  // console.log(Cart.cartTotalAmount);
 
   useEffect(() => {
     dispatch(Subtotal());

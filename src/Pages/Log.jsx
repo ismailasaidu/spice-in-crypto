@@ -9,16 +9,19 @@ import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { authSlice } from "../redux/AuthSlice";
 
-import {createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
-import {auth} from "../lib/init-firebase"
+import {
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+} from "firebase/auth";
+import { auth } from "../lib/init-firebase";
 
 const Log = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [accounts, setAccounts] = useState("");
 
-// smoke33@gmail.Component
-// @Bigsmok1
+  // smoke33@gmail.Component
+  // @Bigsmok1
 
   useEffect(() => {
     window.scrollTo({
@@ -44,56 +47,66 @@ const Log = () => {
   // }, []);
 
   const { logIn, logOut } = authSlice.actions;
-  
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
-      // signInWithEmailAndPassword(auth, email, password)
-      //   .then((userCredential) => {
-      //     console.log(userCredential.user.uid, "authData");
-      //     dispatch(logIn({id: userCredential.user.uid, accountId}));
-      //     navigate("/");
-      //     localStorage.setItem("Account", JSON.stringify({loggedIn: true, id: userCredential.user.uid}));
-      //   })
-      //   .catch(
-      //     (err) => {
-      //       // toast.error(err.message);
-      //       console.log(err)
-      //   }
-      // );
-      
-      try{
-        const userCredential = await signInWithEmailAndPassword(auth, email, password);
-        const uId = userCredential.user.uid;
 
-        if (uId) {
-          const Account = collection(db, "Accounts");
-          const res = await getDocs(Account);
-          const accountIds = res.docs.map((doc) => ({uId: doc.data().id, accountId: doc.id}));
-          // console.log("The response that matters", accountIds);
-          const accountIdSet = accountIds.find((idSet) => idSet.uId === uId);
-          // console.log("The response that i need", accountId, uId, accountIds);
+    // signInWithEmailAndPassword(auth, email, password)
+    //   .then((userCredential) => {
+    //     console.log(userCredential.user.uid, "authData");
+    //     dispatch(logIn({id: userCredential.user.uid, accountId}));
+    //     navigate("/");
+    //     localStorage.setItem("Account", JSON.stringify({loggedIn: true, id: userCredential.user.uid}));
+    //   })
+    //   .catch(
+    //     (err) => {
+    //       // toast.error(err.message);
+    //       console.log(err)
+    //   }
+    // );
 
-          dispatch(logIn({id: uId, accountId: accountIdSet.accountId}));
-          navigate("/");
-          localStorage.setItem("Account", JSON.stringify({loggedIn: true, id: uId, accountId: accountIdSet.accountId}));
-          toast.success("Welcome")
+    try {
+      const userCredential = await signInWithEmailAndPassword(
+        auth,
+        email,
+        password
+      );
+      const uId = userCredential.user.uid;
 
-        }
+      if (uId) {
+        const Account = collection(db, "Accounts");
+        const res = await getDocs(Account);
+        const accountIds = res.docs.map((doc) => ({
+          uId: doc.data().id,
+          accountId: doc.id,
+        }));
+        // console.log("The response that matters", accountIds);
+        const accountIdSet = accountIds.find((idSet) => idSet.uId === uId);
+        // console.log("The response that i need", accountId, uId, accountIds);
+
+        dispatch(logIn({ id: uId, accountId: accountIdSet.accountId }));
+        navigate("/");
+        localStorage.setItem(
+          "Account",
+          JSON.stringify({
+            loggedIn: true,
+            id: uId,
+            accountId: accountIdSet.accountId,
+          })
+        );
+        toast.success("Welcome");
       }
-      catch(err){
-          toast.error(err.message);
-          console.log(err)
-      }
-          // const Account = collection(db, "Accounts");
-          // const res = await getDocs(Account);
-          // const account = await res.docs.map((doc) => ({
-            //   data: doc.data(),
-            //   id: doc.id,
-            // }));
+    } catch (err) {
+      toast.error(err.message);
+      // console.log(err)
+    }
+    // const Account = collection(db, "Accounts");
+    // const res = await getDocs(Account);
+    // const account = await res.docs.map((doc) => ({
+    //   data: doc.data(),
+    //   id: doc.id,
+    // }));
 
-            
     // console.log('User', user);
     // if (user) {
     //   alert("logged in");
@@ -161,11 +174,9 @@ const Log = () => {
                 setPassword(e.target.value);
               }}
             />
-      <Link to="/forgetpassword">
-      <p className="text-[12px] text-lightblue">Forgot Password?</p>
-      </Link>
-
-    
+            <Link to="/forgetpassword">
+              <p className="text-[12px] text-lightblue">Forgot Password?</p>
+            </Link>
 
             <button
               className="bg-blue w-[100%] h-[20%] text-[14px]  text-white"
@@ -181,7 +192,7 @@ const Log = () => {
           </div>
         </div>
       </form>
-      <ToastContainer/>
+      <ToastContainer />
     </div>
   );
 };

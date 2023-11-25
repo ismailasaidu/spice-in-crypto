@@ -51,9 +51,9 @@ const Signup = () => {
     } else if (isValidEmail(email) && password === confirmpassword) {
       createUserWithEmailAndPassword(auth, email, password, confirmpassword)
         .then((data) => {
-          console.log(data, "authData");
+          // console.log(data, "authData");
           const newUserId = data.user.uid;
-          console.log(newUserId, "new id");
+          // console.log(newUserId, "new id");
 
           addUserToDb(newUserId);
           navigate("/log");

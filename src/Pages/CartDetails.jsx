@@ -18,19 +18,17 @@ import { ToastContainer, toast } from "react-toastify";
 import { AiFillFacebook, AiFillTwitterSquare } from "react-icons/ai";
 import { MdEmail } from "react-icons/md";
 import { GrInstagram } from "react-icons/gr";
-import phone from "../Assets/phone.png"
+import phone from "../Assets/phone.png";
 
 const CartDetails = () => {
-  
-    const auth = useSelector((state) => state.auth);
-    console.log("auth", auth);
-    const userId = useSelector((state) => state.auth.id);
-    const accountId = useSelector((state) => state.auth.accountId);
-    console.log('acctId:' , accountId);
-    const [paidCourses, setPaidCourses] = useState([]);
-    const [Ebooks, setEbooks] = useState([]);
-    const navigate = useNavigate();
-
+  const auth = useSelector((state) => state.auth);
+  // console.log("auth", auth);
+  const userId = useSelector((state) => state.auth.id);
+  const accountId = useSelector((state) => state.auth.accountId);
+  // console.log('acctId:' , accountId);
+  const [paidCourses, setPaidCourses] = useState([]);
+  const [Ebooks, setEbooks] = useState([]);
+  const navigate = useNavigate();
 
   const retrievePaidCourses = async () => {
     // console.log("Account Id", accountId, "userId:", userId);
@@ -71,27 +69,29 @@ const CartDetails = () => {
   ];
 
   const getEbooks = async () => {
-    try{
+    try {
       const Ebook = collection(db, "Ebooks");
       const response = await getDocs(Ebook);
-      const ebook = response.docs.map(doc => ({data: doc.data(), id: doc.id}));
+      const ebook = response.docs.map((doc) => ({
+        data: doc.data(),
+        id: doc.id,
+      }));
       setEbooks(ebook);
       // console.log("Boss I ran")
-
-    }catch(err){
+    } catch (err) {
       toast.error(err.message);
     }
-  }
-      // .then((response) => {
-      //   const ebook = response.docs.map((doc) => ({
-      //     data: doc.data(),
-      //     id: doc.id,
-      //   }));
-      //   setEbooks(ebook);
-      //   console.log("Boss I ran")
-      // })
+  };
+  // .then((response) => {
+  //   const ebook = response.docs.map((doc) => ({
+  //     data: doc.data(),
+  //     id: doc.id,
+  //   }));
+  //   setEbooks(ebook);
+  //   console.log("Boss I ran")
+  // })
 
-      // .catch((error) => toast.error(error.message));
+  // .catch((error) => toast.error(error.message));
 
   const { id } = useParams();
 

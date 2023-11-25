@@ -58,7 +58,7 @@ const Signals = () => {
     getMentorships();
   }, []);
 
-  console.log("here", Signals);
+  // console.log("here", Signals);
 
   function getSignals() {
     const Signal = collection(db, "Signals");
@@ -69,9 +69,7 @@ const Signals = () => {
           id: doc.id,
         }));
         setSignals(signal);
-     
       })
-
 
       .catch((error) => toast.error(error.message));
   }
@@ -85,7 +83,7 @@ const Signals = () => {
           id: doc.id,
         }));
         setMentorships(Mentorship);
-        console.log(Mentorship)
+        // console.log(Mentorship)
       })
 
       .catch((error) => toast.error(error.message));
@@ -110,7 +108,7 @@ const Signals = () => {
         {Mentorships.slice()
           .reverse()
           .map((item, index) => (
-            <Mentorship item2={item} itemIndex2={index}/>
+            <Mentorship item2={item} itemIndex2={index} />
           ))}
       </div>
       <div className=" text-center flex items-center gap-[30px] flex-col mt-[50px]">
@@ -136,7 +134,7 @@ const Signals = () => {
           Sign Up For Our Expert Signals
         </p>
       </div>
-      
+
       <ToastContainer />
     </div>
   );
