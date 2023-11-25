@@ -32,7 +32,7 @@ function App() {
   const isLoggedIn = useSelector((state) => state.auth.loggedIn);
   const id = useSelector((state) => state.auth.id);
 
-  console.log(isLoggedIn, id);
+  // console.log(isLoggedIn, id);
 
   const { logIn, logOut } = authSlice.actions;
   const navigate = useNavigate();
@@ -50,7 +50,7 @@ function App() {
     const id = JSON.parse(localStorage.getItem("Account"));
     const accountId = JSON.parse(localStorage.getItem("Account"));
 
-    console.log("loggedInuser", loggedInUser);
+    // console.log("loggedInuser", loggedInUser);
     if (loggedInUser && loggedInUser.loggedIn) {
       dispatch(logIn(loggedInUser));
     }
