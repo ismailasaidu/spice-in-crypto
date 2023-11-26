@@ -247,7 +247,7 @@ const Checkout = () => {
           loginInfo,
         })
           .then((response) => {
-            navigate("/");
+            navigate("/signals");
             localStorage.removeItem("CartItems");
             localStorage.removeItem("CartValue");
 
