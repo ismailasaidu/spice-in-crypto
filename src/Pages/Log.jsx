@@ -71,9 +71,16 @@ const Log = () => {
         email,
         password
       );
-      const uId = userCredential.user.uid;
+      const user = userCredential.user;
+      // const uId = userCredential.user.uid;
 
-      if (uId) {
+      if (user) {
+        if (!user.emailVerified) {
+          // Check if the user's email is not verified
+          toast.error("Please verify your email before logging in.");
+          return;
+        }
+        const uId = user.uid;
         const Account = collection(db, "Accounts");
         const res = await getDocs(Account);
         const accountIds = res.docs.map((doc) => ({

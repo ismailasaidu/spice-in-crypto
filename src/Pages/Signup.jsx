@@ -7,7 +7,10 @@ import { Navigate, useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import { Link } from "react-router-dom";
 import { auth } from "../lib/init-firebase";
-import { createUserWithEmailAndPassword } from "firebase/auth";
+import {
+  createUserWithEmailAndPassword,
+  sendEmailVerification,
+} from "firebase/auth";
 
 const addUserToDb = (newUserId) => {
   const userRef = collection(db, "Accounts");
@@ -52,6 +55,11 @@ const Signup = () => {
       createUserWithEmailAndPassword(auth, email, password, confirmpassword)
         .then((data) => {
           // console.log(data, "authData");
+
+          sendEmailVerification(auth.currentUser).then(
+            () => toast.success("User Created Succesfully"),
+            toast.success("Email Verification Link Sent!")
+          );
           const newUserId = data.user.uid;
           // console.log(newUserId, "new id");
 
