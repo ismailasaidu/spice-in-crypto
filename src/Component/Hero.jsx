@@ -94,7 +94,8 @@ const Hero = () => {
             <iframe
               className="w-[1000px] sm:w-[100%] md:w-[100%] sm:h-[200px]  md:h-[250px]   h-[500px]"
               // src="https://www.youtube.com/embed/_F8MgJ3FVm8"
-              src="https://www.youtube.com/embed/nK8fzdffwYw?si=I0N4cx6eNGA6XYc7"
+
+              src="https://www.youtube.com/embed/2mSBdmjlBc0?si=EWbCAoAIqmN9XP5Z"
               title="YouTube video"
               allowFullScreen></iframe>
           </div>

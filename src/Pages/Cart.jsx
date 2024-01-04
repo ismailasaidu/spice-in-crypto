@@ -35,6 +35,18 @@ const Cart = () => {
   const handleRemove = (i) => {
     dispatch(remove(i));
   };
+  const handleKeyDown = (e) => {
+    if (e.key === "Enter") {
+      // Trigger the logic you want when Enter is pressed
+      if (!cart.length) {
+        toast.info("You Have No Items In Cart");
+      } else if (!isLoggedIn) {
+        navigate("/log");
+      } else {
+        navigate("/checkout");
+      }
+    }
+  };
 
   const increment = (item) => {
     dispatch(increaseQuantity(item));
@@ -160,7 +172,8 @@ const Cart = () => {
                       !isLoggedIn
                       ? navigate("/log")
                       : navigate("/checkout");
-                  }}>
+                  }}
+                  onKeyDown={handleKeyDown}>
                   PROCEED TO CHECKOUT
                 </button>
               </div>
