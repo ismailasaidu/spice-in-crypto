@@ -12,7 +12,8 @@ const Header = () => {
   const [scrolling, setScrolling] = useState(false);
   const [show, setShow] = useState(true);
 
-  const cart = useSelector((state) => state.cart?.value || []);
+  // Single cart declaration
+  const cart = useSelector((state) => state.cart.value || []);
   const isLoggedIn = useSelector((state) => state.auth?.loggedIn || false);
 
   const dispatch = useDispatch();
@@ -45,12 +46,14 @@ const Header = () => {
         className={`header ${
           scrolling ? "scrolling" : ""
         } font-MT flex justify-between md:items-center md:px-[20px] md:overflow-hidden sm:border-b sm:py-[20px] w-[100%] py-[10px] items-center sm:px-[30px]`}>
+        {/* Logo */}
         <div>
           <Link to="/">
             <img src={logo} width={90} className="sm:w-[70px]" />
           </Link>
         </div>
 
+        {/* Desktop Nav */}
         <div className="flex justify-between items-center w-[100%] md:text-[10px] text-blue font-bold text-[15px] sm:hidden">
           <div className="flex gap-[5%] w-[100%] ml-[30%] md:ml-[12%]">
             {headerList.map((item, index) => (
@@ -64,6 +67,7 @@ const Header = () => {
             ))}
           </div>
 
+          {/* Login / Cart */}
           <div className="flex gap-[15%]">
             <div>
               <button className="bg-lightblue text-white w-[80px] h-[30px]">
@@ -92,6 +96,7 @@ const Header = () => {
           </div>
         </div>
 
+        {/* Mobile Cart & Menu */}
         <div className="flex gap-[20px] items-center">
           <Link to="/cart">
             <div className="relative hidden mt-[-5px] sm:block">
@@ -103,6 +108,7 @@ const Header = () => {
               </div>
             </div>
           </Link>
+
           <AiOutlineMenu
             className="hidden sm:block w-[25px] h-[25px]"
             onClick={() => setShow(!show)}
@@ -110,6 +116,7 @@ const Header = () => {
         </div>
       </div>
 
+      {/* Mobile Menu */}
       <div className="flex flex-col px-[20px] py-[5%] space-y-[14px] z-[100] w-[100%] hidden sm:block text-black font-bold sm:text-left">
         {headerList.map((item, index) => (
           <div className="px-[10px]" key={index}>
@@ -118,6 +125,7 @@ const Header = () => {
             </Link>
           </div>
         ))}
+
         <div
           className="flex items-center justify-center"
           onClick={() => setShow(!show)}>
