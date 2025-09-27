@@ -12,8 +12,8 @@ const Header = () => {
   const [scrolling, setScrolling] = useState(false);
   const [show, setShow] = useState(true);
 
-  // Single cart declaration
-  const cart = useSelector((state) => state.cart.value || []);
+  // Safe cart variable
+  const cartItems = useSelector((state) => state.cart.value || []);
   const isLoggedIn = useSelector((state) => state.auth?.loggedIn || false);
 
   const dispatch = useDispatch();
@@ -88,7 +88,9 @@ const Header = () => {
                 <div className="relative">
                   <BsCart4 color="#0F1231" className="w-[25px] h-[25px]" />
                   <div className="absolute bottom-3 left-3 bg-blue rounded-full w-4 h-4">
-                    <p className="ml-[5px] text-xs text-white">{cart.length}</p>
+                    <p className="ml-[5px] text-xs text-white">
+                      {cartItems.length}
+                    </p>
                   </div>
                 </div>
               </Link>
@@ -103,7 +105,7 @@ const Header = () => {
               <BsCart4 color="#0F1231" className="w-[25px] h-[25px]" />
               <div className="absolute top-0 left-[15px] bg-blue rounded-full w-[13px] h-[13px]">
                 <p className="ml-[4px] mt-[-1px] text-[10px] font-black text-white">
-                  {cart.length}
+                  {cartItems.length}
                 </p>
               </div>
             </div>
