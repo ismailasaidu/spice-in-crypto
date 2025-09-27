@@ -1,26 +1,31 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { logIn } from "../redux/AuthSlice";
+import { authSlice } from "../redux/AuthSlice";
 import { useNavigate, Link } from "react-router-dom";
-import { ToastContainer, toast } from "react-toastify";
-import { db, auth } from "../lib/init-firebase";
 import { signInWithEmailAndPassword } from "firebase/auth";
-import { collection, getDocs } from "firebase/firestore";
+import { auth, db } from "../lib/init-firebase";
+import { getDocs, collection } from "firebase/firestore";
+import { toast, ToastContainer } from "react-toastify";
+import { fetchCartFromFirestore, setCartFromRemote } from "../redux/CartSlice";
 
 const Log = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const { logIn } = authSlice.actions;
+
   const isLoggedIn = useSelector((state) => state.auth.loggedIn);
 
   useEffect(() => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
     if (isLoggedIn) navigate("/");
   }, [isLoggedIn, navigate]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (!email || !password)
+      return toast.error("Please fill in email and password");
+
     try {
       const userCredential = await signInWithEmailAndPassword(
         auth,
@@ -30,35 +35,35 @@ const Log = () => {
       const user = userCredential.user;
 
       if (!user.emailVerified) {
-        toast.error("Please verify your email before logging in.");
-        return;
+        return toast.error("Please verify your email before logging in.");
       }
 
-      // Fetch accountId from Firestore
+      // Fetch account ID
       const Account = collection(db, "Accounts");
       const res = await getDocs(Account);
       const accountIds = res.docs.map((doc) => ({
         uId: doc.data().id,
         accountId: doc.id,
       }));
+      const account = accountIds.find((item) => item.uId === user.uid);
 
-      const accountIdSet = accountIds.find((idSet) => idSet.uId === user.uid);
-
-      // Save in Redux
-      dispatch(logIn({ id: user.uid, accountId: accountIdSet.accountId }));
-
-      // Save in localStorage
+      // Update Redux auth state
+      dispatch(logIn({ id: user.uid, accountId: account.accountId }));
       localStorage.setItem(
         "Account",
         JSON.stringify({
           loggedIn: true,
           id: user.uid,
-          accountId: accountIdSet.accountId,
+          accountId: account.accountId,
         })
       );
 
-      toast.success("Welcome");
-      navigate("/"); // Redirect to homepage
+      // Fetch cart from Firestore and set in Redux
+      const cartData = await fetchCartFromFirestore(user.uid);
+      dispatch(setCartFromRemote(cartData));
+
+      toast.success("Welcome!");
+      navigate("/");
     } catch (err) {
       toast.error(err.message);
     }
@@ -68,29 +73,27 @@ const Log = () => {
     <div>
       <form onSubmit={handleSubmit}>
         <div className="bg-lightblue flex justify-center items-center h-[100vh]">
-          <div className="bg-white w-[30%] sm:w-[80%] sm:mt-[-20px] flex flex-col px-[20px] py-[30px] h-[40%] mt-[100px] md:mt-[40px]">
+          <div className="bg-white w-[30%] sm:w-[80%] flex flex-col px-[20px] py-[30px] h-[40%] mt-[100px] md:mt-[40px]">
             <input
               type="email"
               placeholder="Email"
-              className="w-[100%] outline-none px-[10px] h-[20%] bg-divider mb-2"
+              className="w-[100%] outline-none px-[10px] h-[20%] bg-divider"
+              value={email}
               onChange={(e) => setEmail(e.target.value)}
-              required
             />
             <input
               type="password"
               placeholder="Password"
-              className="w-[100%] outline-none px-[10px] h-[20%] bg-divider mb-2"
+              className="w-[100%] outline-none px-[10px] h-[20%] bg-divider"
+              value={password}
               onChange={(e) => setPassword(e.target.value)}
-              required
             />
             <Link to="/forgetpassword">
-              <p className="text-[12px] text-lightblue mb-4">
-                Forgot Password?
-              </p>
+              <p className="text-[12px] text-lightblue">Forgot Password?</p>
             </Link>
             <button
               type="submit"
-              className="bg-blue w-[100%] h-[20%] text-[14px] text-white mb-4">
+              className="bg-blue w-[100%] h-[20%] text-white">
               LOGIN
             </button>
             <p className="text-[14px] text-center">

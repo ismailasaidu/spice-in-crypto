@@ -1,124 +1,81 @@
-
 import { createSlice } from "@reduxjs/toolkit";
-import {toast} from "react-toastify"
+import { toast } from "react-toastify";
+import { db } from "../lib/init-firebase";
+import { doc, getDoc, setDoc } from "firebase/firestore";
 
 const initialState = {
- 
-  value:localStorage.getItem("CartValue")? JSON.parse(localStorage.getItem("CartValue")) :[],
-  cart: localStorage.getItem("CartItems")? JSON.parse(localStorage.getItem("CartItems")) :[],
-  cartTotalQuantity:[],
-  cartTotalAmount: localStorage.getItem("Carttotal")? JSON.parse(localStorage.getItem("Carttotal")) :[],
-
- 
-
+  value: [],
+  cart: [],
+  cartTotalAmount: 0,
 };
 
 export const cartSlice = createSlice({
   name: "cart",
   initialState,
   reducers: {
-    add: (state, action) => {
-      if (state.value.length > 0) {
-        if (state.value.includes(action.payload.id)) {
-          toast.warning(`${action.payload.data.Description} already in the cart`);
-        } else {
-          state.value.push(action.payload.id);
-          state.cart.push(action.payload);
-          toast.success(`${action.payload.data.Description} added to cart`)
-          localStorage.setItem("CartItems",JSON.stringify(state.cart))
-          localStorage.setItem("CartValue",JSON.stringify(state.value))
+    setCartFromRemote: (state, action) => {
+      state.cart = action.payload.cart || [];
+      state.value = action.payload.value || [];
+      state.cartTotalAmount = action.payload.cartTotalAmount || 0;
+    },
 
-        
-        }
-       
-      
+    add: (state, action) => {
+      const exists = state.value.includes(action.payload.id);
+      if (exists) {
+        toast.warning(`${action.payload.data.Description} already in the cart`);
       } else {
-        state.value.push(action.payload.id);
         state.cart.push(action.payload);
-        toast.success(`${action.payload.data.Description} added to cart`)
-         localStorage.setItem("CartItems",JSON.stringify(state.cart))
-         localStorage.setItem("CartValue",JSON.stringify(state.value))
-      
+        state.value.push(action.payload.id);
+        toast.success(`${action.payload.data.Description} added to cart`);
       }
-      
-     
-    // localStorage.setItem("cartItems",JSON.stringify(state.cart))
-    // localStorage.setItem("CartValue",JSON.stringify(state.value))
     },
 
     remove: (state, action) => {
-      state.cart = state.cart.filter((item) => {
-        return action.payload.id !== item.id;
-    
-      });
-  
-      state.value.pop();
-     
- 
-      localStorage.setItem("CartItems",JSON.stringify(state.cart))
-      localStorage.setItem("CartValue",JSON.stringify(state.value))
+      state.cart = state.cart.filter((item) => item.id !== action.payload.id);
+      state.value = state.value.filter((id) => id !== action.payload.id);
     },
 
     increaseQuantity: (state, action) => {
-      let item = state.cart.find((a) => {
-        return a.id === action.payload;
-      });
-        
-      item.data.quantity += 1;
-  
-   
-      localStorage.setItem("CartItems",JSON.stringify(state.cart))
+      const item = state.cart.find((i) => i.id === action.payload);
+      if (item) item.data.quantity += 1;
     },
 
     decreaseQuantity: (state, action) => {
-      let item = state.cart.find((a) => {
-        return a.id === action.payload;
-      });
-      if (item.data.quantity > 1) {
-        item.data.quantity -= 1;
-      }
-      localStorage.setItem("CartItems",JSON.stringify(state.cart))
+      const item = state.cart.find((i) => i.id === action.payload);
+      if (item && item.data.quantity > 1) item.data.quantity -= 1;
     },
 
-  
-
-    Subtotal: (state, action) => {
-      const values = state.cart.map((item) => {
-        return item.data.quantity * (item.data.Price ); 
-      });
-
-      const newValue = values.reduce((a, b) => {
-        return a + b;
-      }, 0);
-
-    const Total = Math.round(newValue)
-      state.cartTotalAmount  = Total;
-      localStorage.setItem("carttotal",JSON.stringify(state.cartTotalAmount))
+    calculateSubtotal: (state) => {
+      const total = state.cart.reduce(
+        (sum, item) => sum + item.data.Price * item.data.quantity,
+        0
+      );
+      state.cartTotalAmount = Math.round(total);
     },
-
-    // Total: (state, action) => {
-    //   const values = state.cart.map((item) => {
-       
-    //     if (state.value > 2) {
-    //       return (item.data.quantity * item.data.Price) + 500;
-    //     } else {
-    //       return item.data.quantity * item.data.Price
-    //     }
-    //   });
-
-    //   const total = values.reduce((a, b) => {
-    //     return a + b;
-    //   }, 0);
-
-    //   state.cartTotal = total;
-    //   localStorage.setItem("cartItems",JSON.stringify(state.cart))
-    // },
-
-
   },
 });
 
-export const { add, remove , increaseQuantity ,Subtotal, decreaseQuantity, Total} =
-  cartSlice.actions;
+// Firestore sync helpers
+export const fetchCartFromFirestore = async (userId) => {
+  const docRef = doc(db, "Carts", userId);
+  const docSnap = await getDoc(docRef);
+  if (docSnap.exists()) {
+    return docSnap.data();
+  }
+  return { cart: [], value: [], cartTotalAmount: 0 };
+};
+
+export const syncCartToFirestore = async (userId, cartState) => {
+  await setDoc(doc(db, "Carts", userId), cartState);
+};
+
+export const {
+  add,
+  remove,
+  increaseQuantity,
+  decreaseQuantity,
+  calculateSubtotal,
+  setCartFromRemote,
+} = cartSlice.actions;
 
 export default cartSlice.reducer;

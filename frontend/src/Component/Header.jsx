@@ -1,17 +1,16 @@
 import React, { useState, useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import { BsCart4 } from "react-icons/bs";
-import { AiOutlineMenu } from "react-icons/ai";
-import { useSelector, useDispatch } from "react-redux";
-import { logOut } from "../redux/AuthSlice";
 import logo from "../Assets/logo.png";
+import { AiOutlineMenu } from "react-icons/ai";
+import { BsCart4 } from "react-icons/bs";
 import AOS from "aos";
 import "aos/dist/aos.css";
+import { useSelector, useDispatch } from "react-redux";
+import { Link, useNavigate } from "react-router-dom";
+import { logOut } from "../redux/AuthSlice";
 
 const Header = () => {
-  const [show, setShow] = useState(true);
   const [scrolling, setScrolling] = useState(false);
-
+  const [show, setShow] = useState(true);
   const cart = useSelector((state) => state.cart.value || []);
   const isLoggedIn = useSelector((state) => state.auth.loggedIn);
   const dispatch = useDispatch();
@@ -19,17 +18,10 @@ const Header = () => {
 
   useEffect(() => {
     AOS.init({ duration: 2000 });
-
-    const handleScroll = () => {
-      if (window.scrollY > 50) setScrolling(true);
-      else setScrolling(false);
-    };
-
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const handleLogout = () => {
+  const logout = () => {
+    localStorage.removeItem("Account");
     dispatch(logOut());
     navigate("/");
   };
@@ -46,20 +38,19 @@ const Header = () => {
     <div
       className={`${
         show ? "sm:h-[9.5%]" : "sm:h-[50%]"
-      } duration-300 bg-headerwhite overflow-hidden z-[100] shadow-xl px-[90px] md:px-[5%] sm:px-[0px] fixed top-0 w-full`}>
+      } duration-300 bg-headerwhite overflow-hidden z-[100] shadow-xl sm:ease-in px-[90px] items-center md:px-[5%] sm:px-[0px] w-[100%] fixed top-0`}>
       <div
         className={`header ${
           scrolling ? "scrolling" : ""
-        } font-MT flex justify-between md:items-center md:px-[20px] sm:border-b sm:py-[20px] py-[10px] sm:px-[30px] w-full items-center`}>
+        } font-MT flex justify-between md:items-center md:px-[20px] md:overflow-hidden sm:border-b sm:py-[20px] w-[100%] py-[10px] items-center sm:px-[30px]`}>
         <div>
           <Link to="/">
             <img src={logo} width={90} className="sm:w-[70px]" />
           </Link>
         </div>
 
-        {/* Desktop Menu */}
-        <div className="flex justify-between items-center w-full md:text-[10px] text-blue font-bold text-[15px] sm:hidden">
-          <div className="flex gap-[5%] w-full ml-[30%] md:ml-[12%]">
+        <div className="flex justify-between items-center w-[100%] md:text-[10px] text-blue font-bold text-[15px] sm:hidden">
+          <div className="flex gap-[5%] w-[100%] ml-[30%] md:ml-[12%]">
             {headerList.map((item, index) => (
               <div className="link1" key={index}>
                 <Link to={item.to}>
@@ -72,24 +63,33 @@ const Header = () => {
           </div>
 
           <div className="flex gap-[15%]">
-            <button
-              className="bg-lightblue text-white w-[80px] h-[30px]"
-              onClick={isLoggedIn ? handleLogout : () => navigate("/log")}>
-              {isLoggedIn ? "LOGOUT" : "LOGIN"}
-            </button>
+            <div>
+              <button className="bg-lightblue text-white w-[80px] h-[30px]">
+                {isLoggedIn ? (
+                  <h1 onClick={logout} className="cursor-pointer">
+                    LOGOUT
+                  </h1>
+                ) : (
+                  <Link to="/log">
+                    <h1>LOGIN</h1>
+                  </Link>
+                )}
+              </button>
+            </div>
 
-            <Link to="/cart">
-              <div className="relative">
-                <BsCart4 color="#0F1231" className="w-[25px] h-[25px]" />
-                <div className="absolute bottom-3 left-3 bg-blue rounded-full w-4 h-4">
-                  <p className="ml-[5px] text-xs text-white">{cart.length}</p>
+            <div>
+              <Link to="/cart">
+                <div className="relative">
+                  <BsCart4 color="#0F1231" className="w-[25px] h-[25px]" />
+                  <div className="absolute bottom-3 left-3 bg-blue rounded-full w-4 h-4">
+                    <p className="ml-[5px] text-xs text-white">{cart.length}</p>
+                  </div>
                 </div>
-              </div>
-            </Link>
+              </Link>
+            </div>
           </div>
         </div>
 
-        {/* Mobile Menu */}
         <div className="flex gap-[20px] items-center">
           <Link to="/cart">
             <div className="relative hidden mt-[-5px] sm:block">
@@ -109,26 +109,30 @@ const Header = () => {
         </div>
       </div>
 
-      {/* Mobile dropdown */}
-      <div
-        className={`flex flex-col px-[20px] py-[5%] space-y-[14px] z-[100] w-full sm:text-left font-bold text-black ${
-          show ? "hidden" : "block"
-        }`}>
+      <div className="flex flex-col px-[20px] py-[5%] space-y-[14px] z-[100] w-[100%] hidden sm:block text-black font-bold sm:text-left">
         {headerList.map((item, index) => (
-          <Link
-            key={index}
-            to={item.to}
-            onClick={() => setShow(true)}
-            className="px-[10px]">
-            <h1 className="cursor-pointer text-[1rem] font-bold">{item.p}</h1>
-          </Link>
+          <div className="px-[10px]" key={index}>
+            <Link to={item.to} onClick={() => setShow(!show)}>
+              <h1 className="cursor-pointer text-[1rem] font-bold">{item.p}</h1>
+            </Link>
+          </div>
         ))}
 
-        <button
-          className="bg-lightblue w-[100px] h-[30px] mt-2"
-          onClick={isLoggedIn ? handleLogout : () => navigate("/log")}>
-          {isLoggedIn ? "LOGOUT" : "LOGIN"}
-        </button>
+        <div
+          className="flex items-center justify-center"
+          onClick={() => setShow(!show)}>
+          <button className="bg-lightblue w-[100px] h-[30px]">
+            {isLoggedIn ? (
+              <h1 onClick={logout} className="cursor-pointer">
+                LOGOUT
+              </h1>
+            ) : (
+              <Link to="/log">
+                <h1>LOGIN</h1>
+              </Link>
+            )}
+          </button>
+        </div>
       </div>
     </div>
   );

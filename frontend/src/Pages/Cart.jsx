@@ -3,11 +3,12 @@ import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import { useDispatch, useSelector } from "react-redux";
 import { useState, useEffect } from "react";
+
 import {
   remove,
   increaseQuantity,
   decreaseQuantity,
-  Subtotal,
+  calculateSubtotal,
 } from "../redux/CartSlice";
 import { FiPlus } from "react-icons/fi";
 import close from "../Assets/close.png";
@@ -58,7 +59,7 @@ const Cart = () => {
   // console.log(Cart.cartTotalAmount);
 
   useEffect(() => {
-    dispatch(Subtotal());
+    dispatch(calculateSubtotal());
   }, [Cart, dispatch]);
 
   const User = localStorage.getItem("user");
