@@ -12,10 +12,10 @@ const Header = () => {
   const [scrolling, setScrolling] = useState(false);
   const [show, setShow] = useState(true);
 
-  // Safe cart variable
-  const cartItems = useSelector((state) => state.cart.value || []);
-  const isLoggedIn = useSelector((state) => state.auth?.loggedIn || false);
+  // Fully isolated cart variable to avoid redeclaration
+  const cartItems = (() => useSelector((state) => state.cart.value || []))();
 
+  const isLoggedIn = useSelector((state) => state.auth?.loggedIn || false);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
