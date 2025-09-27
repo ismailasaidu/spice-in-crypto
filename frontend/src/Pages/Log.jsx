@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { logIn } from "../redux/AuthSlice"; // <-- import actions directly
+import { logIn } from "../redux/AuthSlice";
 import { useNavigate, Link } from "react-router-dom";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth, db } from "../lib/init-firebase";
@@ -31,10 +31,8 @@ const Log = () => {
         password
       );
       const user = userCredential.user;
-
-      if (!user.emailVerified) {
+      if (!user.emailVerified)
         return toast.error("Please verify your email before logging in.");
-      }
 
       const Account = collection(db, "Accounts");
       const res = await getDocs(Account);

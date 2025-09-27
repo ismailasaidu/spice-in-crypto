@@ -6,13 +6,15 @@ import AOS from "aos";
 import "aos/dist/aos.css";
 import { useSelector, useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
-import { logOut } from "../redux/AuthSlice"; // <-- import actions directly
+import { logOut } from "../redux/AuthSlice";
 
 const Header = () => {
   const [scrolling, setScrolling] = useState(false);
   const [show, setShow] = useState(true);
-  const cart = useSelector((state) => state.cart.value || []);
-  const isLoggedIn = useSelector((state) => state.auth.loggedIn);
+
+  const cart = useSelector((state) => state.cart?.value || []);
+  const isLoggedIn = useSelector((state) => state.auth?.loggedIn || false);
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -101,7 +103,6 @@ const Header = () => {
               </div>
             </div>
           </Link>
-
           <AiOutlineMenu
             className="hidden sm:block w-[25px] h-[25px]"
             onClick={() => setShow(!show)}
@@ -117,7 +118,6 @@ const Header = () => {
             </Link>
           </div>
         ))}
-
         <div
           className="flex items-center justify-center"
           onClick={() => setShow(!show)}>

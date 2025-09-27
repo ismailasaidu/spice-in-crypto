@@ -1,7 +1,9 @@
-import Header from "./Component/Header";
+import React, { useEffect } from "react";
 import { Routes, Route, useNavigate } from "react-router-dom";
-import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
+
+import Header from "./Component/Header";
+import Footer from "./Component/Footer";
 
 import VerifyEmail from "./Pages/VerifyEmail";
 import Home from "./Pages/Home";
@@ -20,26 +22,34 @@ import Signup from "./Pages/Signup";
 import Log from "./Pages/Log";
 import ForgetPassword from "./Pages/ForgetPassword";
 
-import Footer from "./Component/Footer";
-
-import { logIn, logOut } from "./redux/AuthSlice";
+// Redux actions
+import { logIn } from "./redux/AuthSlice";
 
 function App() {
-  const isLoggedIn = useSelector((state) => state.auth.loggedIn);
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
+  const isLoggedIn = useSelector((state) => state.auth?.loggedIn); // optional chaining to prevent errors
+  const id = useSelector((state) => state.auth?.id);
 
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   }, []);
 
-  // Restore logged-in user from localStorage
+  // Restore user from localStorage
   useEffect(() => {
-    const loggedInUser = JSON.parse(localStorage.getItem("Account"));
-    if (loggedInUser && loggedInUser.loggedIn) {
-      dispatch(logIn(loggedInUser));
+    const storedAccount = JSON.parse(localStorage.getItem("Account"));
+    if (storedAccount && storedAccount.loggedIn) {
+      dispatch(logIn(storedAccount));
     }
   }, [dispatch]);
+
+  // Redirect if already logged in
+  useEffect(() => {
+    if (isLoggedIn) {
+      navigate("/"); // optional: you can customize behavior
+    }
+  }, [isLoggedIn, navigate]);
 
   return (
     <div className="md:overflow-hidden">

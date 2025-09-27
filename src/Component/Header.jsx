@@ -29,11 +29,11 @@ const Header = () => {
     localStorage.removeItem("Account");
     dispatch(logOut());
     navigate("/");
-    window.location.reload()
+    window.location.reload();
   };
+  const cart = useSelector((state) => state.cart?.value || []);
+  const isLoggedIn = useSelector((state) => state.auth?.loggedIn || false);
 
-  const { logIn, logOut } = authSlice.actions;
-  const isLoggedIn = useSelector((state) => state.auth.loggedIn);
   const headerList = [
     {
       p: "HOME",
@@ -76,40 +76,41 @@ const Header = () => {
             ))}
           </div>
           <div className="flex gap-[15%] ">
-          <Link to="/log">
-            <div>
-              <button className="bg-lightblue text-white w-[80px] h-[30px]">
-                {isLoggedIn ? (
-                  <>
-                    <Link to="/">
-                      <h1 className="" onClick={logout}>
-                        LOGOUT
-                      </h1>
-                    </Link>
-                  </>
-                ) : (
-                  <>
-                    <Link to="/log">
-                      <h1>LOGIN</h1>
-                    </Link>
-                  </>
-                )}
-              </button>
-            </div>
-          </Link>
-
-          <div className="">
-            <Link to="/cart">
-              <div className="relative">
-                <BsCart4 color="#0F1231" className="w-[25px] h-[25px]" />
-                <div className="absolute bottom-3 left-3 bg-blue rounded-full w-4 h-4 ">
-                  <p className="ml-[5px] text-xs  text-white">{cart.length}</p>
-                </div>
+            <Link to="/log">
+              <div>
+                <button className="bg-lightblue text-white w-[80px] h-[30px]">
+                  {isLoggedIn ? (
+                    <>
+                      <Link to="/">
+                        <h1 className="" onClick={logout}>
+                          LOGOUT
+                        </h1>
+                      </Link>
+                    </>
+                  ) : (
+                    <>
+                      <Link to="/log">
+                        <h1>LOGIN</h1>
+                      </Link>
+                    </>
+                  )}
+                </button>
               </div>
             </Link>
+
+            <div className="">
+              <Link to="/cart">
+                <div className="relative">
+                  <BsCart4 color="#0F1231" className="w-[25px] h-[25px]" />
+                  <div className="absolute bottom-3 left-3 bg-blue rounded-full w-4 h-4 ">
+                    <p className="ml-[5px] text-xs  text-white">
+                      {cart.length}
+                    </p>
+                  </div>
+                </div>
+              </Link>
+            </div>
           </div>
-          </div>
-          
         </div>
 
         <div className="flex gap-[20px] items-center">

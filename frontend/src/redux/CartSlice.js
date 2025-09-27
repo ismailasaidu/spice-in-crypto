@@ -3,15 +3,13 @@ import { toast } from "react-toastify";
 import { db } from "../lib/init-firebase";
 import { doc, getDoc, setDoc } from "firebase/firestore";
 
-// Initial cart state
 const initialState = {
   value: [],
   cart: [],
   cartTotalAmount: 0,
 };
 
-// Redux slice
-const cartSlice = createSlice({
+export const cartSlice = createSlice({
   name: "cart",
   initialState,
   reducers: {
@@ -55,9 +53,7 @@ const cartSlice = createSlice({
 export const fetchCartFromFirestore = async (userId) => {
   const docRef = doc(db, "Carts", userId);
   const docSnap = await getDoc(docRef);
-  if (docSnap.exists()) {
-    return docSnap.data();
-  }
+  if (docSnap.exists()) return docSnap.data();
   return { cart: [], value: [], cartTotalAmount: 0 };
 };
 
