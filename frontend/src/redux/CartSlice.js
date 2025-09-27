@@ -3,13 +3,15 @@ import { toast } from "react-toastify";
 import { db } from "../lib/init-firebase";
 import { doc, getDoc, setDoc } from "firebase/firestore";
 
+// Initial cart state
 const initialState = {
   value: [],
   cart: [],
   cartTotalAmount: 0,
 };
 
-export const cartSlice = createSlice({
+// Redux slice
+const cartSlice = createSlice({
   name: "cart",
   initialState,
   reducers: {
@@ -18,10 +20,8 @@ export const cartSlice = createSlice({
       state.value = action.payload.value || [];
       state.cartTotalAmount = action.payload.cartTotalAmount || 0;
     },
-
     add: (state, action) => {
-      const exists = state.value.includes(action.payload.id);
-      if (exists) {
+      if (state.value.includes(action.payload.id)) {
         toast.warning(`${action.payload.data.Description} already in the cart`);
       } else {
         state.cart.push(action.payload);
@@ -29,22 +29,18 @@ export const cartSlice = createSlice({
         toast.success(`${action.payload.data.Description} added to cart`);
       }
     },
-
     remove: (state, action) => {
       state.cart = state.cart.filter((item) => item.id !== action.payload.id);
       state.value = state.value.filter((id) => id !== action.payload.id);
     },
-
     increaseQuantity: (state, action) => {
       const item = state.cart.find((i) => i.id === action.payload);
       if (item) item.data.quantity += 1;
     },
-
     decreaseQuantity: (state, action) => {
       const item = state.cart.find((i) => i.id === action.payload);
       if (item && item.data.quantity > 1) item.data.quantity -= 1;
     },
-
     calculateSubtotal: (state) => {
       const total = state.cart.reduce(
         (sum, item) => sum + item.data.Price * item.data.quantity,
@@ -55,7 +51,7 @@ export const cartSlice = createSlice({
   },
 });
 
-// Firestore sync helpers
+// Firestore helpers
 export const fetchCartFromFirestore = async (userId) => {
   const docRef = doc(db, "Carts", userId);
   const docSnap = await getDoc(docRef);

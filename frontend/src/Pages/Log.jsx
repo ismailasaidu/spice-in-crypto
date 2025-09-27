@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { authSlice } from "../redux/AuthSlice";
+import { logIn } from "../redux/AuthSlice"; // <-- import actions directly
 import { useNavigate, Link } from "react-router-dom";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth, db } from "../lib/init-firebase";
@@ -13,8 +13,6 @@ const Log = () => {
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const { logIn } = authSlice.actions;
-
   const isLoggedIn = useSelector((state) => state.auth.loggedIn);
 
   useEffect(() => {
@@ -38,7 +36,6 @@ const Log = () => {
         return toast.error("Please verify your email before logging in.");
       }
 
-      // Fetch account ID
       const Account = collection(db, "Accounts");
       const res = await getDocs(Account);
       const accountIds = res.docs.map((doc) => ({
@@ -47,7 +44,6 @@ const Log = () => {
       }));
       const account = accountIds.find((item) => item.uId === user.uid);
 
-      // Update Redux auth state
       dispatch(logIn({ id: user.uid, accountId: account.accountId }));
       localStorage.setItem(
         "Account",
@@ -58,7 +54,6 @@ const Log = () => {
         })
       );
 
-      // Fetch cart from Firestore and set in Redux
       const cartData = await fetchCartFromFirestore(user.uid);
       dispatch(setCartFromRemote(cartData));
 

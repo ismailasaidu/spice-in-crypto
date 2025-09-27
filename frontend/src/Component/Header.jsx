@@ -6,7 +6,7 @@ import AOS from "aos";
 import "aos/dist/aos.css";
 import { useSelector, useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
-import { logOut } from "../redux/AuthSlice";
+import { logOut } from "../redux/AuthSlice"; // <-- import actions directly
 
 const Header = () => {
   const [scrolling, setScrolling] = useState(false);
