@@ -42,7 +42,7 @@ const ForgetPassword = () => {
               Reset password
             </h1>
             <p className="text-[12px] sm:text-[14px] text-grey">
-              Enter the email associated with your account and we will send an
+              Enter the email associated with your account and we wil send an
               email with instructions to reset you account
             </p>
 

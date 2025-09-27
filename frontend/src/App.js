@@ -5,7 +5,6 @@ import { useSelector, useDispatch } from "react-redux";
 import Header from "./Component/Header";
 import Footer from "./Component/Footer";
 
-import VerifyEmail from "./Pages/VerifyEmail";
 import Home from "./Pages/Home";
 import OurStory from "./Pages/OurStory";
 import PhysicalClasses from "./Pages/PhysicalClasses";
@@ -17,39 +16,42 @@ import Trend from "./Pages/Trend";
 import GrowingAccount from "./Pages/GrowingAccount";
 import Cart from "./Pages/Cart";
 import CartDetails from "./Pages/CartDetails";
+import Login from "./Pages/login/Login";
+import NewProduct from "./Pages/login/NewProduct";
 import Checkout from "./Pages/Checkout";
-import Signup from "./Pages/Signup";
+import NewSignals from "./Pages/login/NewSignals";
+import UpdateProducts from "./Pages/login/UpdateProducts";
 import Log from "./Pages/Log";
+import Signup from "./Pages/Signup";
 import ForgetPassword from "./Pages/ForgetPassword";
+import PageNotFound from "./Pages/PageNotFound";
 
-// Redux actions
-import { logIn } from "./redux/AuthSlice";
+import { login, logout } from "./redux/AuthSlice";
 
 function App() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const isLoggedIn = useSelector((state) => state.auth?.loggedIn); // optional chaining to prevent errors
-  const id = useSelector((state) => state.auth?.id);
+  const isLoggedIn = useSelector((state) => state.auth.loggedIn);
+  const userId = useSelector((state) => state.auth.id);
 
+  // Scroll to top on route change
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   }, []);
 
-  // Restore user from localStorage
+  // Check if user is logged in on page load
   useEffect(() => {
-    const storedAccount = JSON.parse(localStorage.getItem("Account"));
-    if (storedAccount && storedAccount.loggedIn) {
-      dispatch(logIn(storedAccount));
+    const savedAccount = JSON.parse(localStorage.getItem("Account"));
+    if (savedAccount?.loggedIn) {
+      dispatch(
+        login({
+          id: savedAccount.id,
+          accountId: savedAccount.accountId,
+        })
+      );
     }
   }, [dispatch]);
-
-  // Redirect if already logged in
-  useEffect(() => {
-    if (isLoggedIn) {
-      navigate("/"); // optional: you can customize behavior
-    }
-  }, [isLoggedIn, navigate]);
 
   return (
     <div className="md:overflow-hidden">
@@ -67,11 +69,15 @@ function App() {
         <Route path="/growing-small-account" element={<GrowingAccount />} />
         <Route path="/cart" element={<Cart />} />
         <Route path="description/:id" element={<CartDetails />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/newproduct" element={<NewProduct />} />
         <Route path="/checkout" element={<Checkout />} />
-        <Route path="/forgetpassword" element={<ForgetPassword />} />
-        <Route path="/verify" element={<VerifyEmail />} />
+        <Route path="/newsignals" element={<NewSignals />} />
+        <Route path="/updateproducts" element={<UpdateProducts />} />
         <Route path="/log" element={<Log />} />
         <Route path="/signup" element={<Signup />} />
+        <Route path="/forgetpassword" element={<ForgetPassword />} />
+        <Route path="*" element={<PageNotFound />} />
       </Routes>
 
       <Footer />
