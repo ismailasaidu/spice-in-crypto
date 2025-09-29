@@ -1,6 +1,6 @@
 import React from "react";
 import logo from "../Assets/logo.png";
-import "react-responsive-carousel/lib/styles/carousel.min.css";
+import "react-responsive-carousel/lib/styles/carousel.css";
 
 import { Carousel } from "react-responsive-carousel";
 
