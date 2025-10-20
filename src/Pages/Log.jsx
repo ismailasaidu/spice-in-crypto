@@ -7,12 +7,10 @@ import { login } from "../redux/AuthSlice";
 import { listenToCart } from "../redux/CartSlice";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { FaEye, FaEyeSlash } from "react-icons/fa";
 
 const Log = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -40,13 +38,11 @@ const Log = () => {
       );
       const user = userCredential.user;
 
-      // 🧩 Check if user's email is verified
       if (!user.emailVerified) {
         toast.warn("Please verify your email before logging in.", {
           position: "top-right",
         });
 
-        // Optional: resend verification email automatically
         try {
           await user.sendEmailVerification();
           toast.info("A new verification email has been sent.", {
@@ -61,7 +57,6 @@ const Log = () => {
         return;
       }
 
-      // ✅ Continue login if verified
       dispatch(login({ id: user.uid, accountId: user.uid }));
       localStorage.setItem(
         "Account",
@@ -87,24 +82,17 @@ const Log = () => {
           onChange={(e) => setEmail(e.target.value)}
         />
 
-        {/* Password field with eye toggle */}
-        <div className="relative w-full h-[15%]">
-          <input
-            type={showPassword ? "text" : "password"}
-            placeholder="Password"
-            className="w-full outline-none px-[10px] h-full bg-divider pr-10"
-            onChange={(e) => setPassword(e.target.value)}
-          />
-          <div
-            className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-600 cursor-pointer"
-            onClick={() => setShowPassword(!showPassword)}
-          >
-            {showPassword ? <FaEyeSlash /> : <FaEye />}
-          </div>
-        </div>
+        {/* Password field using browser-native eye */}
+        <input
+          type="password"
+          placeholder="Password"
+          autoComplete="current-password"
+          className="w-full outline-none px-[10px] h-[15%] bg-divider mt-3"
+          onChange={(e) => setPassword(e.target.value)}
+        />
 
         <button
-          className={`w-full h-[15%] text-[14px] text-white ${
+          className={`w-full h-[15%] text-[14px] text-white mt-4 ${
             loading ? "bg-blue/80 cursor-not-allowed" : "bg-blue"
           }`}
           onClick={handleLogin}
@@ -113,13 +101,13 @@ const Log = () => {
           {loading ? "Logging in..." : "Login"}
         </button>
 
-        <p className="text-[14px] cursor-pointer">
+        <p className="text-[14px] cursor-pointer mt-2">
           Don’t have an account?{" "}
           <Link to="/signup">
             <span className="text-lightblue">Sign Up</span>
           </Link>
         </p>
-        <p className="text-[14px] cursor-pointer">
+        <p className="text-[14px] cursor-pointer mt-1">
           <Link to="/forgetpassword">
             <span className="text-lightblue">Forgot Password?</span>
           </Link>
