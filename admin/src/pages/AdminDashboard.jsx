@@ -255,13 +255,33 @@ const AdminDashboard = () => {
           >
             <ArrowRight size={18} /> Update
           </button>
-          <button
+          {/* <button
             className="bg-[#FF0000] px-4 py-2 sm:px-5 sm:py-2 rounded-lg flex items-center gap-2 text-sm sm:text-base"
             onClick={async () => {
               try {
                 await signOut(auth);
                 toast.success("Logged out successfully");
                 navigate("/login");
+              } catch (err) {
+                console.error(err);
+                toast.error("Logout failed");
+              }
+            }}
+          >
+            <LogOut size={16} /> Logout
+          </button> */}
+
+          <button
+            className="bg-[#FF0000] px-4 py-2 sm:px-5 sm:py-2 rounded-lg flex items-center gap-2 text-sm sm:text-base"
+            onClick={async () => {
+              try {
+                await signOut(auth);
+                toast.success("Logged out successfully");
+
+                // Navigate after a short delay so toast is visible
+                setTimeout(() => {
+                  navigate("/login", { replace: true });
+                }, 200);
               } catch (err) {
                 console.error(err);
                 toast.error("Logout failed");
