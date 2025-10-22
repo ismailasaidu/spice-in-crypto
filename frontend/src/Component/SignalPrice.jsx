@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { doc, getDoc } from "firebase/firestore";
+import { doc, onSnapshot } from "firebase/firestore";
 import { db } from "../lib/init-firebase";
 import { add, syncCart } from "../redux/CartSlice";
 import { toast } from "react-toastify";
@@ -11,34 +11,38 @@ const SignalPrice = ({ item }) => {
   const cartItems = useSelector((state) => state.cart.value || []);
   const [paidCourses, setPaidCourses] = useState([]);
   const [adding, setAdding] = useState(false);
-  const [loadingUserData, setLoadingUserData] = useState(true); // loader per card
+  const [loadingUserData, setLoadingUserData] = useState(true);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    const retrievePaidCourses = async () => {
-      if (!accountId) {
+    if (!accountId) {
+      setLoadingUserData(false);
+      return;
+    }
+
+    const unsubscribe = onSnapshot(
+      doc(db, "Accounts", accountId),
+      (snapshot) => {
+        if (snapshot.exists()) {
+          setPaidCourses(snapshot.data()?.userPaidCourse || []);
+        } else {
+          setPaidCourses([]);
+        }
         setLoadingUserData(false);
-        return;
-      }
-      try {
-        const userRef = doc(db, "Accounts", accountId);
-        const res = await getDoc(userRef);
-        setPaidCourses(res.exists() ? res.data()?.userPaidCourse || [] : []);
-      } catch (error) {
-        console.error("Error retrieving paid courses:", error);
+      },
+      (error) => {
+        console.error(error);
         setPaidCourses([]);
-      } finally {
         setLoadingUserData(false);
       }
-    };
-    retrievePaidCourses();
+    );
+
+    return () => unsubscribe();
   }, [accountId]);
 
   const handleAddToCart = async () => {
     if (!accountId) {
-      toast.info("Please login to enroll in this signal", {
-        autoClose: 2000,
-      });
+      toast.info("Please login to enroll in this signal", { autoClose: 2000 });
       return;
     }
 
@@ -47,7 +51,7 @@ const SignalPrice = ({ item }) => {
       return;
     }
 
-    if (cartItems.includes(item.id)) {
+    if (cartItems.find((i) => i.id === item.id)) {
       toast.warning(`${item.data.Description} is already in your cart`);
       return;
     }
@@ -62,9 +66,9 @@ const SignalPrice = ({ item }) => {
     }
   };
 
-  if (!item || !item.data) return null;
+  if (!item?.data) return null;
 
-  const { Description, Price, setUp } = item.data;
+  const { Description, Price } = item.data;
 
   return (
     <div className="flex justify-center items-start mt-[50px] sm:mt-[30px]">

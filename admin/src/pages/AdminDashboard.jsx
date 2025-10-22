@@ -7,8 +7,8 @@ import {
   addDoc,
   doc,
 } from "firebase/firestore";
-import { signOut } from "firebase/auth"; // <-- import signOut
-import { db, auth } from "../lib/init-firebase"; // <-- import auth
+import { signOut } from "firebase/auth";
+import { db, auth } from "../lib/init-firebase";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import ClipLoader from "react-spinners/ClipLoader";
@@ -181,10 +181,9 @@ const AdminDashboard = () => {
   const handleSendEmail = async () => {
     let recipients = [];
     if (emailOption === "all") recipients = accounts.map((a) => a.email);
-    else if (emailOption === "purchased") {
-      const purchasedEmails = purchaseDocs.map((p) => p.email);
-      recipients = [...new Set(purchasedEmails)];
-    } else recipients = selectedUsers;
+    else if (emailOption === "purchased")
+      recipients = [...new Set(purchaseDocs.map((p) => p.email))];
+    else recipients = selectedUsers;
 
     if (!emailSubject || !emailBody) {
       toast.warning("Subject and body cannot be empty");
@@ -230,42 +229,39 @@ const AdminDashboard = () => {
   for (let i = 0; i <= maxRevenue + 10; i += 10) yTicks.push(i);
 
   return (
-    <div className="min-h-screen bg-[#050C1F] text-white px-8 py-10">
+    <div className="min-h-screen bg-[#050C1F] text-white px-4 sm:px-8 py-6 sm:py-10">
       {/* Header */}
-      <div className="flex items-center justify-between mb-12">
+      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-8 sm:mb-12 gap-4 sm:gap-0">
         <div className="flex items-center gap-4">
           <img
             src={Logo}
             alt="Logo"
-            className="w-20 h-20 object-contain animate-pulse drop-shadow-[0_0_20px_#3B82F6]"
+            className="w-16 h-16 sm:w-20 sm:h-20 object-contain animate-pulse drop-shadow-[0_0_20px_#3B82F6]"
           />
-          <h1 className="text-4xl font-bold text-blue-500">Admin Dashboard</h1>
+          <h1 className="text-2xl sm:text-4xl font-bold text-blue-500">
+            Admin Dashboard
+          </h1>
         </div>
-        <div className="flex gap-4">
-          {/* Send Email button */}
+        <div className="flex flex-wrap gap-2 sm:gap-4 mt-2 sm:mt-0">
           <button
-            className="bg-[#22C55E] px-5 py-2 rounded-lg flex items-center gap-2"
+            className="bg-[#22C55E] px-4 py-2 sm:px-5 sm:py-2 rounded-lg flex items-center gap-2 text-sm sm:text-base"
             onClick={() => setShowEmailModal(true)}
           >
             <Send size={16} /> Send Email
           </button>
-
-          {/* Update Page button */}
           <button
-            className="flex items-center gap-2 px-4 py-2 bg-[#0000FF] rounded-lg hover:bg-[#0F1B3A] text-gray-200"
-            onClick={() => navigate("/update")} // fixed
+            className="flex items-center gap-2 px-3 py-2 sm:px-4 sm:py-2 bg-[#0000FF] rounded-lg hover:bg-[#0F1B3A] text-gray-200 text-sm sm:text-base"
+            onClick={() => navigate("/update")}
           >
-            <ArrowRight size={18} /> Update Page
+            <ArrowRight size={18} /> Update
           </button>
-
-          {/* Logout button */}
           <button
-            className="bg-[#FF0000] px-5 py-2 rounded-lg flex items-center gap-2"
+            className="bg-[#FF0000] px-4 py-2 sm:px-5 sm:py-2 rounded-lg flex items-center gap-2 text-sm sm:text-base"
             onClick={async () => {
               try {
-                await signOut(auth); // fixed
+                await signOut(auth);
                 toast.success("Logged out successfully");
-                navigate("/login"); // adjust to your login route
+                navigate("/login");
               } catch (err) {
                 console.error(err);
                 toast.error("Logout failed");
@@ -278,43 +274,47 @@ const AdminDashboard = () => {
       </div>
 
       {/* Stats */}
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-10">
-        <div className="p-6 rounded-xl bg-gradient-to-br from-[#0B1B47] to-[#1E3A8A] shadow-lg">
-          <div className="flex justify-between mb-3">
-            <h3>Total Users</h3>
-            <Users size={32} />
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 mb-6 sm:mb-10">
+        <div className="p-4 sm:p-6 rounded-xl bg-gradient-to-br from-[#0B1B47] to-[#1E3A8A] shadow-lg">
+          <div className="flex justify-between mb-2 sm:mb-3">
+            <h3 className="text-sm sm:text-base">Total Users</h3>
+            <Users size={28} />
           </div>
-          <p className="text-3xl font-bold">{totals.totalUsers}</p>
+          <p className="text-2xl sm:text-3xl font-bold">{totals.totalUsers}</p>
         </div>
-        <div className="p-6 rounded-xl bg-gradient-to-br from-[#0B2B24] to-[#065F46] shadow-lg">
-          <div className="flex justify-between mb-3">
-            <h3>Mentorships</h3>
-            <GraduationCap size={32} />
+        <div className="p-4 sm:p-6 rounded-xl bg-gradient-to-br from-[#0B2B24] to-[#065F46] shadow-lg">
+          <div className="flex justify-between mb-2 sm:mb-3">
+            <h3 className="text-sm sm:text-base">Mentorships</h3>
+            <GraduationCap size={28} />
           </div>
-          <p className="text-3xl font-bold">{totals.totalMentorship}</p>
+          <p className="text-2xl sm:text-3xl font-bold">
+            {totals.totalMentorship}
+          </p>
         </div>
-        <div className="p-6 rounded-xl bg-gradient-to-br from-[#1D1438] to-[#4C1D95] shadow-lg">
-          <div className="flex justify-between mb-3">
-            <h3>Signals</h3>
-            <TrendingUp size={32} />
+        <div className="p-4 sm:p-6 rounded-xl bg-gradient-to-br from-[#1D1438] to-[#4C1D95] shadow-lg">
+          <div className="flex justify-between mb-2 sm:mb-3">
+            <h3 className="text-sm sm:text-base">Signals</h3>
+            <TrendingUp size={28} />
           </div>
-          <p className="text-3xl font-bold">{totals.totalSignals}</p>
+          <p className="text-2xl sm:text-3xl font-bold">
+            {totals.totalSignals}
+          </p>
         </div>
-        <div className="p-6 rounded-xl bg-gradient-to-br from-[#FFA500] to-[#78350F] shadow-lg">
-          <div className="flex justify-between mb-3">
-            <h3>Total Revenue</h3>
-            <Wallet size={32} />
+        <div className="p-4 sm:p-6 rounded-xl bg-gradient-to-br from-[#FFA500] to-[#78350F] shadow-lg">
+          <div className="flex justify-between mb-2 sm:mb-3">
+            <h3 className="text-sm sm:text-base">Total Revenue</h3>
+            <Wallet size={28} />
           </div>
-          <p className="text-3xl font-bold">
+          <p className="text-2xl sm:text-3xl font-bold">
             ${totals.totalRevenue.toFixed(2)}
           </p>
         </div>
       </div>
 
       {/* Chart */}
-      <div className="bg-[#0A1533] p-8 rounded-xl shadow-lg mb-6">
-        <h2 className="text-2xl mb-6">Revenue Overview</h2>
-        <ResponsiveContainer width="100%" height={300}>
+      <div className="bg-[#0A1533] p-4 sm:p-8 rounded-xl shadow-lg mb-6">
+        <h2 className="text-lg sm:text-2xl mb-4 sm:mb-6">Revenue Overview</h2>
+        <ResponsiveContainer width="100%" height={250}>
           <LineChart data={chartData}>
             <CartesianGrid strokeDasharray="3 3" stroke="#1E3A8A" />
             <XAxis dataKey="name" stroke="#9CA3AF" />
@@ -341,24 +341,24 @@ const AdminDashboard = () => {
         </ResponsiveContainer>
       </div>
 
-      {/* Update Rate Centered */}
-      <div className="flex justify-center mb-6">
-        <div className="bg-[#0A1533] p-6 rounded-2xl shadow-xl w-full max-w-sm flex flex-col items-center gap-4">
-          <h3 className="text-xl font-semibold text-center text-green-400 mb-2">
+      {/* Update Rate */}
+      <div className="flex justify-center mb-6 px-2 sm:px-0">
+        <div className="bg-[#0A1533] p-4 sm:p-6 rounded-2xl shadow-xl w-full max-w-sm flex flex-col items-center gap-3">
+          <h3 className="text-lg sm:text-xl font-semibold text-green-400 mb-1 text-center">
             Update Naira Rate
           </h3>
-          <div className="flex w-full gap-3">
+          <div className="flex flex-col sm:flex-row w-full gap-2 sm:gap-3">
             <input
               type="number"
               value={rateValue}
               onChange={(e) => setRateValue(e.target.value)}
               placeholder="Enter rate"
-              className="flex-1 p-3 rounded-lg bg-[#050C1F] border border-gray-700 focus:outline-none focus:border-green-500 transition"
+              className="flex-1 p-2 sm:p-3 rounded-lg bg-[#050C1F] border border-gray-700 focus:outline-none focus:border-green-500 transition"
             />
             <button
               onClick={handleUpdateRate}
               disabled={updatingRate}
-              className={`px-5 py-3 rounded-lg font-semibold text-white transition ${
+              className={`px-4 sm:px-5 py-2 sm:py-3 rounded-lg font-semibold text-white transition ${
                 updatingRate
                   ? "bg-gray-500 cursor-not-allowed"
                   : "bg-green-500 hover:bg-green-600"
@@ -367,7 +367,7 @@ const AdminDashboard = () => {
               {updatingRate ? "Updating..." : "Update"}
             </button>
           </div>
-          <p className="text-gray-400 text-sm mt-1">
+          <p className="text-gray-400 text-sm mt-1 text-center">
             Current Rate: {rateValue || "Not set"}
           </p>
         </div>
@@ -375,15 +375,17 @@ const AdminDashboard = () => {
 
       {/* Email Modal */}
       {showEmailModal && (
-        <div className="fixed inset-0 bg-black/70 flex justify-center items-start pt-20 z-50">
-          <div className="bg-[#0A1533] p-6 rounded-xl shadow-lg w-full max-w-2xl">
-            <h3 className="mb-4 text-xl font-semibold">Send Email</h3>
+        <div className="fixed inset-0 bg-black/70 flex justify-center items-start pt-16 sm:pt-20 z-50 overflow-y-auto">
+          <div className="bg-[#0A1533] p-4 sm:p-6 rounded-xl shadow-lg w-full max-w-md sm:max-w-2xl">
+            <h3 className="mb-4 text-lg sm:text-xl font-semibold">
+              Send Email
+            </h3>
             <div className="mb-4">
-              <label className="mr-3">Recipients:</label>
+              <label className="mr-2 sm:mr-3">Recipients:</label>
               <select
                 value={emailOption}
                 onChange={(e) => setEmailOption(e.target.value)}
-                className="p-2 rounded bg-[#050C1F]"
+                className="p-2 sm:p-3 rounded w-full sm:w-auto bg-[#050C1F]"
               >
                 <option value="all">All Users</option>
                 <option value="purchased">Users Who Purchased</option>
@@ -392,9 +394,12 @@ const AdminDashboard = () => {
             </div>
 
             {emailOption === "selected" && (
-              <div className="mb-4 max-h-32 overflow-y-auto border border-gray-600 p-2 rounded">
+              <div className="mb-4 max-h-40 sm:max-h-60 overflow-y-auto border border-gray-600 p-2 rounded">
                 {accounts.map((acc) => (
-                  <div key={acc.id} className="flex items-center gap-2">
+                  <div
+                    key={acc.id}
+                    className="flex items-center gap-2 text-sm sm:text-base"
+                  >
                     <input
                       type="checkbox"
                       value={acc.email}
@@ -427,7 +432,7 @@ const AdminDashboard = () => {
               onChange={(e) => setEmailBody(e.target.value)}
               className="w-full p-2 mb-3 rounded bg-[#050C1F] h-32"
             />
-            <div className="flex justify-end gap-3">
+            <div className="flex flex-col sm:flex-row justify-end gap-2 sm:gap-3">
               <button
                 onClick={() => setShowEmailModal(false)}
                 className="px-4 py-2 rounded bg-gray-600"

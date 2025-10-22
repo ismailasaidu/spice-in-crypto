@@ -104,8 +104,6 @@ const Checkout = () => {
     },
     callback: async (response) => {
       try {
-        console.log("Flutterwave Response:", response);
-
         const status = (response.status || "").toLowerCase();
         const isSuccessful = ["successful", "success", "completed"].includes(
           status
@@ -138,13 +136,12 @@ const Checkout = () => {
           transaction_id: response.transaction_id,
         });
 
+        // 🔑 Add purchased courses to user's account (real-time sync)
         await updateDoc(userRef, {
           userPaidCourse: arrayUnion(...coursesIds),
         });
 
-        // ✅ Clear the cart after successful payment
         dispatch(clearCart());
-
         toast.success(
           `✅ Payment successful! Transaction ID: ${response.transaction_id}`
         );
@@ -152,9 +149,7 @@ const Checkout = () => {
         navigate("/");
       } catch (error) {
         console.error("Error handling payment callback:", error);
-        toast.error(
-          "⚠️ There was an error processing your payment. Check your account."
-        );
+        toast.error("⚠️ Error processing payment. Please check your account.");
         closePaymentModal();
       }
     },
