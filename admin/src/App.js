@@ -10,11 +10,11 @@ const App = () => {
   return (
     <Routes>
       {/* Public route */}
-      <Route path="/admin/login" element={<AdminLogin />} />
+      <Route path="/login" element={<AdminLogin />} />
 
       {/* Protected routes */}
       <Route
-        path="/admin/dashboard"
+        path="/dashboard"
         element={
           <PrivateRoute>
             <AdminDashboard />
@@ -23,7 +23,7 @@ const App = () => {
       />
 
       <Route
-        path="/admin/update"
+        path="/update"
         element={
           <PrivateRoute>
             <Updates />
@@ -31,9 +31,9 @@ const App = () => {
         }
       />
 
-      {/* Redirect unknown routes to login */}
-      <Route path="/" element={<Navigate to="/admin/login" replace />} />
-      <Route path="*" element={<NotFoundPage/>} />
+      {/* Redirect unknown routes */}
+      <Route path="/" element={<Navigate to="/login" replace />} />
+      <Route path="*" element={<NotFoundPage />} />
     </Routes>
   );
 };

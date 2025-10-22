@@ -90,7 +90,7 @@ const AdminLogin = () => {
 
       if (docSnap.exists()) {
         notify.success("Login successful! Redirecting...");
-        navigate("/admin/dashboard");
+        navigate("/dashboard");
       } else {
         notify.error("Access denied. You are not an admin.");
       }

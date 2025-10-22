@@ -253,7 +253,7 @@ const AdminDashboard = () => {
           {/* Update Page button */}
           <button
             className="flex items-center gap-2 px-4 py-2 bg-[#0000FF] rounded-lg hover:bg-[#0F1B3A] text-gray-200"
-            onClick={() => navigate("/admin/update")} // fixed
+            onClick={() => navigate("/update")} // fixed
           >
             <ArrowRight size={18} /> Update Page
           </button>
