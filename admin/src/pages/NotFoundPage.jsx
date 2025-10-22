@@ -24,10 +24,10 @@ const NotFoundPage = () => {
 
       {/* Return Home Button */}
       <button
-        onClick={() => navigate("/")}
+        onClick={() => navigate("/dashboard")}
         className="px-6 py-3 rounded-lg bg-blue-500 hover:bg-blue-600 text-white font-semibold transition shadow-lg"
       >
-        Go to Admin Login
+        Go to Admin Dashboard
       </button>
 
       {/* Optional subtle animated stars for style */}

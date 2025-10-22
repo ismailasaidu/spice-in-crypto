@@ -206,7 +206,7 @@ const Updates = () => {
           style={{ filter: "drop-shadow(0 0 15px #60A5FA)" }}
         />
         <button
-          onClick={() => navigate("/admin/dashboard")}
+          onClick={() => navigate("/dashboard")}
           className="flex items-center gap-2 px-6 py-3 bg-blue-900 rounded-lg hover:bg-blue-800 transition text-lg"
         >
           <ArrowLeft size={20} /> Dashboard
