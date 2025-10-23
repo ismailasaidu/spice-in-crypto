@@ -4,6 +4,7 @@ import {
   collection,
   getDocs,
   updateDoc,
+  addDoc,
   doc,
   deleteDoc,
 } from "firebase/firestore";
@@ -21,6 +22,7 @@ const Updates = () => {
   const [mentorships, setMentorships] = useState([]);
   const [loading, setLoading] = useState(true);
 
+  // Fetch existing signals & mentorships
   const fetchData = async () => {
     setLoading(true);
     try {
@@ -49,12 +51,55 @@ const Updates = () => {
     fetchData();
   }, []);
 
+  // Add new signal or mentorship
+  const handleAddItem = (type) => {
+    const currentItems = type === "Signals" ? signals : mentorships;
+    const maxItems = type === "Signals" ? 3 : 2;
+
+    if (currentItems.length >= maxItems) {
+      toast.warning(`Cannot add more than ${maxItems} ${type}`);
+      return;
+    }
+
+    const newItem = {
+      id: "new-" + Date.now(),
+      Description: "",
+      Price: 0,
+      Order: currentItems.length + 1,
+      link: "",
+      isNew: true, // flag for new item
+    };
+
+    if (type === "Signals") setSignals((prev) => [...prev, newItem]);
+    else setMentorships((prev) => [...prev, newItem]);
+  };
+
+  // Update or add card
   const handleCardUpdate = async (type, updatedItem) => {
     try {
+      if (updatedItem.isNew) {
+        const { id, isNew, ...docData } = updatedItem;
+        const docRef = await addDoc(collection(db, type), docData);
+        const savedItem = { id: docRef.id, ...docData };
+
+        if (type === "Signals") {
+          setSignals((prev) =>
+            prev.map((i) => (i.id === updatedItem.id ? savedItem : i))
+          );
+        } else {
+          setMentorships((prev) =>
+            prev.map((i) => (i.id === updatedItem.id ? savedItem : i))
+          );
+        }
+
+        toast.success(`${type} added successfully`);
+        return;
+      }
+
+      // Update existing
       const collectionRef = collection(db, type);
       const snapshot = await getDocs(collectionRef);
       const items = snapshot.docs.map((d) => ({ id: d.id, ...d.data() }));
-
       const updatedOrder = parseInt(updatedItem.Order);
 
       const conflict = items.find(
@@ -99,13 +144,19 @@ const Updates = () => {
     }
   };
 
+  // Delete card
   const handleCardDelete = async (type, id) => {
     if (!window.confirm("Are you sure you want to delete this item?")) return;
     try {
-      await deleteDoc(doc(db, type, id));
+      // Only delete from Firestore if not a new unsaved item
+      if (!id.toString().startsWith("new-")) {
+        await deleteDoc(doc(db, type, id));
+      }
+
       if (type === "Signals")
         setSignals((prev) => prev.filter((i) => i.id !== id));
       else setMentorships((prev) => prev.filter((i) => i.id !== id));
+
       toast.success(`${type} deleted`);
     } catch (err) {
       console.error(err);
@@ -121,6 +172,7 @@ const Updates = () => {
     );
   }
 
+  // Editable card component
   const EditableCard = ({ item, type, onUpdate, onDelete }) => {
     const [form, setForm] = useState({
       Description: item.Description,
@@ -171,11 +223,16 @@ const Updates = () => {
         />
         <button
           onClick={() =>
-            onUpdate(type, { ...form, id: item.id, originalOrder: item.Order })
+            onUpdate(type, {
+              ...form,
+              id: item.id,
+              originalOrder: item.Order,
+              isNew: item.isNew,
+            })
           }
           className="w-full bg-green-600 py-2 sm:py-3 rounded hover:bg-green-700 transition"
         >
-          Update
+          {item.isNew ? "Add" : "Update"}
         </button>
       </div>
     );
@@ -202,8 +259,14 @@ const Updates = () => {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-10">
         {/* Signals */}
         <div>
-          <h2 className="text-xl sm:text-2xl font-bold text-[#60A5FA] flex items-center gap-2 mb-4 justify-start">
+          <h2 className="text-xl sm:text-2xl font-bold text-[#60A5FA] flex items-center gap-2 mb-4 justify-between">
             📈 Signals
+            <button
+              onClick={() => handleAddItem("Signals")}
+              className="bg-green-600 px-3 py-1 sm:px-4 sm:py-2 rounded hover:bg-green-700 text-sm sm:text-base"
+            >
+              + Add Signal
+            </button>
           </h2>
           {signals.map((s) => (
             <EditableCard
@@ -218,8 +281,14 @@ const Updates = () => {
 
         {/* Mentorships */}
         <div>
-          <h2 className="text-xl sm:text-2xl font-bold text-[#34D399] flex items-center gap-2 mb-4 justify-start">
+          <h2 className="text-xl sm:text-2xl font-bold text-[#34D399] flex items-center gap-2 mb-4 justify-between">
             🎓 Mentorships
+            <button
+              onClick={() => handleAddItem("Mentorship")}
+              className="bg-green-600 px-3 py-1 sm:px-4 sm:py-2 rounded hover:bg-green-700 text-sm sm:text-base"
+            >
+              + Add Mentorship
+            </button>
           </h2>
           {mentorships.map((m) => (
             <EditableCard
