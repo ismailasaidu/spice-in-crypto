@@ -90,7 +90,7 @@ const Checkout = () => {
   const fwConfig = {
     public_key: publicKey,
     tx_ref: `TX-${Date.now()}`,
-    amount: 100,
+    amount: totalAmount,
     currency,
     payment_options: "card, banktransfer, ussd",
     customer: {

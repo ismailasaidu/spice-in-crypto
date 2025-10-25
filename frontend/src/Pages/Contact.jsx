@@ -3,7 +3,7 @@ import logo from "../Assets/logo.png";
 import peakpx from "../Assets/peakpx.jpg";
 import slack from "../Assets/slack.png";
 import { useEffect } from "react";
-import spice3 from "../Assets/spice3.jpeg";
+import spice3 from "../Assets/spice4.jpeg";
 import {
   FaInstagram,
   FaTelegramPlane,
