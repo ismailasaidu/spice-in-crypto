@@ -73,13 +73,13 @@ const MentorshipCard = ({ item }) => {
   const { Description, Price, type } = item.data;
 
   return (
-    <div className="flex justify-center items-start mt-[50px] sm:mt-[30px]">
+    <div className="flex  justify-center items-start mt-[50px] sm:mt-[30px]">
       {loadingUserData ? (
         <div className="flex justify-center items-center w-[320px] h-[400px]">
           <div className="loader rounded-full border-4 border-t-4 border-blue-500 w-[50px] h-[50px] animate-spin"></div>
         </div>
       ) : (
-        <div className="bg-white shadow-2xl rounded-xl p-[25px] sm:p-[20px] w-[320px] sm:w-[90%] flex flex-col items-center">
+        <div className="bg-white shadow-2xl rounded-xl p-[25px] sm:p-[20px] w-[320px] sm:w-[310px] flex flex-col items-center">
           <div className="flex flex-col items-center text-center gap-[10px] mb-[20px]">
             <h1 className="text-[26px] sm:text-[20px] font-bold text-black">
               {Description}
