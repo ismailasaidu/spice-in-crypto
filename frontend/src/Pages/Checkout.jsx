@@ -165,11 +165,6 @@ const Checkout = () => {
   const handleScreenshotChange = (e) => setCryptoScreenshot(e.target.files[0]);
 
   const handleConfirmCryptoPayment = () => {
-    if (!cryptoScreenshot) {
-      toast.warning("⚠️ Please attach a screenshot of your payment");
-      return;
-    }
-
     const coursesList = cart.map((item) => item.data.Description).join(", ");
     const whatsappMessage = encodeURIComponent(
       `Hello, I’ve sent payment for the following courses: ${coursesList}, totaling $${totalUSD.toFixed(
