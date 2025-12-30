@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { signInWithEmailAndPassword } from "firebase/auth";
+import { signOut } from "firebase/auth";
 import { doc, getDoc } from "firebase/firestore";
 import { auth, db } from "../lib/init-firebase";
 import { ToastContainer, toast } from "react-toastify";
@@ -92,6 +93,7 @@ const AdminLogin = () => {
         notify.success("Login successful! Redirecting...");
         navigate("/dashboard");
       } else {
+        await signOut(auth);
         notify.error("Access denied. You are not an admin.");
       }
     } catch (error) {

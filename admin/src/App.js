@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
 import ClipLoader from "react-spinners/ClipLoader";
 
-import PrivateRoute from "./components/PrivateRoute";
+import AdminRoute from "./components/AdminRoute"; // ✅ USE THIS
 import AdminLogin from "./pages/AdminLogin";
 import AdminDashboard from "./pages/AdminDashboard";
 import Updates from "./pages/Updates";
@@ -11,11 +11,9 @@ import { auth } from "./lib/init-firebase";
 
 const App = () => {
   const [checkingAuth, setCheckingAuth] = useState(true);
-  const [user, setUser] = useState(null);
 
   useEffect(() => {
-    const unsubscribe = auth.onAuthStateChanged((currentUser) => {
-      setUser(currentUser);
+    const unsubscribe = auth.onAuthStateChanged(() => {
       setCheckingAuth(false);
     });
     return () => unsubscribe();
@@ -31,34 +29,32 @@ const App = () => {
 
   return (
     <Routes>
-      {/* Public route */}
-      <Route
-        path="/login"
-        element={user ? <Navigate to="/dashboard" replace /> : <AdminLogin />}
-      />
+      {/* ✅ PUBLIC ADMIN LOGIN (NO AUTO REDIRECT) */}
+      <Route path="/login" element={<AdminLogin />} />
 
-      {/* Protected routes */}
+      {/* ✅ ADMIN-ONLY ROUTES */}
       <Route
         path="/dashboard"
         element={
-          <PrivateRoute user={user}>
+          <AdminRoute>
             <AdminDashboard />
-          </PrivateRoute>
+          </AdminRoute>
         }
       />
+
       <Route
         path="/update"
         element={
-          <PrivateRoute user={user}>
+          <AdminRoute>
             <Updates />
-          </PrivateRoute>
+          </AdminRoute>
         }
       />
 
       {/* Redirect root to login */}
       <Route path="/" element={<Navigate to="/login" replace />} />
 
-      {/* Catch-all for unknown routes */}
+      {/* Catch-all */}
       <Route path="*" element={<NotFoundPage />} />
     </Routes>
   );
